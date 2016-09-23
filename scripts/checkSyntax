@@ -1,0 +1,2 @@
+#!/bin/bash
+varnishd -C -f /etc/varnish/xq-cache.vcl
