@@ -1,0 +1,218 @@
+cmf_routing:
+    dynamic:
+        controllers_by_class:
+            Enhavo\Bundle\PageBundle\Entity\Page: EnhavoThemeBundle:Page:show
+
+enhavo_app:
+    permission_check: false
+    show_version: true
+    stylesheets:
+      - '@EnhavoGridBundle/Resources/public/css/style.css'
+      - '@EnhavoMediaBundle/Resources/public/css/style.css'
+      - '@EnhavoWorkflowBundle/Resources/public/css/style.css'
+      - '@EnhavoSearchBundle/Resources/public/css/style.css'
+    javascripts:
+
+    menu:
+        dashboard:
+            type: dashboard
+        user:
+            type: user_user
+        group:
+            type: user_group
+        article:
+            type: article
+        page:
+            type: page
+        category:
+            type: category
+        download:
+            type: download
+        slider:
+            type: slider
+        newsletter:
+            type: newsletter_newsletter
+        subscriber:
+            type: newsletter_subscriber
+        calendar:
+            type: calendar
+        workflow:
+            type: workflow
+        product:
+            type: shop_product
+        order:
+            type: shop_order
+        setting:
+            type: setting
+
+enhavo_grid:
+    render:
+        sets:
+            default:
+
+    items:
+        picture:
+            model: Enhavo\Bundle\GridBundle\Entity\Picture
+            form: Enhavo\Bundle\GridBundle\Form\Type\PictureType
+            repository: EnhavoGridBundle:Picture
+            template: EnhavoGridBundle:Item:picture.html.twig
+            label: picture.label.picture
+            translationDomain: EnhavoGridBundle
+        picture_picture:
+            model: Enhavo\Bundle\GridBundle\Entity\PicturePicture
+            form: Enhavo\Bundle\GridBundle\Form\Type\PicturePictureType
+            repository: EnhavoGridBundle:PicturePicture
+            template: EnhavoGridBundle:Item:picture_picture.html.twig
+            label: picturePicture.label.picturePicture
+            translationDomain: EnhavoGridBundle
+        three_picture:
+            model: Enhavo\Bundle\GridBundle\Entity\ThreePicture
+            form: Enhavo\Bundle\GridBundle\Form\Type\ThreePictureType
+            repository: EnhavoGridBundle:ThreePicture
+            template: EnhavoGridBundle:Item:three_picture.html.twig
+            label: threePicture.label.threePicture
+            translationDomain: EnhavoGridBundle
+        gallery:
+            model: Enhavo\Bundle\GridBundle\Entity\Gallery
+            form: Enhavo\Bundle\GridBundle\Form\Type\GalleryType
+            repository: EnhavoGridBundle:Gallery
+            template: EnhavoGridBundle:Item:gallery.html.twig
+            label: gallery.label.gallery
+            translationDomain: EnhavoGridBundle
+        text:
+            model: Enhavo\Bundle\GridBundle\Entity\Text
+            form: Enhavo\Bundle\GridBundle\Form\Type\TextType
+            repository: EnhavoGridBundle:Text
+            template: EnhavoGridBundle:Item:text.html.twig
+            label: text.label.text
+            translationDomain: EnhavoGridBundle
+        text_picture:
+            model: Enhavo\Bundle\GridBundle\Entity\TextPicture
+            form: Enhavo\Bundle\GridBundle\Form\Type\TextPictureType
+            repository: EnhavoGridBundle:TextPicture
+            template: EnhavoGridBundle:Item:text_picture.html.twig
+            label: textPicture.label.textPicture
+            translationDomain: EnhavoGridBundle
+        text_text:
+            model: Enhavo\Bundle\GridBundle\Entity\TextText
+            form: Enhavo\Bundle\GridBundle\Form\Type\TextTextType
+            repository: EnhavoGridBundle:TextText
+            template: EnhavoGridBundle:Item:text_text.html.twig
+            label: textText.label.textText
+            translationDomain: EnhavoGridBundle
+        cite_text:
+            model: Enhavo\Bundle\GridBundle\Entity\CiteText
+            form: Enhavo\Bundle\GridBundle\Form\Type\CiteTextType
+            repository: EnhavoGridBundle:CiteText
+            template: EnhavoGridBundle:Item:cite_text.html.twig
+            label: citeText.label.citeText
+            translationDomain: EnhavoGridBundle
+        download:
+            model: Enhavo\Bundle\DownloadBundle\Entity\DownloadItem
+            form: Enhavo\Bundle\DownloadBundle\Form\Type\DownloadItemType
+            repository: EnhavoDownloadBundle:DownloadItem
+            template: EnhavoDownloadBundle:Item:download.html.twig
+            label: download.label.download
+            translationDomain: EnhavoGridBundle
+        video:
+            model: Enhavo\Bundle\GridBundle\Entity\Video
+            form: Enhavo\Bundle\GridBundle\Form\Type\VideoType
+            repository: EnhavoGridBundle:Video
+            template: EnhavoGridBundle:Item:video.html.twig
+            label: video.label.video
+            translationDomain: EnhavoGridBundle
+
+
+enhavo_category:
+    default_collection: default
+
+enhavo_contact:
+    contact:
+        model: Enhavo\Bundle\ContactBundle\Model\Contact
+        form: Enhavo\Bundle\ContactBundle\Form\Type\ContactFormType
+        template:
+            form: EnhavoContactBundle:Contact:form.html.twig
+            recipient: EnhavoContactBundle:Contact:recipient.html.twig
+            sender: EnhavoContactBundle:Contact:sender.html.twig
+        recipient: %contact_form_recipient%
+        from: %emails_send_from%
+        subject: contact.message.email_subject
+        translationDomain: EnhavoContactBundle
+        send_to_sender: true
+
+enhavo_workflow:
+    entities:
+        -
+            class: %enhavo_article.model.article.class%
+            label: 'article.label.article'
+            translationDomain: EnhavoArticleBundle
+            repository: enhavo_article.repository.article
+        -
+            class: %enhavo_page.model.page.class%
+            label: 'page.label.page'
+            translationDomain: EnhavoPageBundle
+            repository: enhavo_page.repository.page
+        -
+            class: %enhavo_newsletter.model.newsletter.class%
+            label: 'newsletter.label.newsletter'
+            translationDomain: EnhavoNewsletterBundle
+            repository: enhavo_newsletter.repository.newsletter
+            
+enhavo_search:
+    search:
+        template: EnhavoSearchBundle:Search:render.html.twig
+        strategy: reindex
+        search_engine: enhavo_search_search_engine
+        index_engine: enhavo_search_index_engine
+
+enhavo_article:
+    resources:
+        article:
+            routing:
+                strategy: slug
+                route: enhavo_theme_article_show
+
+enhavo_theme:
+    boxes:
+        sidebar:
+            template: 'EnhavoThemeBundle:Box:sidebar.html.twig'
+            widgets:
+                search:
+                    type: template
+                    template: 'EnhavoThemeBundle:Theme:Widget/search.html.twig'
+                category:
+                    type: article_category
+                newsletter:
+                    type: template
+                    template: 'EnhavoThemeBundle:Theme:Widget/newsletter.html.twig'
+        footer:
+            template: 'EnhavoThemeBundle:Theme:Box/footer.html.twig'
+            widgets:
+                contact:
+                    type: template
+                    template: 'EnhavoThemeBundle:Theme:Widget/contact.html.twig'
+                about-us:
+                    type: template
+                    template: 'EnhavoThemeBundle:Theme:Widget/about-us.html.twig'
+                social_media:
+                    type: template
+                    template: 'EnhavoThemeBundle:Theme:Widget/social-media.html.twig'
+
+
+enhavo_content:
+    sitemap:
+        collectors:
+            page:
+                type: publish
+                repository: enhavo_page.repository.page
+            article:
+                type: publish
+                repository: enhavo_article.repository.article
+            appointment:
+                type: publish
+                repository: enhavo_calendar.repository.appointment
+
+
+enhavo_shop:
+    templates:
+        base: 'EnhavoThemeBundle:Theme:base.html.twig'

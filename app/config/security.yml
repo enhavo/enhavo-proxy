@@ -1,0 +1,131 @@
+security:
+#    access_decision_manager:
+#        strategy: unanimous
+
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:
+
+        ROLE_ENHAVO_DASHBOARD_DASHBOARD_INDEX:
+
+        ROLE_ENHAVO_USER_USER_INDEX:
+        ROLE_ENHAVO_USER_USER_UPDATE:
+        ROLE_ENHAVO_USER_USER_CREATE:
+        ROLE_ENHAVO_USER_USER_DELETE:
+
+        ROLE_ENHAVO_USER_GROUP_INDEX:
+        ROLE_ENHAVO_USER_GROUP_UPDATE:
+        ROLE_ENHAVO_USER_GROUP_CREATE:
+        ROLE_ENHAVO_USER_GROUP_DELETE:
+
+        ROLE_ENHAVO_ARTICLE_ARTICLE_INDEX:
+        ROLE_ENHAVO_ARTICLE_ARTICLE_UPDATE:
+        ROLE_ENHAVO_ARTICLE_ARTICLE_CREATE:
+        ROLE_ENHAVO_ARTICLE_ARTICLE_DELETE:
+
+        ROLE_ENHAVO_CATEGORY_CATEGORY_INDEX:
+        ROLE_ENHAVO_CATEGORY_CATEGORY_UPDATE:
+        ROLE_ENHAVO_CATEGORY_CATEGORY_CREATE:
+        ROLE_ENHAVO_CATEGORY_CATEGORY_DELETE:
+
+        ROLE_ENHAVO_PAGE_PAGE_INDEX:
+        ROLE_ENHAVO_PAGE_PAGE_UPDATE:
+        ROLE_ENHAVO_PAGE_PAGE_CREATE:
+        ROLE_ENHAVO_PAGE_PAGE_DELETE:
+
+        ROLE_ENHAVO_CALENDAR_APPOINTMENT_INDEX:
+        ROLE_ENHAVO_CALENDAR_APPOINTMENT_UPDATE:
+        ROLE_ENHAVO_CALENDAR_APPOINTMENT_CREATE:
+        ROLE_ENHAVO_CALENDAR_APPOINTMENT_DELETE:
+
+        ROLE_ENHAVO_DOWNLOAD_DOWNLOAD_INDEX:
+        ROLE_ENHAVO_DOWNLOAD_DOWNLOAD_UPDATE:
+        ROLE_ENHAVO_DOWNLOAD_DOWNLOAD_CREATE:
+        ROLE_ENHAVO_DOWNLOAD_DOWNLOAD_DELETE:
+
+        ROLE_ENHAVO_SLIDER_SLIDE_INDEX:
+        ROLE_ENHAVO_SLIDER_SLIDE_UPDATE:
+        ROLE_ENHAVO_SLIDER_SLIDE_CREATE:
+        ROLE_ENHAVO_SLIDER_SLIDE_DELETE:
+
+        ROLE_ENHAVO_NEWSLETTER_NEWSLETTER_INDEX:
+        ROLE_ENHAVO_NEWSLETTER_NEWSLETTER_UPDATE:
+        ROLE_ENHAVO_NEWSLETTER_NEWSLETTER_CREATE:
+        ROLE_ENHAVO_NEWSLETTER_NEWSLETTER_DELETE:
+        ROLE_ENHAVO_NEWSLETTER_NEWSLETTER_SEND:
+
+        ROLE_ENHAVO_WORKFLOW_WORKFLOW_INDEX:
+        ROLE_ENHAVO_WORKFLOW_WORKFLOW_UPDATE:
+        ROLE_ENHAVO_WORKFLOW_WORKFLOW_CREATE:
+        ROLE_ENHAVO_WORKFLOW_WORKFLOW_DELETE:
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        admin:
+            pattern:  ^/admin/.*
+            context: user
+            form_login:
+                provider:       fos_userbundle
+                csrf_provider:  form.csrf_provider
+                login_path:     /admin/login
+                use_forward:    false
+                check_path:     /admin/login/check
+                failure_path:   /admin/login
+                default_target_path: /admin/enhavo/dashboard/enhavo
+            logout:
+                path:   /admin/logout
+                target: /admin/login
+            anonymous:  true
+
+        user:
+            pattern: ^/user/.*
+            context: user
+            form_login:
+                provider:       fos_userbundle
+                csrf_provider:  form.csrf_provider
+                login_path:     /user/login
+                use_forward:    false
+                check_path:     /user/login/check
+                failure_path:   /user/login
+                default_target_path: /user/profile
+            logout:
+                path:   /user/logout
+                target: /user/login
+            anonymous:  true
+
+        main:
+            pattern: .*
+            context: user
+            form_login:
+                provider:       fos_userbundle
+                csrf_provider:  form.csrf_provider
+                login_path:     /login
+                use_forward:    false
+                check_path:     /login_check
+                failure_path:   null
+                default_target_path: /user/profile
+            logout:
+                path:   /logout
+                target: /
+            anonymous:  true
+
+    access_control:
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login/check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/reset-password, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+
+        - { path: ^/user/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/login/check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/reset-password, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/, role: ROLE_USER }

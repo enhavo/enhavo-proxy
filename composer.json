@@ -1,0 +1,43 @@
+{
+  "name": "enhavo/enhavo-project",
+  "license": "MIT",
+  "type": "project",
+  "description": "enhavo",
+  "autoload": {
+    "psr-0": { "": "src/" }
+  },
+  "require": {
+    "enhavo/enhavo": "dev-master",
+    "doctrine/doctrine-bundle": "~1.3@dev",
+    "doctrine/doctrine-migrations-bundle": "dev-master",
+    "doctrine/migrations": "dev-master",
+    "doctrine/doctrine-fixtures-bundle": "dev-master",
+    "friendsofsymfony/user-bundle": "v2.0.0-alpha3"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+    ],
+    "post-update-cmd": [
+      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+    ]
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "extra": {
+    "symfony-app-dir": "app",
+    "symfony-web-dir": "web",
+    "incenteev-parameters": {
+      "file": "app/config/parameters.yml"
+    }
+  }
+}
