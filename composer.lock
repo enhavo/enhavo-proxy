@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61b44ef18eb86a56dc22aa8434991c5f",
-    "content-hash": "6fa93bb172ab174fbda48342694522e4",
+    "hash": "c369fa2cee1b7423874a0feabddafc54",
+    "content-hash": "795fb5778cc256bc134186d525e7c51b",
     "packages": [
         {
             "name": "bacon/bacon-string-utils",
@@ -1240,12 +1240,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/enhavo/enhavo.git",
-                "reference": "0a83c55228edbf01f803d1ae87d03d8109f2affa"
+                "reference": "e3f0c5213fc23a77105954a1cd406b33b8ef9fd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/enhavo/enhavo/zipball/0a83c55228edbf01f803d1ae87d03d8109f2affa",
-                "reference": "0a83c55228edbf01f803d1ae87d03d8109f2affa",
+                "url": "https://api.github.com/repos/enhavo/enhavo/zipball/e3f0c5213fc23a77105954a1cd406b33b8ef9fd5",
+                "reference": "e3f0c5213fc23a77105954a1cd406b33b8ef9fd5",
                 "shasum": ""
             },
             "require": {
@@ -1339,14 +1339,19 @@
             "autoload": {
                 "psr-4": {
                     "": "src/"
-                }
+                },
+                "classmap": [
+                    "app/AppKernel.php",
+                    "app/AppCache.php",
+                    "app/Environment.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "enhavo",
-            "time": "2017-04-04 15:14:00"
+            "time": "2017-04-07 13:48:41"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
