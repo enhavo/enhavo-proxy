@@ -23,7 +23,14 @@ class HostType extends AbstractResourceType
     {
         $builder->add('domain', TextType::class);
         $builder->add('directorName', TextType::class);
-        $builder->add('https', BooleanType::class);
+        $builder->add('https', ChoiceType::class, [
+            'choices_as_values' => true,
+            'choices'=> [
+                'Off' => Host::HTTPS_OFF,
+                'On' => Host::HTTPS_ON,
+                'Only' => Host::HTTPS_ONLY
+            ]
+        ]);
         $builder->add('backends', ListType::class, [
             'type' => 'project_backend'
         ]);

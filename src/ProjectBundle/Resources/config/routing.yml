@@ -8,3 +8,7 @@ project_default_index:
 enhavo_host:
     resource: "@ProjectBundle/Resources/config/routing/host.yml"
     prefix: /admin
+
+enhavo_varnish:
+    resource: "@ProjectBundle/Resources/config/routing/varnish.yml"
+    prefix: /admin

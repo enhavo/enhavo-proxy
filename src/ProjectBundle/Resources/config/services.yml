@@ -3,3 +3,8 @@ services:
         class: ProjectBundle\Form\Type\BackendType
         tags:
           - { name: form.type, alias: 'project_backend' }
+
+    project.varnish.compiler:
+        class: ProjectBundle\Varnish\Compiler
+        arguments:
+            - '@templating'

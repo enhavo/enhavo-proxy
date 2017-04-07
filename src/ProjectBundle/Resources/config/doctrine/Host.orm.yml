@@ -16,13 +16,13 @@ ProjectBundle\Entity\Host:
             type: integer
             nullable: true
         transferType:
-            type: text
+            type: string
             nullable: true
         backendStrategy:
-            type: integer
+            type: string
             nullable: true
         directorName:
-            type: text
+            type: string
             nullable: true
 
     oneToMany:

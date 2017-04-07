@@ -8,23 +8,23 @@
             .first_byte_timeout = {{ backend.firstByteTimeout }}s;
             .between_bytes_timeout = {{ backend.betweenBytesTimeout }}s;
 
-            .probe = {
-                .url = $backend['url'].
-                .request = ";
-                    "GET ".$backend['url']." HTTP/1.1
-                    "Host: ;
-                    "Connection: close\";";
-                .timeout = 15s;
-                .interval = 3s;
-                .window = 3;
-                .threshold = 3;
-                .initial = 3;
-                .expected_response = 200;
-            }
+            {#.probe = {#}
+                {#.url = $backend['url'].#}
+                {#.request = ";#}
+                    {#"GET ".$backend['url']." HTTP/1.1#}
+                    {#"Host: ;#}
+                    {#"Connection: close\";";#}
+                {#.timeout = 15s;#}
+                {#.interval = 3s;#}
+                {#.window = 3;#}
+                {#.threshold = 3;#}
+                {#.initial = 3;#}
+                {#.expected_response = 200;#}
+            {#}#}
         }
     {% endfor %}
 
-    director {{ backend.directorName }} {{ host.backendStrategy }}
+    director {{ host.directorName }} {{ host.backendStrategy }}
     {
         {% for backend in host.backends %}
             { .backend = {{ backend.name }}; }

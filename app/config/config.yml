@@ -28,10 +28,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: de
-    google_maps_api: AIzaSyCg4SIj6mp8Ndio9Ugqt8o2G0DjcLeo1wQ
-    email_from: no-reply@serviceguide24.de
-    email_notifications_to: fabian.liebl@xq-web.de
+    locale: en
 
 framework:
     #esi:             ~
