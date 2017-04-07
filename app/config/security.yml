@@ -81,7 +81,7 @@ security:
                 use_forward:    false
                 check_path:     /admin/login/check
                 failure_path:   /admin/login
-                default_target_path: /admin/enhavo/dashboard/enhavo
+                default_target_path: /admin/enhavo/dashboard
             logout:
                 path:   /admin/logout
                 target: /admin/login
@@ -113,7 +113,7 @@ security:
                 use_forward:    false
                 check_path:     /login_check
                 failure_path:   null
-                default_target_path: /user/profile
+                default_target_path: /
             logout:
                 path:   /logout
                 target: /
@@ -128,4 +128,5 @@ security:
         - { path: ^/user/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/login/check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/reset-password, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/registration, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/, role: ROLE_USER }

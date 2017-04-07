@@ -1,0 +1,72 @@
+project_host_index:
+    options:
+        expose: true
+    path: /project/host/index
+    methods: [GET]
+    defaults:
+        _controller: project.controller.host:indexAction
+        _sylius:
+            viewer:
+
+project_host_create:
+    options:
+        expose: true
+    path: /project/host/create
+    methods: [GET,POST]
+    defaults:
+        _controller: project.controller.host:createAction
+        _sylius:
+            viewer:
+
+project_host_update:
+    options:
+        expose: true
+    path: /project/host/update/{id}
+    methods: [GET,POST]
+    defaults:
+        _controller: project.controller.host:updateAction
+        _sylius:
+            viewer:
+
+project_host_table:
+    options:
+        expose: true
+    path: /project/host/table
+    methods: [GET]
+    defaults:
+        _controller: project.controller.host:tableAction
+        _sylius:
+            viewer:
+
+project_host_delete:
+    options:
+        expose: true
+    path: /project/host/delete/{id}
+    methods: [DELETE]
+    defaults:
+        _controller: project.controller.host:deleteAction
+
+project_host_batch:
+    options:
+        expose: true
+    path: /project/host/batch
+    methods: [POST]
+    defaults:
+        _controller: project.controller.host:batchAction
+        _sylius:
+            paginate: false
+            criteria:
+                id: $ids
+            batches:
+                delete:
+                    type: delete
+
+project_host_preview:
+    options:
+        expose: true
+    path: /project/host/preview
+    methods: [POST]
+    defaults:
+        _controller: project.controller.host:previewAction
+        _sylius:
+            viewer:

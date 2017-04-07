@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 $varnishDir = "/etc/varnish";
@@ -169,7 +168,12 @@ function createDomainVCL($configArray)
         }
 
         $lines[] = "    set req.backend = backend_".vclSubRoutineEscape($domain).";";
-        $lines[] = "    return (pass);";
+
+        if($data['attribute']['pipe']) {
+            $lines[] = "    return(pipe);";
+        } else {
+            $lines[] = "    return(pass);";
+        }
 
         /*
         if($data['attribute']['failover'])
@@ -214,9 +218,9 @@ function createBackendVCL($configArray)
                 $lines[] = "    .port = \"".$backend['port']."\";";
             else
                 $lines[] = "    .port = \"80\";";
-            $lines[] = "    .connect_timeout = 60s;";
-            $lines[] = "    .first_byte_timeout = 60s;";
-            $lines[] = "    .between_bytes_timeout = 60s;";
+            $lines[] = "    .connect_timeout = 900s;";
+            $lines[] = "    .first_byte_timeout = 900s;";
+            $lines[] = "    .between_bytes_timeout = 900s;";
             $lines[] = "";
 
             if($backend['url'])

@@ -1,43 +1,12 @@
-project:
-    resource: "@ProjectBundle/Resources/config/routing.yml"
-    prefix:   /
-
-#
-# theme
-#
-enhavo_theme_hompage:
-    resource: "@EnhavoThemeBundle/Resources/config/routing/homepage.yml"
-    prefix:   /
-
-enhavo_theme_download:
-    resource: "@EnhavoThemeBundle/Resources/config/routing/download.yml"
-    prefix:   /
-
-enhavo_theme_article:
-    resource: "@EnhavoThemeBundle/Resources/config/routing/article.yml"
-    prefix:   /
-
-enhavo_theme_shop:
-    resource: "@EnhavoThemeBundle/Resources/config/routing/shop.yml"
-    prefix:   /
-
 #
 # enhavo
 #
-enhavo_shop:
-    resource: "@EnhavoShopBundle/Resources/config/routing/shop.yml"
-    prefix:   /shop
-
 enhavo_user_theme:
     resource: "@EnhavoUserBundle/Resources/config/routing/theme.yml"
     prefix:   /
 
 enhavo_contact:
     resource: "@EnhavoContactBundle/Resources/config/routing.yml"
-    prefix:   /
-
-enhavo_search:
-    resource: "@EnhavoSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
 enhavo_media:
@@ -51,6 +20,10 @@ enhavo_sitemap:
 enhavo_newsletter_subscribe:
     resource: "@EnhavoNewsletterBundle/Resources/config/routing/subscribe.yml"
     prefix: /
+
+enhavo_search_admin:
+    resource: "@EnhavoSearchBundle/Resources/config/routing/admin.yml"
+    prefix:   /admin
 
 enhavo_admin:
     resource: "@EnhavoAppBundle/Resources/config/routing/admin.yml"
@@ -104,10 +77,6 @@ enhavo_category_collection:
     resource: "@EnhavoCategoryBundle/Resources/config/routing/collection.yml"
     prefix: /admin
 
-enhavo_workflow:
-    resource: "@EnhavoWorkflowBundle/Resources/config/routing/workflow.yml"
-    prefix: /admin
-
 enhavo_calendar:
     resource: "@EnhavoCalendarBundle/Resources/config/routing/appointment.yml"
     prefix: /admin
@@ -115,11 +84,6 @@ enhavo_calendar:
 enhavo_setting:
     resource: "@EnhavoSettingBundle/Resources/config/routing/setting.yml"
     prefix: /admin
-
-enhavo_shop_admin:
-    resource: "@EnhavoShopBundle/Resources/config/routing/admin.yml"
-    prefix:   /admin
-
 
 #
 # 3rd Party
@@ -132,3 +96,11 @@ fos_js_routing:
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+#
+# Project
+#
+
+project:
+    resource: "@ProjectBundle/Resources/config/routing.yml"
+    prefix:   /

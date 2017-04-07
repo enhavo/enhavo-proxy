@@ -1,10 +1,22 @@
 {
-  "name": "enhavo/enhavo-project",
+  "name": "xqweb/proxy",
   "license": "MIT",
   "type": "project",
   "description": "enhavo",
   "autoload": {
-    "psr-0": { "": "src/" }
+    "psr-4": {
+      "": "src/"
+    },
+    "classmap": [
+      "app/AppKernel.php",
+      "app/AppCache.php",
+      "app/Environment.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "": "tests/"
+    }
   },
   "require": {
     "enhavo/enhavo": "dev-master",

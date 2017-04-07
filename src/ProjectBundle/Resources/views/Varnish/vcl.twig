@@ -1,4 +1,41 @@
-include "backend.vcl";
+{% for host in hosts %}
+    {% for backend in host.backends %}
+        backend {{ backend.name }}
+        {
+            .host = "{{ backend.host }}";
+            .port = "{{ backend.port }}";
+            .connect_timeout = {{ backend.connectTimeout }}s;
+            .first_byte_timeout = {{ backend.firstByteTimeout }}s;
+            .between_bytes_timeout = {{ backend.betweenBytesTimeout }}s;
+
+            .probe = {
+                .url = $backend['url'].
+                .request = ";
+                    "GET ".$backend['url']." HTTP/1.1
+                    "Host: ;
+                    "Connection: close\";";
+                .timeout = 15s;
+                .interval = 3s;
+                .window = 3;
+                .threshold = 3;
+                .initial = 3;
+                .expected_response = 200;
+            }
+        }
+    {% endfor %}
+
+    director {{ backend.directorName }} {{ host.backendStrategy }}
+    {
+        {% for backend in host.backends %}
+            { .backend = {{ backend.name }}; }
+        {% endfor %}
+    }
+{% endfor %}
+
+backend acmetool {
+   .host = "127.0.0.1";
+   .port = "8080";
+}
 
 acl local {
   "localhost";
@@ -8,16 +45,37 @@ sub vcl_recv
 {
     call pipe_uncorrect_request_header;
     call common_recv;
-    include "domain.vcl";
+
+    {% for host in hosts %}
+        if(req.http.host ~ "^{{ host.domain }}$")
+        {
+            {% if host.https == 2 %} {# https only #}
+                if (client.ip !~ local) {
+                    set req.http.x-Redir-Url = "https://{{ host.domain }}" + req.url;
+                    error 750 req.http.x-Redir-Url;
+                }
+            {% endif %}
+
+            set req.backend = {{ host.directorName }};
+
+            return({{ host.transferType }});
+        }
+    {% endfor %}
+
     set req.http.x-Redir-Url = "https://www.xq-web.de";
     error 750 req.http.x-Redir-Url;
 }
 
 sub common_recv
 {
+    if (req.url ~ "^/.well-known/acme-challenge/") {
+        set req.backend = acmetool;
+        return (pass);
+    }
+
     /* Forward client ip */
     if (client.ip !~ local) {
-       	set req.http.X-Forwarded-For = regsub(client.ip, ":.*", "");
+    	set req.http.X-Forwarded-For = regsub(client.ip, ":.*", "");
     }
 
     /* We only deal with GET and HEAD by default */

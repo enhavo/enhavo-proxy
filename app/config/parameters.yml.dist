@@ -15,9 +15,10 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
     mailer_delivery_address: ~
+    mailer_from: no-reply@enhavo.com
+    mailer_name: enhavo
+    mailer_to: ~
+    mailer_encryption: ssl
+    mailer_port: 465
 
-    locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
-
-    contact_form_recipient: ~
-    emails_send_from: ~

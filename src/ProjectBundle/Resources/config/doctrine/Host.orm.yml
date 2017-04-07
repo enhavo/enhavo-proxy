@@ -1,0 +1,34 @@
+ProjectBundle\Entity\Host:
+    type: entity
+    table: project_host
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+        domain:
+            type: string
+            nullable: true
+        https:
+            type: integer
+            nullable: true
+        transferType:
+            type: text
+            nullable: true
+        backendStrategy:
+            type: integer
+            nullable: true
+        directorName:
+            type: text
+            nullable: true
+
+    oneToMany:
+        backends:
+            cascade: ['persist', 'remove', 'refresh']
+            targetEntity: Backend
+            mappedBy: host
+
+    lifecycleCallbacks: {  }

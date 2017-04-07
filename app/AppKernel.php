@@ -8,18 +8,6 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
-
-            new Sylius\Bundle\CartBundle\SyliusCartBundle(),
-            new Sylius\Bundle\OrderBundle\SyliusOrderBundle(),
-            new Sylius\Bundle\MoneyBundle\SyliusMoneyBundle(),
-            new Sylius\Bundle\CurrencyBundle\SyliusCurrencyBundle(),
-            new Sylius\Bundle\FlowBundle\SyliusFlowBundle(),
-            new Sylius\Bundle\AddressingBundle\SyliusAddressingBundle(),
-            new Sylius\Bundle\PromotionBundle\SyliusPromotionBundle(),
-            new Sylius\Bundle\PaymentBundle\SyliusPaymentBundle(),
-            new Sylius\Bundle\ShippingBundle\SyliusShippingBundle(),
-            new Sylius\Bundle\TaxationBundle\SyliusTaxationBundle(),
-
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -56,18 +44,19 @@ class AppKernel extends Kernel
             new Enhavo\Bundle\SliderBundle\EnhavoSliderBundle(),
             new Enhavo\Bundle\SettingBundle\EnhavoSettingBundle($this),
             new Enhavo\Bundle\SearchBundle\EnhavoSearchBundle($this),
+            new Enhavo\Bundle\SerializerBundle\EnhavoSerializerBundle(),
             new Enhavo\Bundle\DownloadBundle\EnhavoDownloadBundle(),
             new Enhavo\Bundle\NewsletterBundle\EnhavoNewsletterBundle(),
             new Enhavo\Bundle\CalendarBundle\EnhavoCalendarBundle(),
-            new Enhavo\Bundle\ShopBundle\EnhavoShopBundle(),
             new Enhavo\Bundle\ContentBundle\EnhavoContentBundle(),
             new Enhavo\Bundle\DashboardBundle\EnhavoDashboardBundle(),
             new Enhavo\Bundle\ContactBundle\EnhavoContactBundle(),
-            new Enhavo\Bundle\WorkflowBundle\EnhavoWorkflowBundle(),
             new Enhavo\Bundle\MigrationBundle\EnhavoMigrationBundle(),
             new Enhavo\Bundle\InstallerBundle\EnhavoInstallerBundle(),
             new Enhavo\Bundle\ThemeBundle\EnhavoThemeBundle(),
             new Enhavo\Bundle\GeneratorBundle\EnhavoGeneratorBundle(),
+            new Enhavo\Bundle\TranslationBundle\EnhavoTranslationBundle($this),
+
             new ProjectBundle\ProjectBundle(),
         );
 
