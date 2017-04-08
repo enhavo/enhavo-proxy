@@ -9,6 +9,12 @@ ProjectBundle\Entity\Backend:
                 strategy: AUTO
 
     fields:
+        name:
+            type: string
+            nullable: true
+        hostname:
+            type: string
+            nullable: true
         port:
             type: integer
             nullable: true

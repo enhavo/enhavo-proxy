@@ -1,3 +1,6 @@
+vcl 4.0;
+import directors;
+
 {% for host in hosts %}
     {% for backend in host.backends %}
         backend {{ backend.name }}
@@ -7,6 +10,7 @@
             .connect_timeout = {{ backend.connectTimeout }}s;
             .first_byte_timeout = {{ backend.firstByteTimeout }}s;
             .between_bytes_timeout = {{ backend.betweenBytesTimeout }}s;
+        }
 
             {#.probe = {#}
                 {#.url = $backend['url'].#}
@@ -21,16 +25,18 @@
                 {#.initial = 3;#}
                 {#.expected_response = 200;#}
             {#}#}
-        }
     {% endfor %}
-
-    director {{ host.directorName }} {{ host.backendStrategy }}
-    {
-        {% for backend in host.backends %}
-            { .backend = {{ backend.name }}; }
-        {% endfor %}
-    }
 {% endfor %}
+
+sub vcl_init {
+    {% for host in hosts %}
+        new {{ host.directorName }} = directors.{{ host.backendStrategy }}();
+
+        {% for backend in host.backends %}
+            {{ host.directorName }}.add_backend({{ backend.name }});
+        {% endfor %}
+    {% endfor %}
+}
 
 backend acmetool {
    .host = "127.0.0.1";
@@ -56,20 +62,20 @@ sub vcl_recv
                 }
             {% endif %}
 
-            set req.backend = {{ host.directorName }};
+            set req.backend_hint = {{ host.directorName }}.backend();
 
             return({{ host.transferType }});
         }
     {% endfor %}
 
     set req.http.x-Redir-Url = "https://www.xq-web.de";
-    error 750 req.http.x-Redir-Url;
+#    error 750 req.http.x-Redir-Url;
 }
 
 sub common_recv
 {
     if (req.url ~ "^/.well-known/acme-challenge/") {
-        set req.backend = acmetool;
+        set req.backend_hint = acmetool;
         return (pass);
     }
 
@@ -102,10 +108,10 @@ sub pipe_uncorrect_request_header
 
 /* fetch */
 
-sub vcl_fetch
-{
+{#sub vcl_fetch#}
+{#{#}
 
-}
+{#}#}
 
 /* deliver */
 
@@ -144,10 +150,10 @@ sub edit_deliver_header
 #   </html>"};
 #}
 
-sub vcl_error {
-    if (obj.status == 750) {
-        set obj.http.Location = obj.response;
-        set obj.status = 302;
-        return (deliver);
-    }
-}
+{#sub vcl_error {#}
+    {#if (obj.status == 750) {#}
+        {#set obj.http.Location = obj.response;#}
+        {#set obj.status = 302;#}
+        {#return (deliver);#}
+    {#}#}
+{#}#}

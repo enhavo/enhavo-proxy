@@ -37,6 +37,16 @@ project_host_table:
         _controller: project.controller.host:tableAction
         _sylius:
             viewer:
+                filters:
+                    title:
+                        type: text
+                        label: Domain
+                        property: domain
+                columns:
+                    domain:
+                        property: domain
+                        width: 12
+                        label: Domain
 
 project_host_delete:
     options:

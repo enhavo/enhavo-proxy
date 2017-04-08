@@ -8,3 +8,18 @@ services:
         class: ProjectBundle\Varnish\Compiler
         arguments:
             - '@templating'
+
+    project.nginx.compiler:
+        class: ProjectBundle\Nginx\Compiler
+        arguments:
+            - '@templating'
+
+    project.subscriber.host_subscriber:
+        class: ProjectBundle\EventListener\HostSubscriber
+        arguments:
+            - '@project.host.host_manager'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    project.host.host_manager:
+        class: ProjectBundle\Host\HostManager

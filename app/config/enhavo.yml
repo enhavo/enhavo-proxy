@@ -20,5 +20,6 @@ sylius_resource:
             classes:
                 model: ProjectBundle\Entity\Host
                 controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
+                repository: Enhavo\Bundle\AppBundle\Repository\EntityRepository
                 form:
                     default: ProjectBundle\Form\Type\HostType

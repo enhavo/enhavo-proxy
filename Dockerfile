@@ -49,7 +49,9 @@ ADD composer.json /var/www/composer.json
 ADD composer.lock /var/www/composer.lock
 
 # install enhavo
-RUN service mysql restart && \
+RUN mkdir -p /var/run/mysqld && \
+    chown mysql:mysql /var/run/mysqld && \
+    /bin/bash -c "/usr/bin/mysqld_safe &" && \
     sleep 5 && \
     mysql -u root -proot -e "CREATE DATABASE enhavo" && \
     cd /var/www/ && \
@@ -69,8 +71,8 @@ RUN usermod -u 1000 www-data && \
 
 WORKDIR /var/www
 
-VOLUME ["/etc/nginx/config", "/etc/varnish"]
-
-#EXPOSE [80, 443, 8080]
+VOLUME ["/etc/nginx/config", "/etc/varnish", "/var/lib/mysql"]
 
 EXPOSE 8080
+EXPOSE 80
+EXPOSE 443

@@ -20,7 +20,7 @@ class BackendType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', TextType::class);
+        $builder->add('hostname', TextType::class);
         $builder->add('port', NumberType::class);
         $builder->add('connectTimeout', NumberType::class);
         $builder->add('firstByteTimeout', NumberType::class);

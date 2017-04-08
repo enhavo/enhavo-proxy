@@ -29,7 +29,7 @@ class Compiler
      */
     public function compile($hosts)
     {
-        return $this->templateEngine->render('ProjectBundle:Varnish:config.vcl.twig', [
+        return $this->templateEngine->render('ProjectBundle:Varnish:default.vcl.twig', [
             'hosts' => $hosts
         ]);
     }

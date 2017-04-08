@@ -18,6 +18,6 @@ class VarnishManager
 
     public function testConfig()
     {
-        exec('varnishd -C -f /etc/varnish/config.vcl');
+        exec('varnishd -C -f /etc/varnish/default.vcl');
     }
 }

@@ -24,6 +24,12 @@ ProjectBundle\Entity\Host:
         directorName:
             type: string
             nullable: true
+        certPath:
+            type: string
+            nullable: true
+        keyPath:
+            type: string
+            nullable: true
 
     oneToMany:
         backends:

@@ -21,7 +21,7 @@ class Host implements ResourceInterface
     const TRANSFER_TYPE_PASS = 'pass';
 
     const BACKEND_STRATEGY_FALLBACK = 'fallback';
-    const BACKEND_STRATEGY_ROUND_ROBIN = 'round-robin';
+    const BACKEND_STRATEGY_ROUND_ROBIN = 'round_robin';
 
 
     /**
@@ -53,6 +53,16 @@ class Host implements ResourceInterface
      * @var string
      */
     private $backendStrategy;
+
+    /**
+     * @var string
+     */
+    private $certPath;
+
+    /**
+     * @var string
+     */
+    private $keyPath;
 
     /**
      * @var string
@@ -198,5 +208,37 @@ class Host implements ResourceInterface
     public function __toString()
     {
         return (string)$this->getDomain();
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertPath()
+    {
+        return $this->certPath;
+    }
+
+    /**
+     * @param string $certPath
+     */
+    public function setCertPath($certPath)
+    {
+        $this->certPath = $certPath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKeyPath()
+    {
+        return $this->keyPath;
+    }
+
+    /**
+     * @param mixed $keyPath
+     */
+    public function setKeyPath($keyPath)
+    {
+        $this->keyPath = $keyPath;
     }
 }

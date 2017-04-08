@@ -29,6 +29,11 @@ class Backend implements ResourceInterface
     private $host;
 
     /**
+     * @var string
+     */
+    private $hostname;
+
+    /**
      * @var integer
      */
     private $port;
@@ -162,5 +167,21 @@ class Backend implements ResourceInterface
     public function __toString()
     {
         return (string)$this->getName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getHostname()
+    {
+        return $this->hostname;
+    }
+
+    /**
+     * @param string $hostname
+     */
+    public function setHostname($hostname)
+    {
+        $this->hostname = $hostname;
     }
 }
