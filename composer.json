@@ -25,6 +25,7 @@
     "doctrine/migrations": "dev-master",
     "doctrine/doctrine-fixtures-bundle": "dev-master",
     "friendsofsymfony/user-bundle": "v2.0.0-alpha3"
+
   },
   "scripts": {
     "post-install-cmd": [

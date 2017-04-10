@@ -8,11 +8,15 @@ services:
         class: ProjectBundle\Varnish\Compiler
         arguments:
             - '@templating'
+            - '@filesystem'
+            - '%varnish_config%'
 
     project.nginx.compiler:
         class: ProjectBundle\Nginx\Compiler
         arguments:
             - '@templating'
+            - '@filesystem'
+            - '%nginx_config%'
 
     project.subscriber.host_subscriber:
         class: ProjectBundle\EventListener\HostSubscriber
@@ -23,3 +27,9 @@ services:
 
     project.host.host_manager:
         class: ProjectBundle\Host\HostManager
+
+    project.varnish.manger:
+        class: ProjectBundle\Varnish\VarnishManager
+        arguments:
+            - '%varnish_secret%'
+            - '@filesystem'

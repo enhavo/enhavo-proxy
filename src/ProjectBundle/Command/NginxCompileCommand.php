@@ -27,7 +27,7 @@ class NginxCompileCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $hosts = $this->getContainer()->get('project.repository.host')->findAll();
-        $content = $this->getContainer()->get('project.nginx.compiler')->compile($hosts);
-        $output->writeln($content);
+        $this->getContainer()->get('project.nginx.compiler')->compile($hosts);
+        $output->writeln('nginx file saved');
     }
 }

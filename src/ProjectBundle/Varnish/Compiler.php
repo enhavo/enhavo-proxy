@@ -8,6 +8,7 @@
 
 namespace ProjectBundle\Varnish;
 
+use Enhavo\Bundle\AppBundle\Filesystem\Filesystem;
 use ProjectBundle\Entity\Host;
 use Symfony\Component\Templating\EngineInterface;
 
@@ -18,9 +19,21 @@ class Compiler
      */
     private $templateEngine;
 
-    public function __construct(EngineInterface $templateEngine)
+    /**
+     * @var Filesystem
+     */
+    private $fs;
+
+    /**
+     * @var string
+     */
+    private $configPath;
+
+    public function __construct(EngineInterface $templateEngine, Filesystem $fs, $configPath)
     {
         $this->templateEngine = $templateEngine;
+        $this->fs = $fs;
+        $this->configPath = $configPath;
     }
 
     /**
@@ -29,8 +42,10 @@ class Compiler
      */
     public function compile($hosts)
     {
-        return $this->templateEngine->render('ProjectBundle:Varnish:default.vcl.twig', [
+        $content = $this->templateEngine->render('ProjectBundle:Varnish:default.vcl.twig', [
             'hosts' => $hosts
         ]);
+
+        $this->fs->dumpFile($this->configPath, $content);
     }
 }

@@ -21,4 +21,8 @@ parameters:
     mailer_encryption: ssl
     mailer_port: 465
 
+    varnish_config: /etc/varnish/default.vcl
+    varnish_secret:  /etc/varnish/secret
+    nginx_config: /etc/nginx/config/nginx.conf
+
     secret:            ThisTokenIsNotSoSecretChangeIt

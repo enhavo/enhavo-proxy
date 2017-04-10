@@ -69,6 +69,11 @@ class Host implements ResourceInterface
      */
     private $directorName;
 
+    /**
+     * @var string
+     */
+    private $redirect;
+
     public function __construct()
     {
         $this->backends = new ArrayCollection();
@@ -240,5 +245,21 @@ class Host implements ResourceInterface
     public function setKeyPath($keyPath)
     {
         $this->keyPath = $keyPath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRedirect()
+    {
+        return $this->redirect;
+    }
+
+    /**
+     * @param string $redirect
+     */
+    public function setRedirect($redirect)
+    {
+        $this->redirect = $redirect;
     }
 }

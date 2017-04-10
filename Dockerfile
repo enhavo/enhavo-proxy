@@ -27,6 +27,7 @@ RUN add-apt-repository -y ppa:ondrej/php && \
     apt-get install -y --force-yes php7.0-intl && \
     apt-get install -y --force-yes php7.0-mysql && \
     apt-get install -y --force-yes git && \
+    apt-get install -y --force-yes sudo && \
     a2enmod rewrite && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     apt-get install -y --force-yes mysql-server
@@ -38,13 +39,16 @@ COPY docker/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-avai
 # server setting and start up scripts
 COPY docker/etc/my_init.d/01_apache2.bash /etc/my_init.d/01_apache2.bash
 COPY docker/etc/my_init.d/02_mysql.bash /etc/my_init.d/02_mysql.bash
+COPY docker/etc/my_init.d/03_varnish.bash /etc/my_init.d/03_varnish.bash
 RUN chmod 755 /etc/my_init.d/01_apache2.bash
 RUN chmod 755 /etc/my_init.d/02_mysql.bash
+RUN chmod 755 /etc/my_init.d/03_varnish.bash
 
 ## add source files
 ADD app /var/www/app
 ADD src /var/www/src
 ADD web /var/www/web
+ADD scripts /var/www/scripts
 ADD composer.json /var/www/composer.json
 ADD composer.lock /var/www/composer.lock
 
@@ -57,7 +61,11 @@ RUN mkdir -p /var/run/mysqld && \
     cd /var/www/ && \
     composer install --no-interaction && \
     app/console doctrine:schema:update --force && \
-    app/console fos:user:create admin info@localhost.com admin --super-admin
+    app/console fos:user:create admin info@localhost.com admin --super-admin && \
+    cp -ra /var/lib/mysql /var/lib/mysql_default
+
+# install varnish
+COPY docker/etc/default/varnish /etc/default/varnish
 
 # user rights
 RUN usermod -u 1000 www-data && \

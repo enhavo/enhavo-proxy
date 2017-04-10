@@ -5,7 +5,7 @@ import directors;
     {% for backend in host.backends %}
         backend {{ backend.name }}
         {
-            .host = "{{ backend.host }}";
+            .host = "{{ backend.hostname }}";
             .port = "{{ backend.port }}";
             .connect_timeout = {{ backend.connectTimeout }}s;
             .first_byte_timeout = {{ backend.firstByteTimeout }}s;
@@ -55,6 +55,10 @@ sub vcl_recv
     {% for host in hosts %}
         if(req.http.host ~ "^{{ host.domain }}$")
         {
+            {% if host.redirect %}
+                return (synth(302, "{{ host.redirect }}"));
+            {% endif %}
+
             {% if host.https == 2 %} {# https only #}
                 if (client.ip !~ local) {
                     set req.http.x-Redir-Url = "https://{{ host.domain }}" + req.url;
@@ -68,8 +72,8 @@ sub vcl_recv
         }
     {% endfor %}
 
-    set req.http.x-Redir-Url = "https://www.xq-web.de";
-#    error 750 req.http.x-Redir-Url;
+#    set req.http.x-Redir-Url = "https://www.xq-web.de";
+    return (synth(404, "Not Found"));
 }
 
 sub common_recv
@@ -157,3 +161,11 @@ sub edit_deliver_header
         {#return (deliver);#}
     {#}#}
 {#}#}
+
+sub vcl_synth {
+    if (resp.status == 301 || resp.status == 302) {
+        set resp.http.location = resp.reason;
+        set resp.reason = "Moved";
+        return (deliver);
+    }
+}

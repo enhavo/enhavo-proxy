@@ -1,0 +1,7 @@
+project_nginx_well_known:
+    options:
+        expose: true
+    path: /.well-known/acme-challenge/{token}
+    methods: [GET]
+    defaults:
+        _controller: ProjectBundle:Nginx:wellKnown

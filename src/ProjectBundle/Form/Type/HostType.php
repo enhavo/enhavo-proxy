@@ -22,6 +22,7 @@ class HostType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('domain', TextType::class);
+        $builder->add('redirect', TextType::class);
         $builder->add('https', ChoiceType::class, [
             'choices_as_values' => true,
             'choices'=> [

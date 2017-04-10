@@ -2,3 +2,8 @@ project_varnish_show_config:
     path:     /varnish/config
     defaults:
         _controller: ProjectBundle:Varnish:showConfig
+
+project_varnish_restart:
+    path:     /varnish/restart
+    defaults:
+        _controller: ProjectBundle:Varnish:restartVarnish

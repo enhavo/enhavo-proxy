@@ -13,21 +13,20 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class VarnishCompileCommand extends ContainerAwareCommand
+class VarnishCreateSecretCommand extends ContainerAwareCommand
 {
     use ContainerAwareTrait;
 
     protected function configure()
     {
         $this
-            ->setName('varnish:compile')
-            ->setDescription('compile varnish config');
+            ->setName('varnish:create:secret')
+            ->setDescription('create varnish secret file');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $hosts = $this->getContainer()->get('project.repository.host')->findAll();
-        $this->getContainer()->get('project.varnish.compiler')->compile($hosts);
-        $output->writeln('varnish file saved');
+        $this->getContainer()->get('project.varnish.manger')->createSecretFile();
+        $output->writeln('varnish secret saved');
     }
 }

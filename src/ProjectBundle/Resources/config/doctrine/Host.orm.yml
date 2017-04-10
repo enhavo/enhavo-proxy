@@ -30,6 +30,9 @@ ProjectBundle\Entity\Host:
         keyPath:
             type: string
             nullable: true
+        redirect:
+            type: string
+            nullable: true
 
     oneToMany:
         backends:
