@@ -47,5 +47,7 @@ class Compiler
         ]);
 
         $this->fs->dumpFile($this->configPath, $content);
+
+        return $content;
     }
 }

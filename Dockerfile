@@ -36,6 +36,9 @@ RUN add-apt-repository -y ppa:ondrej/php && \
 COPY docker/etc/apache2/ports.conf /etc/apache2/ports.conf
 COPY docker/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 
+#nginx config
+RUN mkdir -p /var/lib/ssl
+
 # server setting and start up scripts
 COPY docker/etc/my_init.d/01_apache2.bash /etc/my_init.d/01_apache2.bash
 COPY docker/etc/my_init.d/02_mysql.bash /etc/my_init.d/02_mysql.bash
@@ -75,11 +78,12 @@ RUN usermod -u 1000 www-data && \
     chown www-data:www-data -R app/logs && \
     chmod 755 app/logs && \
     chown www-data:www-data -R app/media && \
-    chmod 755 app/media
+    chmod 755 app/media && \
+    chmod 755 /var/lib/ssl
 
 WORKDIR /var/www
 
-VOLUME ["/etc/nginx/config", "/etc/varnish", "/var/lib/mysql"]
+VOLUME ["/etc/nginx/config", "/etc/varnish", "/var/lib/mysql", "/var/lib/ssl"]
 
 EXPOSE 8080
 EXPOSE 80

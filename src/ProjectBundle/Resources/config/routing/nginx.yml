@@ -5,3 +5,19 @@ project_nginx_well_known:
     methods: [GET]
     defaults:
         _controller: ProjectBundle:Nginx:wellKnown
+
+project_nginx_compile:
+    options:
+        expose: true
+    path: /admin/nginx/compile
+    methods: [GET]
+    defaults:
+        _controller: ProjectBundle:Nginx:compileConfig
+
+project_nginx_restart:
+    options:
+        expose: true
+    path: /admin/nginx/restart
+    methods: [GET]
+    defaults:
+        _controller: ProjectBundle:Nginx:restartNginx

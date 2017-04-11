@@ -20,4 +20,11 @@ class VarnishController extends Controller
         $output = $this->container->get('project.varnish.manger')->restart();
         return new JsonResponse($output);
     }
+
+    public function compileConfigAction()
+    {
+        $hosts = $this->get('project.repository.host')->findAll();
+        $this->container->get('project.varnish.compiler')->compile($hosts);
+        return new JsonResponse('compiled');
+    }
 }

@@ -33,3 +33,6 @@ services:
         arguments:
             - '%varnish_secret%'
             - '@filesystem'
+
+    project.nginx.manger:
+        class: ProjectBundle\Nginx\NginxManager

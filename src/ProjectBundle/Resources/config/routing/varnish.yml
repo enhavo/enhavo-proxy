@@ -7,3 +7,8 @@ project_varnish_restart:
     path:     /varnish/restart
     defaults:
         _controller: ProjectBundle:Varnish:restartVarnish
+
+project_varnish_compile:
+    path:     /varnish/compile
+    defaults:
+        _controller: ProjectBundle:Varnish:compileConfig

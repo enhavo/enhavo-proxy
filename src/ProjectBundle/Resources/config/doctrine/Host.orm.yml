@@ -33,6 +33,9 @@ ProjectBundle\Entity\Host:
         redirect:
             type: string
             nullable: true
+        default:
+            type: boolean
+            nullable: true
 
     oneToMany:
         backends:

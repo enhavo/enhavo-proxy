@@ -50,6 +50,9 @@ class HostType extends AbstractResourceType
                 'Fallback' => Host::BACKEND_STRATEGY_FALLBACK,
             ]
         ]);
+
+        $builder->add('certPath', TextType::class);
+        $builder->add('keyPath', TextType::class);
     }
 
     public function getName()

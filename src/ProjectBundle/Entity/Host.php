@@ -74,6 +74,11 @@ class Host implements ResourceInterface
      */
     private $redirect;
 
+    /**
+     * @var boolean
+     */
+    private $default;
+
     public function __construct()
     {
         $this->backends = new ArrayCollection();
@@ -261,5 +266,21 @@ class Host implements ResourceInterface
     public function setRedirect($redirect)
     {
         $this->redirect = $redirect;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * @param boolean $default
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
     }
 }
