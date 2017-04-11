@@ -32,20 +32,25 @@ RUN add-apt-repository -y ppa:ondrej/php && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     apt-get install -y --force-yes mysql-server
 
-#apache config
+#apache
 COPY docker/etc/apache2/ports.conf /etc/apache2/ports.conf
 COPY docker/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-#nginx config
-RUN mkdir -p /var/lib/ssl
+#nginx
+COPY docker/etc/sudoers /etc/sudoers
+RUN mkdir -p /var/lib/ssl && \
+    cp -ra /etc/nginx /etc/nginx_default && \
+    chmod 440 /etc/sudoers
 
 # server setting and start up scripts
 COPY docker/etc/my_init.d/01_apache2.bash /etc/my_init.d/01_apache2.bash
 COPY docker/etc/my_init.d/02_mysql.bash /etc/my_init.d/02_mysql.bash
 COPY docker/etc/my_init.d/03_varnish.bash /etc/my_init.d/03_varnish.bash
-RUN chmod 755 /etc/my_init.d/01_apache2.bash
-RUN chmod 755 /etc/my_init.d/02_mysql.bash
-RUN chmod 755 /etc/my_init.d/03_varnish.bash
+COPY docker/etc/my_init.d/04_nginx.bash /etc/my_init.d/04_nginx.bash
+RUN chmod 755 /etc/my_init.d/01_apache2.bash && \
+    chmod 755 /etc/my_init.d/02_mysql.bash && \
+    chmod 755 /etc/my_init.d/03_varnish.bash && \
+    chmod 755 /etc/my_init.d/04_nginx.bash
 
 ## add source files
 ADD app /var/www/app
@@ -83,7 +88,7 @@ RUN usermod -u 1000 www-data && \
 
 WORKDIR /var/www
 
-VOLUME ["/etc/nginx/config", "/etc/varnish", "/var/lib/mysql", "/var/lib/ssl"]
+VOLUME ["/etc/nginx", "/etc/varnish", "/var/lib/mysql", "/var/lib/ssl"]
 
 EXPOSE 8080
 EXPOSE 80

@@ -15,6 +15,7 @@ class Base64UrlSafeEncoder
     {
         return str_replace('=', '', strtr(base64_encode($input), '+/', '-_'));
     }
+    
     public static function decode($input)
     {
         $remainder = strlen($input) % 4;

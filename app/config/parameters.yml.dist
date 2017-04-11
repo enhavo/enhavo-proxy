@@ -23,6 +23,6 @@ parameters:
 
     varnish_config: /etc/varnish/default.vcl
     varnish_secret:  /etc/varnish/secret
-    nginx_config: /etc/nginx/config/nginx.conf
+    nginx_config: /etc/nginx/nginx.conf
 
     secret:            ThisTokenIsNotSoSecretChangeIt

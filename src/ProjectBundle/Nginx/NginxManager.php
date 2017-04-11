@@ -26,4 +26,11 @@ class NginxManager
         exec($command, $output);
         return $output;
     }
+
+    public function compile()
+    {
+        $command = sprintf('/usr/bin/env bash %s/nginx_compile.bash', $this->scriptPath);
+        exec($command, $output);
+        return $output;
+    }
 }

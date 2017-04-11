@@ -29,8 +29,7 @@ class NginxController extends Controller
 
     public function compileConfigAction()
     {
-        $hosts = $this->get('project.repository.host')->findAll();
-        $this->container->get('project.nginx.compiler')->compile($hosts);
-        return new JsonResponse('compiled');
+        $output = $this->container->get('project.nginx.manger')->compile();
+        return new JsonResponse($output);
     }
 }

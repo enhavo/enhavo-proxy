@@ -41,6 +41,7 @@ class Lescript
             $this->log('Account already registered. Continuing.');
         }
     }
+
     public function signDomains(array $domains, $reuseCsr = false)
     {
         $this->log('Starting certificate generation process for domains');
@@ -169,6 +170,7 @@ class Lescript
         file_put_contents($domainPath . "/chain.pem", implode("\n", $certificates));
         $this->log("Done !!§§!");
     }
+
     private function readPrivateKey($path)
     {
         if (($key = openssl_pkey_get_private('file://' . $path)) === FALSE) {
@@ -176,11 +178,13 @@ class Lescript
         }
         return $key;
     }
+
     private function parsePemFromBody($body)
     {
         $pem = chunk_split(base64_encode($body), 64, "\n");
         return "-----BEGIN CERTIFICATE-----\n" . $pem . "-----END CERTIFICATE-----\n";
     }
+
     private function getDomainPath($domain)
     {
         return $this->certificatesDir . '/' . $domain . '/';
@@ -197,6 +201,7 @@ class Lescript
             $data
         );
     }
+
     private function generateCSR($privateKey, array $domains)
     {
         $domain = reset($domains);
@@ -241,11 +246,13 @@ keyUsage = nonRepudiation, digitalSignature, keyEncipherment');
         file_put_contents($csrPath, $csr);
         return $this->getCsrContent($csrPath);
     }
+
     private function getCsrContent($csrPath) {
         $csr = file_get_contents($csrPath);
         preg_match('~REQUEST-----(.*)-----END~s', $csr, $matches);
         return trim(Base64UrlSafeEncoder::encode(base64_decode($matches[1])));
     }
+
     private function generateKey($outputDirectory)
     {
         $res = openssl_pkey_new(array(
@@ -261,6 +268,7 @@ keyUsage = nonRepudiation, digitalSignature, keyEncipherment');
         file_put_contents($outputDirectory.'/private.pem', $privateKey);
         file_put_contents($outputDirectory.'/public.pem', $details['key']);
     }
+
     private function signedRequest($uri, array $payload)
     {
         $privateKey = $this->readPrivateKey($this->accountKeyPath);
@@ -288,6 +296,7 @@ keyUsage = nonRepudiation, digitalSignature, keyEncipherment');
         $this->log("Sending signed request to $uri");
         return $this->client->post($uri, json_encode($data));
     }
+
     protected function log($message)
     {
         if($this->logger) {

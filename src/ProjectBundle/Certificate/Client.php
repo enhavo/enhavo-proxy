@@ -13,10 +13,12 @@ class Client implements ClientInterface
     private $lastCode;
     private $lastHeader;
     private $base;
+
     public function __construct($base)
     {
         $this->base = $base;
     }
+
     private function curl($method, $url, $data = null)
     {
         $headers = array('Accept: application/json', 'Content-Type: application/json');
@@ -48,14 +50,17 @@ class Client implements ClientInterface
         $data = json_decode($body, true);
         return $data === null ? $body : $data;
     }
+
     public function post($url, $data)
     {
         return $this->curl('POST', $url, $data);
     }
+
     public function get($url)
     {
         return $this->curl('GET', $url);
     }
+
     public function getLastNonce()
     {
         if(preg_match('~Replay\-Nonce: (.+)~i', $this->lastHeader, $matches)) {
@@ -64,6 +69,7 @@ class Client implements ClientInterface
         $this->curl('GET', '/directory');
         return $this->getLastNonce();
     }
+
     public function getLastLocation()
     {
         if(preg_match('~Location: (.+)~i', $this->lastHeader, $matches)) {
@@ -71,10 +77,12 @@ class Client implements ClientInterface
         }
         return null;
     }
+
     public function getLastCode()
     {
         return $this->lastCode;
     }
+
     public function getLastLinks()
     {
         preg_match_all('~Link: <(.+)>;rel="up"~', $this->lastHeader, $matches);
