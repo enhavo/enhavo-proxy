@@ -2,7 +2,7 @@
 set -e
 if [[ ! -f /etc/nginx/nginx.conf ]]; then
 	cp -ra /etc/nginx_default /etc/nginx
-	/var/www/script/nginx_compile.bash
+	/var/www/scripts/nginx_compile.bash
 fi
 
 service nginx restart
