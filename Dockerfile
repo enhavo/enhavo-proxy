@@ -38,8 +38,7 @@ COPY docker/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-avai
 
 #nginx
 COPY docker/etc/sudo/sudoers /etc/sudoers
-RUN mkdir -p /var/lib/ssl && \
-    cp -ra /etc/nginx /etc/nginx_default && \
+RUN cp -ra /etc/nginx /etc/nginx_default && \
     chmod 440 /etc/sudoers
 
 # server setting and start up scripts
@@ -83,12 +82,11 @@ RUN usermod -u 1000 www-data && \
     chown www-data:www-data -R app/logs && \
     chmod 755 app/logs && \
     chown www-data:www-data -R app/media && \
-    chmod 755 app/media && \
-    chmod 755 /var/lib/ssl
+    chmod 755 app/media
 
 WORKDIR /var/www
 
-VOLUME ["/etc/nginx", "/etc/varnish", "/var/lib/mysql", "/var/lib/ssl"]
+VOLUME ["/etc/nginx", "/etc/varnish", "/var/lib/mysql", "/var/www/app/media"]
 
 EXPOSE 8080
 EXPOSE 80

@@ -2,8 +2,13 @@
 
 namespace ProjectBundle\Certificate;
 
+use ProjectBundle\Entity\Token;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+
 class Lescript
 {
+    use ContainerAwareTrait;
+
     public $ca = 'https://acme-v01.api.letsencrypt.org';
     // public $ca = 'https://acme-staging.api.letsencrypt.org'; // testing
     public $license = 'https://letsencrypt.org/documents/LE-SA-v1.1.1-August-1-2016.pdf';
@@ -13,16 +18,17 @@ class Lescript
     public $contact = array(); // optional
     // public $contact = array("mailto:cert-admin@example.com", "tel:+12025551212")
     private $certificatesDir;
-    private $webRootDir;
     /** @var \Psr\Log\LoggerInterface */
     private $logger;
     private $client;
     private $accountKeyPath;
     
-    public function __construct($certificatesDir, $webRootDir, $logger = null, ClientInterface $client = null)
+    public function __construct($certificatesDir, $logger = null, ClientInterface $client = null)
     {
+        if(!file_exists($certificatesDir)) {
+            mkdir($certificatesDir, 0777);
+        }
         $this->certificatesDir = $certificatesDir;
-        $this->webRootDir = $webRootDir;
         $this->logger = $logger;
         $this->client = $client ? $client : new Client($this->ca);
         $this->accountKeyPath = $certificatesDir . '/_account/private.pem';
@@ -68,26 +74,27 @@ class Lescript
             if (!$challenge) throw new \RuntimeException("HTTP Challenge for $domain is not available. Whole response: " . json_encode($response));
             $this->log("Got challenge token for $domain");
             $location = $this->client->getLastLocation();
+
+
             // 2. saving authentication token for web verification
             // ---------------------------------------------------
-            $directory = $this->webRootDir . '/.well-known/acme-challenge';
-            $tokenPath = $directory . '/' . $challenge['token'];
-            if (!file_exists($directory) && !@mkdir($directory, 0755, true)) {
-                throw new \RuntimeException("Couldn't create directory to expose challenge: ${tokenPath}");
-            }
-            $header = array(
-                // need to be in precise order!
-                "e" => Base64UrlSafeEncoder::encode($accountKeyDetails["rsa"]["e"]),
-                "kty" => "RSA",
-                "n" => Base64UrlSafeEncoder::encode($accountKeyDetails["rsa"]["n"])
-            );
-            $payload = $challenge['token'] . '.' . Base64UrlSafeEncoder::encode(hash('sha256', json_encode($header), true));
-            file_put_contents($tokenPath, $payload);
-            chmod($tokenPath, 0644);
+            $payload = $challenge['token'] . '.' . Base64UrlSafeEncoder::encode(hash('sha256', json_encode(array(
+                    // need to be in precise order!
+                    "e" => Base64UrlSafeEncoder::encode($accountKeyDetails["rsa"]["e"]),
+                    "kty" => "RSA",
+                    "n" => Base64UrlSafeEncoder::encode($accountKeyDetails["rsa"]["n"])
+            )), true));
+
+            $em = $this->container->get('doctrine.orm.entity_manager');
+            $token = new Token();
+            $token->setToken($challenge['token']);
+            $token->setContent($payload);
+            $em->persist($token);
+            $em->flush();
+
             // 3. verification process itself
             // -------------------------------
             $uri = "http://${domain}/.well-known/acme-challenge/${challenge['token']}";
-            $this->log("Token for $domain saved at $tokenPath and should be available at $uri");
             // simple self check
             if ($payload !== trim(@file_get_contents($uri))) {
                 throw new \RuntimeException("Please check $uri - token not available");
@@ -116,7 +123,6 @@ class Lescript
                 $result = $this->client->get($location);
             } while (!$ended);
             $this->log("Verification ended with status: ${result['status']}");
-            @unlink($tokenPath);
         }
         // requesting certificate
         // ----------------------

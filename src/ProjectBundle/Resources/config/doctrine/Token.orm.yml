@@ -1,0 +1,17 @@
+ProjectBundle\Entity\Token:
+    type: entity
+    table: project_token
+    repositoryClass: ProjectBundle\Repository\TokenRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        token:
+            type: string
+            length: 255
+        content:
+            type: text
+    lifecycleCallbacks: {  }

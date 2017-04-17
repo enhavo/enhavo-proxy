@@ -21,3 +21,11 @@ project_nginx_restart:
     methods: [GET]
     defaults:
         _controller: ProjectBundle:Nginx:restartNginx
+
+project_nginx_sign:
+    options:
+        expose: true
+    path: /admin/nginx/sign
+    methods: [GET]
+    defaults:
+        _controller: ProjectBundle:Nginx:sign

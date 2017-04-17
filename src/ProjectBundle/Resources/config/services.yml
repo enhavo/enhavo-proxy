@@ -43,3 +43,13 @@ services:
           - ['setContainer', ['@service_container']]
         tags:
             - { name: enhavo.block, alias: 'control' }
+
+    project.certificate.manager:
+        class: ProjectBundle\Certificate\Lescript
+        arguments:
+          - '%kernel.root_dir%/media/certificate'
+          - '@logger'
+        calls:
+          - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.block, alias: 'control' }
