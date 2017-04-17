@@ -37,7 +37,7 @@ COPY docker/etc/apache2/ports.conf /etc/apache2/ports.conf
 COPY docker/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 #nginx
-COPY docker/etc/sudoers /etc/sudoers
+COPY docker/etc/sudo/sudoers /etc/sudoers
 RUN mkdir -p /var/lib/ssl && \
     cp -ra /etc/nginx /etc/nginx_default && \
     chmod 440 /etc/sudoers

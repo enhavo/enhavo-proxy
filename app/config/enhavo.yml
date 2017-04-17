@@ -1,9 +1,12 @@
 enhavo_app:
     menu:
+        dashboard:
+            type: dashboard
         host:
             type: base
             label: Host
             route: project_host_index
+            icon: server
 
 enhavo_grid:
     items:
@@ -23,3 +26,9 @@ sylius_resource:
                 repository: Enhavo\Bundle\AppBundle\Repository\EntityRepository
                 form:
                     default: ProjectBundle\Form\Type\HostType
+
+enhavo_assets:
+    require_js:
+        paths:
+            project:
+                location: /bundles/project/js

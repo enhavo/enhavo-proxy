@@ -1,0 +1,12 @@
+.console-output {
+    background-color: #fff;
+    width: 800px;
+    height: 100%;
+    margin: auto auto;
+    white-space: pre;
+    overflow: scroll;
+}
+
+.output-container {
+    padding: 5px;
+}

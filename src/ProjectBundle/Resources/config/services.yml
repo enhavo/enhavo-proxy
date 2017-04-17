@@ -36,3 +36,10 @@ services:
 
     project.nginx.manger:
         class: ProjectBundle\Nginx\NginxManager
+
+    project.block.control:
+        class: ProjectBundle\Block\ControlBlock
+        calls:
+          - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.block, alias: 'control' }

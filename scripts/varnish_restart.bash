@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-
+echo "varnish restart"
 #if [[ $(`varnishd -Cf /etc/varnish/default.vcl 2>&1 >/dev/null | grep 'VCL compilation failed'`) ]]; then
 #    echo "VCL compilation failed"
 #else

@@ -16,3 +16,7 @@ enhavo_host:
 enhavo_varnish:
     resource: "@ProjectBundle/Resources/config/routing/varnish.yml"
     prefix: /admin
+
+enhavo_dashboard:
+    resource: "@ProjectBundle/Resources/config/routing/dashboard.yml"
+    prefix: /admin

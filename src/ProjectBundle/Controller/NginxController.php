@@ -24,12 +24,20 @@ class NginxController extends Controller
     public function restartNginxAction()
     {
         $output = $this->container->get('project.nginx.manger')->restart();
-        return new JsonResponse($output);
+        if(is_array($output)) {
+            $output = implode("\n", $output);
+        }
+        $output = htmlentities($output);
+        return new Response($output);
     }
 
     public function compileConfigAction()
     {
         $output = $this->container->get('project.nginx.manger')->compile();
-        return new JsonResponse($output);
+        if(is_array($output)) {
+            $output = implode("\n", $output);
+        }
+        $output = htmlentities($output);
+        return new Response($output);
     }
 }
