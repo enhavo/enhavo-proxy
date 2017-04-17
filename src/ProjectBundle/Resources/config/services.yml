@@ -51,5 +51,3 @@ services:
           - '@logger'
         calls:
           - ['setContainer', ['@service_container']]
-        tags:
-            - { name: enhavo.block, alias: 'control' }
