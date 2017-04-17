@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 if [[ ! -f /etc/nginx/nginx.conf ]]; then
-	cp -ra /etc/nginx_default /etc/nginx
+	cp -ra /etc/nginx_default/* /etc/nginx
 	/var/www/scripts/nginx_compile.bash
 fi
 
