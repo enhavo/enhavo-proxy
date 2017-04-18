@@ -38,7 +38,9 @@ COPY docker/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-avai
 
 #nginx
 COPY docker/etc/sudo/sudoers /etc/sudoers
-RUN cp -ra /etc/nginx /etc/nginx_default && \
+RUN rm -f /etc/nginx/sites-available/default && \
+    rm -f /etc/nginx/sites-enabled/default && \
+    cp -ra /etc/nginx /etc/nginx_default && \
     chmod 440 /etc/sudoers
 
 # server setting and start up scripts
