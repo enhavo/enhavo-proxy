@@ -26,8 +26,7 @@ class VarnishController extends Controller
 
     public function compileConfigAction()
     {
-        $hosts = $this->get('project.repository.host')->findAll();
-        $output = $this->container->get('project.varnish.compiler')->compile($hosts);
+        $output = $this->container->get('project.varnish.manger')->compile();
         if(is_array($output)) {
             $output = implode("\n", $output);
         }

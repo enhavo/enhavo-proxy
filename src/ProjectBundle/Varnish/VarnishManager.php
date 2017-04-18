@@ -43,6 +43,13 @@ class VarnishManager
         return $output;
     }
 
+    public function compile()
+    {
+        $command = sprintf('/usr/bin/env bash %s/varnish_compile.bash', $this->scriptPath);
+        exec($command, $output);
+        return $output;
+    }
+
     public function testConfig()
     {
         exec('varnishd -C -f /etc/varnish/default.vcl');
