@@ -1,0 +1,9 @@
+{
+  "name": "xqweb-varnish-nginx-enhavo",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.6.3",
+    "typescript": "^2.3.2"
+  }
+}

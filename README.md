@@ -1,5 +1,10 @@
-[![Build status...](https://api.travis-ci.org/enhavo/enhavo.svg)](https://travis-ci.org/enhavo/enhavo)
+Varnish Nginx Enhavo
+--------------------
 
-The enhavo is a PHP open source content management system based on the fullstack symfony 2 framework.
+This repository should be used with docker. It contains a varnish and nginx installation that can be administrated over a web interface.
+The interface based on enhavo, which is modular content management system.
 
-For further information read the [docs](http://docs.enhavo.org)
+MIT License
+-----------
+
+This software is free to use with MIT License

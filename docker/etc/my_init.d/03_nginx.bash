@@ -6,4 +6,4 @@ if [[ ! -f /etc/nginx/nginx.conf ]]; then
 	/var/www/scripts/nginx_compile.bash
 fi
 
-service nginx reload
+service nginx start

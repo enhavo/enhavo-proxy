@@ -1,5 +1,5 @@
 {
-  "name": "xqweb/proxy",
+  "name": "xqweb/varnish-nginx-enhavo",
   "license": "MIT",
   "type": "project",
   "description": "enhavo",
@@ -19,13 +19,8 @@
     }
   },
   "require": {
-    "enhavo/enhavo": "dev-master",
-    "doctrine/doctrine-bundle": "~1.3@dev",
-    "doctrine/doctrine-migrations-bundle": "dev-master",
-    "doctrine/migrations": "dev-master",
-    "doctrine/doctrine-fixtures-bundle": "dev-master",
+    "enhavo/enhavo": "0.3.x-dev",
     "friendsofsymfony/user-bundle": "v2.0.0-alpha3"
-
   },
   "scripts": {
     "post-install-cmd": [
