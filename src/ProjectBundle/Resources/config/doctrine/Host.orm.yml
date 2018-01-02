@@ -24,11 +24,17 @@ ProjectBundle\Entity\Host:
         directorName:
             type: string
             nullable: true
-        certPath:
-            type: string
+        certificate:
+            type: text
             nullable: true
-        keyPath:
-            type: string
+        certificateKey:
+            type: text
+            nullable: true
+        certificateRequest:
+            type: text
+            nullable: true
+        certificateType:
+            type: boolean
             nullable: true
         redirect:
             type: string

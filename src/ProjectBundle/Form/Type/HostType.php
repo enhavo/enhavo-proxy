@@ -14,6 +14,7 @@ use Enhavo\Bundle\AppBundle\Form\Type\ListType;
 use ProjectBundle\Entity\Host;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -51,8 +52,16 @@ class HostType extends AbstractResourceType
             ]
         ]);
 
-        $builder->add('certPath', TextType::class);
-        $builder->add('keyPath', TextType::class);
+        $builder->add('certificate', TextareaType::class);
+        $builder->add('certificateRequest', TextareaType::class);
+        $builder->add('certificateKey', TextareaType::class);
+        $builder->add('certificateType', ChoiceType::class, [
+            'choices_as_values' => true,
+            'choices'=> [
+                'None' => Host::CERTIFICATE_TYPE_NONE,
+                'Lets Encrypt' => Host::CERTIFICATE_TYPE_LETS_ENCRYPT,
+            ]
+        ]);
     }
 
     public function getName()

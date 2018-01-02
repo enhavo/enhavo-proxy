@@ -44,10 +44,23 @@ services:
         tags:
             - { name: enhavo.block, alias: 'control' }
 
-    project.certificate.manager:
+    project.certificate.lescript:
         class: ProjectBundle\Certificate\Lescript
         arguments:
           - '%kernel.root_dir%/media/certificate'
           - '@logger'
         calls:
           - ['setContainer', ['@service_container']]
+
+    project.certificate.manager:
+        class: ProjectBundle\Certificate\CertificateManager
+        calls:
+          - ['setContainer', ['@service_container']]
+
+
+    project.twig.extension:
+        class: ProjectBundle\Twig\TwigExtension
+        calls:
+          - ['setContainer', ['@service_container']]
+        tags:
+          - { name: 'twig.extension' }

@@ -8,6 +8,8 @@
 
 namespace ProjectBundle\Nginx;
 
+use Symfony\Component\Console\Command\Command;
+
 class NginxManager
 {
     /**

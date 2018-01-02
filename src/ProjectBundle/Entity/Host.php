@@ -23,6 +23,8 @@ class Host implements ResourceInterface
     const BACKEND_STRATEGY_FALLBACK = 'fallback';
     const BACKEND_STRATEGY_ROUND_ROBIN = 'round_robin';
 
+    const CERTIFICATE_TYPE_NONE = null;
+    const CERTIFICATE_TYPE_LETS_ENCRYPT = null;
 
     /**
      * @var int
@@ -57,12 +59,22 @@ class Host implements ResourceInterface
     /**
      * @var string
      */
-    private $certPath;
+    private $certificate;
 
     /**
      * @var string
      */
-    private $keyPath;
+    private $certificateKey;
+
+    /**
+     * @var string
+     */
+    private $certificateRequest;
+
+    /**
+     * @var string
+     */
+    private $certificateType;
 
     /**
      * @var string
@@ -223,38 +235,6 @@ class Host implements ResourceInterface
     /**
      * @return string
      */
-    public function getCertPath()
-    {
-        return $this->certPath;
-    }
-
-    /**
-     * @param string $certPath
-     */
-    public function setCertPath($certPath)
-    {
-        $this->certPath = $certPath;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getKeyPath()
-    {
-        return $this->keyPath;
-    }
-
-    /**
-     * @param mixed $keyPath
-     */
-    public function setKeyPath($keyPath)
-    {
-        $this->keyPath = $keyPath;
-    }
-
-    /**
-     * @return string
-     */
     public function getRedirect()
     {
         return $this->redirect;
@@ -282,5 +262,69 @@ class Host implements ResourceInterface
     public function setDefault($default)
     {
         $this->default = $default;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertificate()
+    {
+        return $this->certificate;
+    }
+
+    /**
+     * @param string $certificate
+     */
+    public function setCertificate($certificate)
+    {
+        $this->certificate = $certificate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertificateKey()
+    {
+        return $this->certificateKey;
+    }
+
+    /**
+     * @param string $certificateKey
+     */
+    public function setCertificateKey($certificateKey)
+    {
+        $this->certificateKey = $certificateKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertificateRequest()
+    {
+        return $this->certificateRequest;
+    }
+
+    /**
+     * @param string $certificateRequest
+     */
+    public function setCertificateRequest($certificateRequest)
+    {
+        $this->certificateRequest = $certificateRequest;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertificateType()
+    {
+        return $this->certificateType;
+    }
+
+    /**
+     * @param string $certificateType
+     */
+    public function setCertificateType($certificateType)
+    {
+        $this->certificateType = $certificateType;
     }
 }
