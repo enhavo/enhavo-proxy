@@ -7,14 +7,16 @@ RUN apt-get update -y && \
     apt-get install -y varnish && \
     apt-get install -y nginx && \
     apt-get install -y sudo && \
-    apt-get install -y --force-yes php7.0 && \
-    apt-get install -y --force-yes php7.0-gd && \
-    apt-get install -y --force-yes php7.0-curl && \
-    apt-get install -y --force-yes php7.0-mbstring && \
-    apt-get install -y --force-yes php7.0-dom && \
-    apt-get install -y --force-yes php7.0-intl && \
-    apt-get install -y --force-yes php7.0-mysql && \
-    apt-get install -y --force-yes php7.0-zip && \
+    apt-get install -y php7.0 && \
+    apt-get install -y php7.0-gd && \
+    apt-get install -y php7.0-curl && \
+    apt-get install -y php7.0-mbstring && \
+    apt-get install -y php7.0-dom && \
+    apt-get install -y php7.0-intl && \
+    apt-get install -y php7.0-mysql && \
+    apt-get install -y php7.0-zip && \
+    apt-get install -y libapache2-mod-php7.0 && \
+    apt-get install -y mysql-client && \
     apt-get install -y composer
 
 # server setting and start up scripts
@@ -49,11 +51,10 @@ ADD web /var/www/web
 ADD scripts /var/www/scripts
 ADD composer.json /var/www/composer.json
 ADD composer.lock /var/www/composer.lock
+ADD vendor /var/www/vendor
 COPY docker/var/www/app/config/parameters.yml /var/www/app/config/parameters.yml
 
 WORKDIR /var/www
-
-RUN composer install --no-interaction --no-dev --no-scripts
 
 VOLUME ["/etc/nginx", "/etc/varnish", "/var/www"]
 

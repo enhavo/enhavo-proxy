@@ -8,15 +8,6 @@ enhavo_app:
             route: project_host_index
             icon: server
 
-enhavo_grid:
-    items:
-
-enhavo_translation:
-    default_locale: en
-    locales:
-      en:
-    translate: false
-
 sylius_resource:
     resources:
         project.host:

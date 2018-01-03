@@ -3,12 +3,12 @@ services:
   varnish:
     build: .
     ports:
-    - "80:80"
-    - "443:443"
-    - "8080:8080"
-    volumes:
-    - "./:/var/www"
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
   mysql:
     image: mariadb:10.3
     environment:
-     MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - '/data/cache/mysql:/var/lib/mysql'

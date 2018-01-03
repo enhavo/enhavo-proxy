@@ -20,7 +20,9 @@
   },
   "require": {
     "enhavo/enhavo": "0.3.x-dev",
-    "friendsofsymfony/user-bundle": "v2.0.0-alpha3"
+    "friendsofsymfony/user-bundle": "v2.0.0-alpha3",
+    "analogic/lescript": "0.1.6",
+    "matthiasnoback/symfony-console-form": "2.3.*"
   },
   "scripts": {
     "post-install-cmd": [

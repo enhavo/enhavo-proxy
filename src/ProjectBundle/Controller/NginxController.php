@@ -18,15 +18,11 @@ class NginxController extends Controller
     public function wellKnownAction(Request $request)
     {
         $token = $request->get('token');
-        $token = $this->getDoctrine()->getRepository('ProjectBundle:Token')->findOneBy([
-            'token' => $token
-        ]);
-
-        if($token === null) {
+        $content = $this->container->get('project.certificate.manager')->getToken($token);
+        if($content === null) {
             throw $this->createNotFoundException();
         }
-
-        return new Response($token->getContent());
+        return new Response($content);
     }
 
     public function signAction(Request $request)

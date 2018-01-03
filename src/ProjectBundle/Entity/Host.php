@@ -24,7 +24,7 @@ class Host implements ResourceInterface
     const BACKEND_STRATEGY_ROUND_ROBIN = 'round_robin';
 
     const CERTIFICATE_TYPE_NONE = null;
-    const CERTIFICATE_TYPE_LETS_ENCRYPT = null;
+    const CERTIFICATE_TYPE_LETS_ENCRYPT = 'lets_encrypt';
 
     /**
      * @var int

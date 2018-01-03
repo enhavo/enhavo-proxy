@@ -34,12 +34,13 @@ ProjectBundle\Entity\Host:
             type: text
             nullable: true
         certificateType:
-            type: boolean
+            type: string
             nullable: true
         redirect:
             type: string
             nullable: true
         default:
+            column: "`default`"
             type: boolean
             nullable: true
 
