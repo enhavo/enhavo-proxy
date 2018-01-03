@@ -1,5 +1,5 @@
 {
-  "name": "xqweb/varnish-nginx-enhavo",
+  "name": "xqweb/enhavo-proxy",
   "license": "MIT",
   "type": "project",
   "description": "enhavo",

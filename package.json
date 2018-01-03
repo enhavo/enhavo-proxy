@@ -1,5 +1,5 @@
 {
-  "name": "xqweb-varnish-nginx-enhavo",
+  "name": "enhavo-proxy",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
