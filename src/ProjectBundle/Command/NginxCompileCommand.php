@@ -20,7 +20,7 @@ class NginxCompileCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('nginx:compile')
+            ->setName('proxy:nginx:compile')
             ->setDescription('compile nginx config');
     }
 

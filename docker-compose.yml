@@ -1,7 +1,7 @@
 version: '3'
 services:
-  varnish:
-    build: .
+  proxy:
+    image: xqweb/enhavo-proxy
     ports:
       - "80:80"
       - "443:443"
@@ -11,4 +11,4 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - '/data/cache/mysql:/var/lib/mysql'
+      - '/data/mysql:/var/lib/mysql'

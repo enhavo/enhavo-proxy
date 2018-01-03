@@ -23,7 +23,7 @@ class HostCreateCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('host:create')
+            ->setName('proxy:host:create')
             ->setDescription('create host');
     }
 

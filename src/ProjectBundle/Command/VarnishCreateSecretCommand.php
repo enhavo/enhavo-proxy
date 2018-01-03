@@ -20,7 +20,7 @@ class VarnishCreateSecretCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('varnish:create:secret')
+            ->setName('proxy:varnish:create:secret')
             ->setDescription('create varnish secret file');
     }
 

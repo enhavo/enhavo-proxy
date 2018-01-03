@@ -8,7 +8,7 @@
 
 namespace ProjectBundle\Nginx;
 
-use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Process\Process;
 
 class NginxManager
 {
@@ -25,14 +25,16 @@ class NginxManager
     public function restart()
     {
         $command = sprintf('/usr/bin/env bash %s/nginx_restart.bash', $this->scriptPath);
-        exec($command, $output);
-        return $output;
+        $process = new Process($command);
+        $process->run();
+        return $process->getOutput();
     }
 
     public function compile()
     {
         $command = sprintf('/usr/bin/env bash %s/nginx_compile.bash', $this->scriptPath);
-        exec($command, $output);
-        return $output;
+        $process = new Process($command);
+        $process->run();
+        return $process->getOutput();
     }
 }

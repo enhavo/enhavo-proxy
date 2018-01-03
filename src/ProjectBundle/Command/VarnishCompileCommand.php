@@ -20,7 +20,7 @@ class VarnishCompileCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('varnish:compile')
+            ->setName('proxy:varnish:compile')
             ->setDescription('compile varnish config');
     }
 

@@ -1,0 +1,11 @@
+.idea
+.settings
+.build
+.git
+/bin
+/build
+/node_modules
+/vendor
+/app/cache
+/app/logs
+/web/bundles

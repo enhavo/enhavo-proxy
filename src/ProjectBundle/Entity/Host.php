@@ -89,7 +89,7 @@ class Host implements ResourceInterface
     /**
      * @var boolean
      */
-    private $default;
+    private $default = false;
 
     public function __construct()
     {

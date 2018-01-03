@@ -3,5 +3,5 @@
 var gulp = require('gulp');
 
 gulp.task("docker:build", shell.task([
-  'docker build -t xqweb/varnish-nginx-enhavo .'
+  'docker build -t xqweb/enhavo-proxy .'
 ]));

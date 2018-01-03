@@ -24,5 +24,6 @@ parameters:
     varnish_config: /etc/varnish/default.vcl
     varnish_secret: /etc/varnish/secret
     nginx_config: /etc/nginx/nginx.conf
+    certificate_path: /var/ssl
 
     secret: ThisTokenIsNotSoSecretChangeIt

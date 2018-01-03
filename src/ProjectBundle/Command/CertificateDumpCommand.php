@@ -20,7 +20,7 @@ class CertificateDumpCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('certificate:dump')
+            ->setName('proxy:certificate:dump')
             ->setDescription('dump certificate to filesystem');
     }
 

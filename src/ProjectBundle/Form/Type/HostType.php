@@ -24,6 +24,7 @@ class HostType extends AbstractResourceType
     {
         $builder->add('domain', TextType::class);
         $builder->add('redirect', TextType::class);
+        $builder->add('default', BooleanType::class);
         $builder->add('https', ChoiceType::class, [
             'choices_as_values' => true,
             'choices'=> [

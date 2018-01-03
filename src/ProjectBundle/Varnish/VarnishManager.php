@@ -11,6 +11,7 @@ namespace ProjectBundle\Varnish;
 
 use Enhavo\Bundle\AppBundle\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Process\Process;
 
 class VarnishManager
 {
@@ -39,15 +40,17 @@ class VarnishManager
     public function restart()
     {
         $command = sprintf('/usr/bin/env bash %s/varnish_restart.bash', $this->scriptPath);
-        exec($command, $output);
-        return $output;
+        $process = new Process($command);
+        $process->run();
+        return $process->getOutput();
     }
 
     public function compile()
     {
         $command = sprintf('/usr/bin/env bash %s/varnish_compile.bash', $this->scriptPath);
-        exec($command, $output);
-        return $output;
+        $process = new Process($command);
+        $process->run();
+        return $process->getOutput();
     }
 
     public function testConfig()

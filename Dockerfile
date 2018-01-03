@@ -45,16 +45,18 @@ RUN rm -f /etc/nginx/sites-available/default && \
 COPY docker/etc/default/varnish /etc/default/varnish
 
 # enhavo
-ADD app /var/www/app
-ADD src /var/www/src
-ADD web /var/www/web
-ADD scripts /var/www/scripts
-ADD composer.json /var/www/composer.json
-ADD composer.lock /var/www/composer.lock
-ADD vendor /var/www/vendor
-COPY docker/var/www/app/config/parameters.yml /var/www/app/config/parameters.yml
+COPY app /var/www/app
+COPY src /var/www/src
+COPY scripts /var/www/scripts
+COPY web /var/www/web
+COPY composer.json /var/www/composer.json
+COPY composer.lock /var/www/composer.lock
 
 WORKDIR /var/www
+
+COPY docker/var/www/app/config/parameters.yml /var/www/app/config/parameters.yml
+RUN chown -R www-data:www-data /var/www/*  && \
+    composer install --no-scripts --no-dev --no-interaction
 
 VOLUME ["/etc/nginx", "/etc/varnish", "/var/www"]
 

@@ -20,7 +20,7 @@ class CertificateRenewCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('certificate:renew')
+            ->setName('proxy:certificate:renew')
             ->setDescription('renew certificates');
     }
 
