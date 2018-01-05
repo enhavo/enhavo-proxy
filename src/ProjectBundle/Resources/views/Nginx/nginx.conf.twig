@@ -52,7 +52,7 @@ http {
         ssl_certificate_key {{ host|ssl_certificate_key_path }};
         keepalive_timeout    70;
         client_max_body_size 0;
-        server_name www.xq-web.de;
+        server_name {{ host.domain }};
 
         location / {
           proxy_pass  http://myproject;

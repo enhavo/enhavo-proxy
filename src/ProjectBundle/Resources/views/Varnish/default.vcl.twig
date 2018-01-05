@@ -61,8 +61,7 @@ sub vcl_recv
 
             {% if host.https == 2 %} {# https only #}
                 if (client.ip !~ local) {
-                    set req.http.x-Redir-Url = "https://{{ host.domain }}" + req.url;
-                    error 750 req.http.x-Redir-Url;
+                    return (synth(302, "https://{{ host.domain }}"));
                 }
             {% endif %}
 
