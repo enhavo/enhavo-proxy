@@ -57,17 +57,21 @@ class CertificateManager
 
     public function renewCertificate(Host $host)
     {
-        $client = $this->getClient();
-        $client->signDomains([$host->getDomain()]);
+        try {
+            $client = $this->getClient();
+            $client->signDomains([$host->getDomain()]);
 
-        $fs = $this->container->get('filesystem');
-        $keyPath = sprintf('%s/%s/private.pem', $this->getCertStorage(), $host->getDomain());
-        $certPath = sprintf('%s/%s/fullchain.pem', $this->getCertStorage(), $host->getDomain());
-        $requestPath = sprintf('%s/%s/last.csr', $this->getCertStorage(), $host->getDomain());
+            $fs = $this->container->get('filesystem');
+            $keyPath = sprintf('%s/%s/private.pem', $this->getCertStorage(), $host->getDomain());
+            $certPath = sprintf('%s/%s/fullchain.pem', $this->getCertStorage(), $host->getDomain());
+            $requestPath = sprintf('%s/%s/last.csr', $this->getCertStorage(), $host->getDomain());
 
-        $host->setCertificate($fs->readFile($certPath));
-        $host->setCertificateKey($fs->readFile($keyPath));
-        $host->setCertificateRequest($fs->readFile($requestPath));
+            $host->setCertificate($fs->readFile($certPath));
+            $host->setCertificateKey($fs->readFile($keyPath));
+            $host->setCertificateRequest($fs->readFile($requestPath));
+        } catch (\Exception $e) {
+
+        }
     }
 
     public function getToken($token)

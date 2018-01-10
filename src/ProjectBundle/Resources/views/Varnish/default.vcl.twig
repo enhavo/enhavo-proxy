@@ -55,13 +55,9 @@ sub vcl_recv
     {% for host in hosts %}
         if(req.http.host ~ "^{{ host.domain }}$")
         {
-            {% if host.redirect %}
-                return (synth(302, "{{ host.redirect }}"));
-            {% endif %}
-
             {% if host.https == 2 %} {# https only #}
                 if (client.ip !~ local) {
-                    return (synth(302, "https://{{ host.domain }}"));
+                    return (synth(302, "https://" ~ req.http.host ~ req.url));
                 }
             {% endif %}
 

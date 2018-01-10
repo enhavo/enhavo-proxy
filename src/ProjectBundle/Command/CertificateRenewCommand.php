@@ -9,6 +9,7 @@
 namespace ProjectBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -21,13 +22,24 @@ class CertificateRenewCommand extends ContainerAwareCommand
     {
         $this
             ->setName('proxy:certificate:renew')
+            ->addArgument('domain', InputArgument::OPTIONAL, 'specify domain')
             ->setDescription('renew certificates');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $manager = $this->getContainer()->get('project.certificate.manager');
-        $manager->renewCertificates();
+        $certificateManager = $this->getContainer()->get('project.certificate.manager');
+        $hostManager = $this->getContainer()->get('project.host.host_manager');
+        $domain = $input->getArgument('domain');
+        if($domain) {
+            $host = $hostManager->getHostByDomain($domain);
+            if($host === null) {
+                $output->writeln('cant find host');
+            }
+            $certificateManager->renewCertificate($host);
+        } else {
+            $certificateManager->renewCertificates();
+        }
         $output->writeln('certificates renewed');
     }
 }

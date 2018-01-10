@@ -12,9 +12,12 @@ namespace ProjectBundle\Host;
 use Enhavo\Bundle\AppBundle\Slugifier\Slugifier;
 use ProjectBundle\Entity\Backend;
 use ProjectBundle\Entity\Host;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 class HostManager
 {
+    use ContainerAwareTrait;
+
     public function updateHost(Host $host)
     {
         /** @var Backend $backend */
@@ -39,5 +42,17 @@ class HostManager
                 $backend->setConnectTimeout(900);
             }
         }
+    }
+
+    /**
+     * @param $domain
+     * @return null|Host
+     */
+    public function getHostByDomain($domain)
+    {
+        $repository = $this->container->get('doctrine.orm.entity_manager')->getRepository(Host::class);
+        return $repository->findOneBy([
+            'domain' => $domain
+        ]);
     }
 }

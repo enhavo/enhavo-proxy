@@ -27,6 +27,8 @@ services:
 
     project.host.host_manager:
         class: ProjectBundle\Host\HostManager
+        calls:
+          - ['setContainer', ['@service_container']]
 
     project.varnish.manger:
         class: ProjectBundle\Varnish\VarnishManager
