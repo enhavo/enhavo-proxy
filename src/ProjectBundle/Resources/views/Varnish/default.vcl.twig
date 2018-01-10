@@ -57,7 +57,7 @@ sub vcl_recv
         {
             {% if host.https == 2 %} {# https only #}
                 if (client.ip !~ local) {
-                    return (synth(302, "https://" ~ req.http.host ~ req.url));
+                    return (synth(302, "https://{{ host.domain }}" + req.url));
                 }
             {% endif %}
 
