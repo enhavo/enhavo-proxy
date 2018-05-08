@@ -27,6 +27,5 @@ class VarnishCreateSecretCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->getContainer()->get('project.varnish.manger')->createSecretFile();
-        $output->writeln('varnish secret saved');
     }
 }

@@ -28,6 +28,5 @@ class VarnishCompileCommand extends ContainerAwareCommand
     {
         $hosts = $this->getContainer()->get('project.repository.host')->findAll();
         $this->getContainer()->get('project.varnish.compiler')->compile($hosts);
-        $output->writeln('varnish file saved');
     }
 }

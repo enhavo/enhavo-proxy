@@ -12,12 +12,10 @@ namespace ProjectBundle\Host;
 use Enhavo\Bundle\AppBundle\Slugifier\Slugifier;
 use ProjectBundle\Entity\Backend;
 use ProjectBundle\Entity\Host;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use ProjectBundle\Manager\AbstractManager;
 
-class HostManager
+class HostManager extends AbstractManager
 {
-    use ContainerAwareTrait;
-
     public function updateHost(Host $host)
     {
         /** @var Backend $backend */

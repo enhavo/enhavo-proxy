@@ -4,20 +4,6 @@ services:
         tags:
           - { name: form.type, alias: 'project_backend' }
 
-    project.varnish.compiler:
-        class: ProjectBundle\Varnish\Compiler
-        arguments:
-            - '@templating'
-            - '@filesystem'
-            - '%varnish_config%'
-
-    project.nginx.compiler:
-        class: ProjectBundle\Nginx\Compiler
-        arguments:
-            - '@templating'
-            - '@filesystem'
-            - '%nginx_config%'
-
     project.subscriber.host_subscriber:
         class: ProjectBundle\EventListener\HostSubscriber
         arguments:
@@ -25,19 +11,20 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
-    project.host.host_manager:
+    project.manager.host:
         class: ProjectBundle\Host\HostManager
         calls:
           - ['setContainer', ['@service_container']]
 
-    project.varnish.manger:
+    project.manager.varnish:
         class: ProjectBundle\Varnish\VarnishManager
-        arguments:
-            - '%varnish_secret%'
-            - '@filesystem'
+        calls:
+          - ['setContainer', ['@service_container']]
 
-    project.nginx.manger:
+    project.manager.nginx:
         class: ProjectBundle\Nginx\NginxManager
+        calls:
+          - ['setContainer', ['@service_container']]
 
     project.block.control:
         class: ProjectBundle\Block\ControlBlock

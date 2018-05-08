@@ -13,20 +13,19 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class NginxCompileCommand extends ContainerAwareCommand
+class VarnishReloadCommand extends ContainerAwareCommand
 {
     use ContainerAwareTrait;
 
     protected function configure()
     {
         $this
-            ->setName('proxy:nginx:compile')
-            ->setDescription('compile nginx config');
+            ->setName('proxy:varnish:reload')
+            ->setDescription('reload varnish config');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $hosts = $this->getContainer()->get('project.repository.host')->findAll();
-        $this->getContainer()->get('project.manager.nginx')->compile($hosts);
+        $this->getContainer()->get('project.manager.varnish')->reload();
     }
 }

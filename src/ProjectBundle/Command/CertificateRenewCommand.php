@@ -29,7 +29,7 @@ class CertificateRenewCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $certificateManager = $this->getContainer()->get('project.certificate.manager');
-        $hostManager = $this->getContainer()->get('project.host.host_manager');
+        $hostManager = $this->getContainer()->get('project.manager.host');
         $domain = $input->getArgument('domain');
         if($domain) {
             $host = $hostManager->getHostByDomain($domain);
