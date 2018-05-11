@@ -1,39 +1,45 @@
 services:
-    project.form.backend:
+    form.backend:
         class: ProjectBundle\Form\Type\BackendType
         tags:
           - { name: form.type, alias: 'project_backend' }
 
-    project.subscriber.host_subscriber:
+    subscriber.host_subscriber:
         class: ProjectBundle\EventListener\HostSubscriber
         arguments:
-            - '@project.host.host_manager'
+            - '@manager.host'
         tags:
             - { name: kernel.event_subscriber }
 
-    project.manager.host:
-        class: ProjectBundle\Host\HostManager
+    manager.host:
+        class: ProjectBundle\Manager\HostManager
         calls:
           - ['setContainer', ['@service_container']]
 
-    project.manager.varnish:
-        class: ProjectBundle\Varnish\VarnishManager
+    manager.varnish:
+        class: ProjectBundle\Manager\VarnishManager
         calls:
           - ['setContainer', ['@service_container']]
 
-    project.manager.nginx:
-        class: ProjectBundle\Nginx\NginxManager
+    manager.nginx:
+        class: ProjectBundle\Manager\NginxManager
         calls:
           - ['setContainer', ['@service_container']]
 
-    project.block.control:
+    manager.certificate:
+        class: ProjectBundle\Manager\CertificateManager
+        calls:
+          - ['setContainer', ['@service_container']]
+
+
+    block.control:
         class: ProjectBundle\Block\ControlBlock
         calls:
           - ['setContainer', ['@service_container']]
         tags:
             - { name: enhavo.block, alias: 'control' }
 
-    project.certificate.lescript:
+    certificate.lescript:
         class: ProjectBundle\Certificate\Lescript
         arguments:
           - '%kernel.root_dir%/media/certificate'
@@ -41,13 +47,8 @@ services:
         calls:
           - ['setContainer', ['@service_container']]
 
-    project.certificate.manager:
-        class: ProjectBundle\Certificate\CertificateManager
-        calls:
-          - ['setContainer', ['@service_container']]
 
-
-    project.twig.extension:
+    twig.extension:
         class: ProjectBundle\Twig\TwigExtension
         calls:
           - ['setContainer', ['@service_container']]

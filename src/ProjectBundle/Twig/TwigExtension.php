@@ -27,12 +27,12 @@ class TwigExtension extends \Twig_Extension
 
     public function getSSLCertificatePath(Host $host)
     {
-        return $this->container->get('project.certificate.manager')->getCertificatePath($host);
+        return $this->container->get('manager.certificate')->getCertificatePath($host);
     }
 
     public function getSSLCertificateKeyPath(Host $host)
     {
-        return $this->container->get('project.certificate.manager')->getCertificateKeyPath($host);
+        return $this->container->get('manager.certificate')->getCertificateKeyPath($host);
     }
 
     public function getName()

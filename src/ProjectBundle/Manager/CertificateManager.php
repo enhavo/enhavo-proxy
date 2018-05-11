@@ -6,11 +6,12 @@
  * Time: 14:21
  */
 
-namespace ProjectBundle\Certificate;
+namespace ProjectBundle\Manager;
 
 use ProjectBundle\Entity\Host;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Filesystem\Filesystem;
+use ProjectBundle\Certificate\Lescript;
 
 class CertificateManager
 {
@@ -23,6 +24,7 @@ class CertificateManager
         $hosts = $this->container->get('project.repository.host')->findAll();
         foreach($hosts as $host) {
             if($host->getCertificate()) {
+                $this->getLogger()->info(sprintf('certificate for host "%s" was dumped', $host->getDomain()));
                 $fs->dumpFile($this->getCertificatePath($host), $host->getCertificate());
                 $fs->dumpFile($this->getCertificateKeyPath($host), $host->getCertificateKey());
             }
@@ -118,5 +120,10 @@ class CertificateManager
             $fs->mkdir($dir);
         }
         return $dir;
+    }
+
+    private function getLogger()
+    {
+        return $this->container->get('logger');
     }
 }

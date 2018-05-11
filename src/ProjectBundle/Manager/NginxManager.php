@@ -6,10 +6,9 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Nginx;
+namespace ProjectBundle\Manager;
 
 use ProjectBundle\Entity\Host;
-use ProjectBundle\Manager\AbstractManager;
 
 class NginxManager extends AbstractManager
 {
@@ -17,7 +16,7 @@ class NginxManager extends AbstractManager
      * @param Host[] $hosts
      * @return string
      */
-    public function compile($hosts)
+    public function compileHosts($hosts)
     {
         $this->getLogger()->info('compile nginx file');
 
@@ -33,6 +32,21 @@ class NginxManager extends AbstractManager
         return $content;
     }
 
+    /**
+     * @return string
+     */
+    public function compile()
+    {
+        $hosts = $this->container->get('project.repository.host')->findAll();
+        $content = $this->compileHosts($hosts);
+        return $content;
+    }
+
+    public function restart()
+    {
+        $this->executeCommand('sudo service nginx restart');
+    }
+
     public function reload()
     {
         $this->executeCommand('sudo service nginx reload');
@@ -40,6 +54,6 @@ class NginxManager extends AbstractManager
 
     private function getConfigPath()
     {
-        $this->container->getParameter('nginx_config');
+        return $this->container->getParameter('nginx_config');
     }
 }

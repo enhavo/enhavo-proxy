@@ -8,55 +8,48 @@
 
 namespace ProjectBundle\Controller;
 
-use ProjectBundle\Entity\Host;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use ProjectBundle\Manager\NginxManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class NginxController extends Controller
+class NginxController extends AbstractController
 {
     public function wellKnownAction(Request $request)
     {
         $token = $request->get('token');
-        $content = $this->container->get('project.certificate.manager')->getToken($token);
+        $content = $this->container->get('manager.certificate')->getToken($token);
         if($content === null) {
             throw $this->createNotFoundException();
         }
         return new Response($content);
     }
 
-    public function signAction(Request $request)
+    public function restartAction()
     {
-        $manager = $this->get('project.certificate.manager');
-        $manager->initAccount();
-
-        $hostArray = [];
-        $hosts = $this->get('project.repository.host')->findAll();
-        /** @var Host $host */
-        foreach($hosts as $host) {
-            $hostArray[] = $host->getDomain();
-        }
-        $manager->signDomains($hostArray);
-        return new Response('');
+        $controller = $this;
+        return new StreamedResponse(function() use ($controller) {
+            $controller->pushEchoHandler();
+            $controller->getManager()->reload();
+            $controller->popHandler();
+        });
     }
 
-    public function restartNginxAction()
+    public function compileAction()
     {
-        $output = $this->container->get('project.nginx.manger')->restart();
-        if(is_array($output)) {
-            $output = implode("\n", $output);
-        }
-        $output = htmlentities($output);
-        return new Response($output);
+        $controller = $this;
+        return new StreamedResponse(function() use ($controller) {
+            $controller->pushEchoHandler();
+            $controller->getManager()->compile();
+            $controller->popHandler();
+        });
     }
 
-    public function compileConfigAction()
+    /**
+     * @return NginxManager
+     */
+    private function getManager()
     {
-        $output = $this->container->get('project.nginx.manger')->compile();
-        if(is_array($output)) {
-            $output = implode("\n", $output);
-        }
-        $output = htmlentities($output);
-        return new Response($output);
+        return $this->container->get('manager.nginx');
     }
 }

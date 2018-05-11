@@ -6,13 +6,11 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Host;
-
+namespace ProjectBundle\Manager;
 
 use Enhavo\Bundle\AppBundle\Slugifier\Slugifier;
 use ProjectBundle\Entity\Backend;
 use ProjectBundle\Entity\Host;
-use ProjectBundle\Manager\AbstractManager;
 
 class HostManager extends AbstractManager
 {

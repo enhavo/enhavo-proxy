@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class VarnishCompileCommand extends ContainerAwareCommand
+class VarnishCompileCommand extends AbstractCommand
 {
     use ContainerAwareTrait;
 
@@ -26,7 +26,8 @@ class VarnishCompileCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $hosts = $this->getContainer()->get('project.repository.host')->findAll();
-        $this->getContainer()->get('project.varnish.compiler')->compile($hosts);
+        $this->pushOutputHandler($output);
+        $this->getContainer()->get('manager.varnish')->compile();
+        $this->popHandler();
     }
 }

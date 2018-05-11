@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class CertificateDumpCommand extends ContainerAwareCommand
+class CertificateDumpCommand extends AbstractCommand
 {
     use ContainerAwareTrait;
 
@@ -26,8 +26,9 @@ class CertificateDumpCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $manager = $this->getContainer()->get('project.certificate.manager');
+        $this->pushOutputHandler($output);
+        $manager = $this->getContainer()->get('manager.certificate');
         $manager->dumpCertificates();
-        $output->writeln('certificates dumped');
+        $this->popHandler();
     }
 }

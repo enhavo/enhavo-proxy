@@ -14,7 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class CertificateRenewCommand extends ContainerAwareCommand
+class CertificateRenewCommand extends AbstractCommand
 {
     use ContainerAwareTrait;
 
@@ -28,8 +28,9 @@ class CertificateRenewCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $certificateManager = $this->getContainer()->get('project.certificate.manager');
-        $hostManager = $this->getContainer()->get('project.manager.host');
+        $this->pushOutputHandler($output);
+        $certificateManager = $this->getContainer()->get('manager.certificate');
+        $hostManager = $this->getContainer()->get('manager.host');
         $domain = $input->getArgument('domain');
         if($domain) {
             $host = $hostManager->getHostByDomain($domain);
@@ -41,5 +42,6 @@ class CertificateRenewCommand extends ContainerAwareCommand
             $certificateManager->renewCertificates();
         }
         $output->writeln('certificates renewed');
+        $this->popHandler();
     }
 }

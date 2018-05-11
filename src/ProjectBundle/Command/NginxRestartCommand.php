@@ -13,19 +13,21 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class NginxReloadCommand extends ContainerAwareCommand
+class NginxRestartCommand extends AbstractCommand
 {
     use ContainerAwareTrait;
 
     protected function configure()
     {
         $this
-            ->setName('proxy:nginx:reload')
+            ->setName('proxy:nginx:restart')
             ->setDescription('reload nginx config');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getContainer()->get('project.manager.nginx')->reload();
+        $this->pushOutputHandler($output);
+        $this->getContainer()->get('manager.nginx')->reload();
+        $this->popHandler();
     }
 }

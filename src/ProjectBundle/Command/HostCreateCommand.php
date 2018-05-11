@@ -16,7 +16,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class HostCreateCommand extends ContainerAwareCommand
+class HostCreateCommand extends AbstractCommand
 {
     use ContainerAwareTrait;
 
@@ -29,6 +29,7 @@ class HostCreateCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->pushOutputHandler($output);
         $formHelper = $this->getHelper('form');
         /** @var FormHelper $formHelper */
         $host = new Host();
@@ -36,5 +37,6 @@ class HostCreateCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         $em->persist($host);
         $em->flush();
+        $this->popHandler();
     }
 }

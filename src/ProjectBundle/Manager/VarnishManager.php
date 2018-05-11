@@ -6,10 +6,9 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Varnish;
+namespace ProjectBundle\Manager;
 
 use ProjectBundle\Entity\Host;
-use ProjectBundle\Manager\AbstractManager;
 
 class VarnishManager extends AbstractManager
 {
@@ -17,8 +16,10 @@ class VarnishManager extends AbstractManager
      * @param Host[] $hosts
      * @return string
      */
-    public function compile($hosts)
+    public function compileHosts($hosts)
     {
+        $this->getLogger()->info('compile varnish file');
+
         $content = $this->render('ProjectBundle:Varnish:default.vcl.twig', [
             'hosts' => $hosts
         ]);
@@ -26,6 +27,18 @@ class VarnishManager extends AbstractManager
         $configFilePath = $this->getConfigFilePath();
         $this->getFilesystem()->dumpFile($configFilePath, $content);
 
+        $this->getLogger()->info(sprintf('config file saved to "%s"', $configFilePath));
+
+        return $content;
+    }
+
+    /**
+     * @return string
+     */
+    public function compile()
+    {
+        $hosts = $this->container->get('project.repository.host')->findAll();
+        $content = $this->compileHosts($hosts);
         return $content;
     }
 
@@ -52,11 +65,11 @@ class VarnishManager extends AbstractManager
 
     public function getSecretFilePath()
     {
-        return '';
+        return $this->container->getParameter('varnish_secret');
     }
 
     public function getConfigFilePath()
     {
-        return '';
+        return $this->container->getParameter('varnish_config');
     }
 }

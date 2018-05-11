@@ -2,35 +2,36 @@
 
 namespace ProjectBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use ProjectBundle\Manager\VarnishManager;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
-class VarnishController extends Controller
+class VarnishController extends AbstractController
 {
-    public function showConfigAction()
+    public function restartAction()
     {
-        $hosts = $this->get('project.repository.host')->findAll();
-        $content = $this->get('project.varnish.compiler')->compile($hosts);
-        return new Response($content);
-    }
-    
-    public function restartVarnishAction()
-    {
-        $output = $this->container->get('project.varnish.manger')->restart();
-        if(is_array($output)) {
-            $output = implode("\n", $output);
-        }
-        $output = htmlentities($output);
-        return new Response($output);
+        $controller = $this;
+        return new StreamedResponse(function() use ($controller) {
+            $controller->pushEchoHandler();
+            $controller->getManager()->reload();
+            $controller->popHandler();
+        });
     }
 
-    public function compileConfigAction()
+    public function compileAction()
     {
-        $output = $this->container->get('project.varnish.manger')->compile();
-        if(is_array($output)) {
-            $output = implode("\n", $output);
-        }
-        $output = htmlentities($output);
-        return new Response($output);
+        $controller = $this;
+        return new StreamedResponse(function() use ($controller) {
+            $controller->pushEchoHandler();
+            $controller->getManager()->compile();
+            $controller->popHandler();
+        });
+    }
+
+    /**
+     * @return VarnishManager
+     */
+    private function getManager()
+    {
+        return $this->container->get('manager.varnish');
     }
 }

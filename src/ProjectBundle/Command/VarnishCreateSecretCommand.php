@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class VarnishCreateSecretCommand extends ContainerAwareCommand
+class VarnishCreateSecretCommand extends AbstractCommand
 {
     use ContainerAwareTrait;
 
@@ -26,6 +26,8 @@ class VarnishCreateSecretCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getContainer()->get('project.varnish.manger')->createSecretFile();
+        $this->pushOutputHandler($output);
+        $this->getContainer()->get('manager.varnish')->createSecretFile();
+        $this->popHandler();
     }
 }
