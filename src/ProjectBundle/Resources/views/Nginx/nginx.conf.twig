@@ -16,6 +16,7 @@ http {
   ssl_ciphers                 EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
   ssl_prefer_server_ciphers   on;
 
+  server_tokens off;
   sendfile on;
   tcp_nopush on;
   tcp_nodelay on;

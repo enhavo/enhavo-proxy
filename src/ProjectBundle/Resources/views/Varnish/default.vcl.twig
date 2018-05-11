@@ -10,7 +10,7 @@ import directors;
             .connect_timeout = {{ backend.connectTimeout }}s;
             .first_byte_timeout = {{ backend.firstByteTimeout }}s;
             .between_bytes_timeout = {{ backend.betweenBytesTimeout }}s;
-            .pipe_timeout = {{ backend.connectTimeout }}s;
+            {#.pipe_timeout = {{ backend.connectTimeout }}s;#}
         }
     {% endfor %}
 {% endfor %}
@@ -42,9 +42,7 @@ sub vcl_recv
         if(req.http.host ~ "^{{ host.domain }}$")
         {
             {% if host.redirect %} {# redirect #}
-                if (client.ip !~ local) {
-                    return (synth(301, "{{ host.redirect }}"));
-                }
+                return (synth(301, "{{ host.redirect }}"));
             {% endif %}
 
             {% if host.https == 2 %} {# https only #}
