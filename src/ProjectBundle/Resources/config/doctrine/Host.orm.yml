@@ -36,6 +36,9 @@ ProjectBundle\Entity\Host:
         certificateType:
             type: string
             nullable: true
+        certificateRefresh:
+            type: string
+            nullable: true
         redirect:
             type: string
             nullable: true

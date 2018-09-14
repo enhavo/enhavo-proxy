@@ -13,6 +13,13 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 
 class Host implements ResourceInterface
 {
+    const REFRESH_EVERY_DAY = '1';
+    const REFRESH_EVERY_WEEK = '7';
+    const REFRESH_EVERY_TWO_WEEK = '14';
+    const REFRESH_EVERY_MONTHS = '30';
+    const REFRESH_EVERY_TWO_MONTHS = '60';
+    const REFRESH_NONE = null;
+
     const HTTPS_OFF = 0;
     const HTTPS_ON = 1;
     const HTTPS_ONLY = 2;
@@ -90,6 +97,11 @@ class Host implements ResourceInterface
      * @var boolean
      */
     private $default = false;
+
+    /**
+     * @var string
+     */
+    private $certificateRefresh;
 
     public function __construct()
     {
@@ -326,5 +338,21 @@ class Host implements ResourceInterface
     public function setCertificateType($certificateType)
     {
         $this->certificateType = $certificateType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCertificateRefresh()
+    {
+        return $this->certificateRefresh;
+    }
+
+    /**
+     * @param string $certificateRefresh
+     */
+    public function setCertificateRefresh($certificateRefresh)
+    {
+        $this->certificateRefresh = $certificateRefresh;
     }
 }
