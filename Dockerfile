@@ -44,6 +44,10 @@ RUN rm -f /etc/nginx/sites-available/default && \
 # varnish
 COPY docker/etc/default/varnish /etc/default/varnish
 
+#logrotate
+COPY docker/etc/logrotate.d/apache /etc/logrotate.d/apache
+COPY docker/etc/logrotate.d/nginx /etc/logrotate.d/nginx
+
 # enhavo
 COPY app /var/www/app
 COPY src /var/www/src
