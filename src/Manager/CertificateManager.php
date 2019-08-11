@@ -6,12 +6,12 @@
  * Time: 14:21
  */
 
-namespace ProjectBundle\Manager;
+namespace App\Manager;
 
-use ProjectBundle\Entity\Host;
+use App\Entity\Host;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Filesystem\Filesystem;
-use ProjectBundle\Certificate\Lescript;
+use App\Certificate\Lescript;
 
 class CertificateManager
 {

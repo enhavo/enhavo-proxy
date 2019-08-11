@@ -6,7 +6,7 @@
  * Time: 01:55
  */
 
-namespace ProjectBundle\Certificate;
+namespace App\Certificate;
 
 
 class CertificateFactory

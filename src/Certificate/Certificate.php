@@ -6,7 +6,7 @@
  * Time: 01:54
  */
 
-namespace ProjectBundle\Certificate;
+namespace App\Certificate;
 
 
 use Symfony\Component\Validator\Constraints\DateTime;

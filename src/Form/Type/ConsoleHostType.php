@@ -6,10 +6,10 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Form\Type;
+namespace App\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use ProjectBundle\Entity\Host;
+use App\Entity\Host;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

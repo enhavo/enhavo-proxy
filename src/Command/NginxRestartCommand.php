@@ -6,7 +6,7 @@
  * Time: 12:26
  */
 
-namespace ProjectBundle\Command;
+namespace App\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;

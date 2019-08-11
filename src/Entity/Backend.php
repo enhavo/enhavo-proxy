@@ -6,7 +6,7 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Entity;
+namespace App\Entity;
 
 
 use Sylius\Component\Resource\Model\ResourceInterface;

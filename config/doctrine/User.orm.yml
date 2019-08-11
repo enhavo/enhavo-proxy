@@ -1,7 +1,7 @@
-ProjectBundle\Entity\User:
+App\Entity\User:
     type: entity
     table: null
-    repositoryClass: ProjectBundle\Repository\UserRepository
+    repositoryClass: App\Repository\UserRepository
     id:
         id:
             type: integer

@@ -6,9 +6,9 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Controller;
+namespace App\Controller;
 
-use ProjectBundle\Manager\NginxManager;
+use App\Manager\NginxManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;

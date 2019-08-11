@@ -6,7 +6,7 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Certificate;
+namespace App\Certificate;
 
 interface ClientInterface
 {

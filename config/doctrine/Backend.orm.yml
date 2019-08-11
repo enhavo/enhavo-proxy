@@ -1,4 +1,4 @@
-ProjectBundle\Entity\Backend:
+App\Entity\Backend:
     type: entity
     table: project_backend
     id:

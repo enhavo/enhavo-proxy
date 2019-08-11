@@ -6,7 +6,7 @@ enhavo_dashboard_index:
         _sylius:
             viewer:
                 stylesheets:
-                    - '@ProjectBundle/Resources/public/css/admin.css'
+                    - '@App/Resources/public/css/admin.css'
                 type: app
                 title: dashboard.label.dashboard
                 translationDomain: EnhavoDashboardBundle

@@ -6,9 +6,9 @@
  * Time: 12:31
  */
 
-namespace ProjectBundle\Command;
+namespace App\Command;
 
-use ProjectBundle\Logger\OutputHandler;
+use App\Logger\OutputHandler;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 

@@ -6,7 +6,7 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Block;
+namespace App\Block;
 
 use Enhavo\Bundle\AppBundle\Block\BlockInterface;
 use Enhavo\Bundle\AppBundle\Type\AbstractType;
@@ -15,7 +15,7 @@ class ControlBlock extends AbstractType implements BlockInterface
 {
     public function render($parameters)
     {
-        return $this->renderTemplate('ProjectBundle:Block:control.html.twig', [
+        return $this->renderTemplate('App:Block:control.html.twig', [
             'app' => 'project/Dashboard'
         ]);
     }

@@ -6,9 +6,9 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Form\Type;
+namespace App\Form\Type;
 
-use ProjectBundle\Entity\Backend;
+use App\Entity\Backend;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;

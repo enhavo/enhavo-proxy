@@ -2,8 +2,6 @@ parameters:
     locale: en
 
 enhavo_app:
-    template:
-        base: 'base.html.twig'
     menu:
         dashboard:
             type: dashboard
@@ -19,10 +17,9 @@ enhavo_app:
 
 sylius_resource:
     resources:
-        project.host:
+        app.host:
             classes:
-                model: ProjectBundle\Entity\Host
+                model: App\Entity\Host
                 controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
                 repository: Enhavo\Bundle\AppBundle\Repository\EntityRepository
-                form:
-                    default: ProjectBundle\Form\Type\HostType
+                form: App\Form\Type\HostType

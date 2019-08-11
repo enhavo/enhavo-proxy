@@ -6,11 +6,11 @@
  * Time: 12:26
  */
 
-namespace ProjectBundle\Command;
+namespace App\Command;
 
 use Matthias\SymfonyConsoleForm\Console\Helper\FormHelper;
-use ProjectBundle\Entity\Host;
-use ProjectBundle\Form\Type\ConsoleHostType;
+use App\Entity\Host;
+use App\Form\Type\ConsoleHostType;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

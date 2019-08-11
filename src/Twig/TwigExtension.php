@@ -3,9 +3,9 @@
  * TwigFunction.php
  */
 
-namespace ProjectBundle\Twig;
+namespace App\Twig;
 
-use ProjectBundle\Entity\Host;
+use App\Entity\Host;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 class TwigExtension extends \Twig_Extension

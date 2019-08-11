@@ -6,12 +6,12 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Form\Type;
+namespace App\Form\Type;
 
 
 use Enhavo\Bundle\AppBundle\Form\Type\BooleanType;
 use Enhavo\Bundle\AppBundle\Form\Type\ListType;
-use ProjectBundle\Entity\Host;
+use App\Entity\Host;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

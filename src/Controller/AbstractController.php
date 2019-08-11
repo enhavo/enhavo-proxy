@@ -6,10 +6,8 @@
  * Time: 11:48
  */
 
-namespace ProjectBundle\Controller;
-
-
-use ProjectBundle\Logger\EchoHandler;
+namespace App\Controller;
+use App\Logger\EchoHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 abstract class AbstractController extends Controller

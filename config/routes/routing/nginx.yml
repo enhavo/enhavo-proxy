@@ -4,7 +4,7 @@ project_nginx_well_known:
     path: /.well-known/acme-challenge/{token}
     methods: [GET]
     defaults:
-        _controller: ProjectBundle:Nginx:wellKnown
+        _controller: App:Nginx:wellKnown
 
 project_nginx_restart:
     options:
@@ -12,7 +12,7 @@ project_nginx_restart:
     path: /admin/nginx/restart
     methods: [GET]
     defaults:
-        _controller: ProjectBundle:Nginx:restart
+        _controller: App:Nginx:restart
 
 project_nginx_compile:
     options:
@@ -20,4 +20,4 @@ project_nginx_compile:
     path: /admin/nginx/compile
     methods: [GET]
     defaults:
-        _controller: ProjectBundle:Nginx:compile
+        _controller: App:Nginx:compile

@@ -1,5 +1,5 @@
 {
-  "name": "enhavo/enhavo-app",
+  "name": "enhavo/enhavo-proxy",
   "license": "MIT",
   "type": "project",
   "description": "enhavo",
@@ -15,8 +15,7 @@
   },
   "require": {
     "enhavo/enhavo": "dev-master",
-    "analogic/lescript": "0.1.6",
-    "matthiasnoback/symfony-console-form": "2.3.*"
+    "analogic/lescript": "0.1.6"
   },
   "require-dev": {
     "symfony/debug-pack": "^1.0",

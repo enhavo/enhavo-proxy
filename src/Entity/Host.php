@@ -6,7 +6,7 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -207,10 +207,10 @@ class Host implements ResourceInterface
     /**
      * Add backends
      *
-     * @param \ProjectBundle\Entity\Backend $backends
+     * @param \App\Entity\Backend $backends
      * @return Host
      */
-    public function addBackend(\ProjectBundle\Entity\Backend $backends)
+    public function addBackend(\App\Entity\Backend $backends)
     {
         $backends->setHost($this);
         $this->backends[] = $backends;
@@ -221,9 +221,9 @@ class Host implements ResourceInterface
     /**
      * Remove backends
      *
-     * @param \ProjectBundle\Entity\Backend $backends
+     * @param \App\Entity\Backend $backends
      */
-    public function removeBackend(\ProjectBundle\Entity\Backend $backends)
+    public function removeBackend(\App\Entity\Backend $backends)
     {
         $backends->setHost(null);
         $this->backends->removeElement($backends);

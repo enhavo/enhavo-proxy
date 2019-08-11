@@ -6,7 +6,7 @@
  * Time: 16:59
  */
 
-namespace ProjectBundle\Manager;
+namespace App\Manager;
 
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Filesystem\Filesystem;

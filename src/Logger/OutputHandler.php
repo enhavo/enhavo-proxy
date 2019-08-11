@@ -1,6 +1,6 @@
 <?php
 
-namespace ProjectBundle\Logger;
+namespace App\Logger;
 
 use Monolog\Handler\AbstractProcessingHandler;
 use Symfony\Component\Console\Output\OutputInterface;

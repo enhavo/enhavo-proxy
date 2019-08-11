@@ -6,10 +6,10 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\EventListener;
+namespace App\EventListener;
 
-use ProjectBundle\Entity\Host;
-use ProjectBundle\Host\HostManager;
+use App\Entity\Host;
+use App\Host\HostManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 

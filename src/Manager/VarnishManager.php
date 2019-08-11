@@ -6,9 +6,9 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Manager;
+namespace App\Manager;
 
-use ProjectBundle\Entity\Host;
+use App\Entity\Host;
 
 class VarnishManager extends AbstractManager
 {
@@ -20,7 +20,7 @@ class VarnishManager extends AbstractManager
     {
         $this->getLogger()->info('compile varnish file');
 
-        $content = $this->render('ProjectBundle:Varnish:default.vcl.twig', [
+        $content = $this->render('App:Varnish:default.vcl.twig', [
             'hosts' => $hosts
         ]);
 

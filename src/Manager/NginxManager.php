@@ -6,9 +6,9 @@
  * @author gseidel
  */
 
-namespace ProjectBundle\Manager;
+namespace App\Manager;
 
-use ProjectBundle\Entity\Host;
+use App\Entity\Host;
 
 class NginxManager extends AbstractManager
 {
@@ -20,7 +20,7 @@ class NginxManager extends AbstractManager
     {
         $this->getLogger()->info('compile nginx file');
 
-        $content = $this->render('ProjectBundle:Nginx:nginx.conf.twig', [
+        $content = $this->render('App:Nginx:nginx.conf.twig', [
             'hosts' => $hosts
         ]);
 

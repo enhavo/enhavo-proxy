@@ -1,6 +1,6 @@
 <?php
 
-namespace ProjectBundle\Certificate;
+namespace App\Certificate;
 
 class Lescript extends \Analogic\ACME\Lescript
 {

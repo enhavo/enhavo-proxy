@@ -6,9 +6,9 @@
  * Time: 12:26
  */
 
-namespace ProjectBundle\Command;
+namespace App\Command;
 
-use ProjectBundle\Entity\Host;
+use App\Entity\Host;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;

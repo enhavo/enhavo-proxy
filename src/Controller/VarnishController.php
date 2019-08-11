@@ -1,8 +1,8 @@
 <?php
 
-namespace ProjectBundle\Controller;
+namespace App\Controller;
 
-use ProjectBundle\Manager\VarnishManager;
+use App\Manager\VarnishManager;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class VarnishController extends AbstractController

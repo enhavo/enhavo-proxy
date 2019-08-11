@@ -1,4 +1,4 @@
-ProjectBundle\Entity\Host:
+App\Entity\Host:
     type: entity
     table: project_host
     id:
