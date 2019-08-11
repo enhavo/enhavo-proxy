@@ -12,8 +12,8 @@ enhavo_app:
         host:
             type: base
             label: Host
-            route: project_host_index
-            icon: server
+            route: app_host_index
+            icon: computer
 
 sylius_resource:
     resources:

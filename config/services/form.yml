@@ -1,8 +1,6 @@
 services:
     form.backend:
         class: App\Form\Type\BackendType
-        tags:
-          - { name: form.type, alias: 'project_backend' }
 
     subscriber.host_subscriber:
         class: App\EventListener\HostSubscriber
