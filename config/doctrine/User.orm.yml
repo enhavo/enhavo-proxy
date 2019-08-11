@@ -1,6 +1,6 @@
 App\Entity\User:
     type: entity
-    table: null
+    table: app_user
     repositoryClass: App\Repository\UserRepository
     id:
         id:
@@ -8,4 +8,5 @@ App\Entity\User:
             id: true
             generator:
                 strategy: AUTO
+
     lifecycleCallbacks: {  }

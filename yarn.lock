@@ -625,13 +625,12 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@enhavo/app@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@enhavo/app/-/app-0.1.13.tgz#611f2b6f8e96cdd1927b3a77f967102a2f42d538"
-  integrity sha512-dSa09/25RlhhraFPb7D97RMpPJfkVTDWXNmJW26GYoTCPvXYjn/VtA7lzy/IO7jjw3ZNsROxnOzX6BoGLMzk9w==
+"@enhavo/app@^0.1.16", "@enhavo/app@git+ssh://git@github.com:enhavo/app-assets.git#master":
+  version "0.1.16"
+  resolved "git+ssh://git@github.com:enhavo/app-assets.git#dc1ec918dec963fccff748ea8949dbec16559e45"
   dependencies:
-    "@enhavo/core" "^0.1.13"
-    "@enhavo/font" "^0.1.13"
+    "@enhavo/core" "^0.1.16"
+    "@enhavo/font" "^0.1.16"
     "@ibm/plex" "^1.2.3"
     async "^2.6.2"
     axios "^0.18.0"
@@ -647,32 +646,38 @@
     vue-select "^3.0.0"
     vuedraggable "^2.20.0"
 
-"@enhavo/core@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@enhavo/core/-/core-0.1.13.tgz#5b3b84a2346b9fb8362079de0d9de3005dff2b48"
-  integrity sha512-s0OdMRgj01DJmSXwWUrlcxDbzXTqq9iHWzXuY35x9ui5EBOm2OyiV3fiJojpXm5K38i9NH0Y1CxYzS3TeUhmgw==
+"@enhavo/core@^0.1.16":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@enhavo/core/-/core-0.1.16.tgz#be657bf3f32731f7eceb0570e8b7d746c7c44c2e"
+  integrity sha512-jUHOWq2NBnbvoGfqSmX8+VS28qHUL+ANc5WCr48bh+bpT3/bWpLdLqVuxsudYxIzgIMz9bHcasviJCDDcOPZrA==
 
-"@enhavo/dashboard@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@enhavo/dashboard/-/dashboard-0.1.13.tgz#e635d89f8fee6ce8ae82422c8a5d98868ea42004"
-  integrity sha512-dz7edE7CkthDYgKozrUty1NKewwzemd5sSWDlMD7rvv3aoPmNPHzE+6FWtR5EYjm3Q+uNg7OnYJrau2IlCNMhg==
+"@enhavo/core@git+ssh://git@github.com:enhavo/core-assets.git#master":
+  version "0.1.16"
+  resolved "git+ssh://git@github.com:enhavo/core-assets.git#b7883b2c337794a5102f8784b68d9355d3597629"
+
+"@enhavo/dashboard@git+ssh://git@github.com:enhavo/dashboard-assets.git#master":
+  version "0.1.16"
+  resolved "git+ssh://git@github.com:enhavo/dashboard-assets.git#2b3f3a56f59a9d28fde25863614ff174453817b6"
   dependencies:
-    "@enhavo/app" "^0.1.13"
+    "@enhavo/app" "^0.1.16"
     chart.js "^2.4.0"
     jquery "~3.4.1"
     lodash "^4.17.11"
 
-"@enhavo/font@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@enhavo/font/-/font-0.1.13.tgz#66055ae831f560f75f8718777f63c2ab129de5f9"
-  integrity sha512-nTOQTz0+nEizJ4DtaHuU/mACpbmDqIlPfSsj36+3ZLtasm0HrVJZplr9u0Jadqrzrg3xeaJYju6Gblg2l88gRA==
+"@enhavo/font@^0.1.16":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@enhavo/font/-/font-0.1.16.tgz#35a878283b0c61091ae8676baa68fed842d43c5e"
+  integrity sha512-ZkAssV9sTXz3pqBkxLS7jk8fbwcjTQZIXbtMgVU+cX+ebbNvp6LdVIt/OB9beeWox0i9sTFn3UU/odjjC403Cw==
 
-"@enhavo/form@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@enhavo/form/-/form-0.1.13.tgz#cfefe3328eaac39cd7b23df787f784e4187d57dd"
-  integrity sha512-gE8q6hQvCXgqtPNgAUDS7JukqZztj9U5TVQzwv0JqiQ4yiAjLI0CULaq+cFWMIDAC2+AC0eUEYcjQYfCU2uSgw==
+"@enhavo/font@git+ssh://git@github.com:enhavo/font-assets.git#master":
+  version "0.1.16"
+  resolved "git+ssh://git@github.com:enhavo/font-assets.git#f9e626b3309d697f4ea2dd911eb4496f936f9926"
+
+"@enhavo/form@git+ssh://git@github.com:enhavo/form-assets.git#master":
+  version "0.1.16"
+  resolved "git+ssh://git@github.com:enhavo/form-assets.git#20dbe9a6972a4da28206455d55cf2d51ac6fff93"
   dependencies:
-    "@enhavo/app" "^0.1.13"
+    "@enhavo/app" "^0.1.16"
     copy-webpack-plugin "^4.5.2"
     icheck "~1.0.2"
     jquery "~3.4.1"
@@ -682,23 +687,21 @@
     select2 "~3.5.1"
     tinymce "~5.0.3"
 
-"@enhavo/media@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@enhavo/media/-/media-0.1.13.tgz#3f5e131a4218b1a99b202c8012b9f8efe341db65"
-  integrity sha512-lM/J2hG3PrQ5jAea6N2nIdksTNsKR/6cvHkthJlKcVJ+gcbqEjv52IVEFrt8lHFzyKUAWaWJRR66/EEmRT+4Vw==
+"@enhavo/media@git+ssh://git@github.com:enhavo/media-assets.git#master":
+  version "0.1.16"
+  resolved "git+ssh://git@github.com:enhavo/media-assets.git#46950da975023ce4fef94fb35f39527e3db4b805"
   dependencies:
-    "@enhavo/app" "^0.1.13"
+    "@enhavo/app" "^0.1.16"
     blueimp-file-upload "^9.22.1"
     cropperjs "~1.2.2"
     jquery "~3.4.1"
     lodash "^4.17.11"
 
-"@enhavo/user@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@enhavo/user/-/user-0.1.13.tgz#757c09116062770736aba72e83978c1edada86c7"
-  integrity sha512-fO12jHcpIQ6/Qim6vFUYrIw00iP94dyGpnfoFIw627n9GeCZ3N5/PsbOJl+mbYVCQM2vlpT5h9ceLfrojuv6hw==
+"@enhavo/user@git+ssh://git@github.com:enhavo/user-assets.git#master":
+  version "0.1.16"
+  resolved "git+ssh://git@github.com:enhavo/user-assets.git#678a06daf18e4f1c3733631f06b80af41879580e"
   dependencies:
-    "@enhavo/app" "^0.1.13"
+    "@enhavo/app" "^0.1.16"
 
 "@ibm/plex@^1.2.3":
   version "1.4.1"
@@ -1428,9 +1431,9 @@ blueimp-canvas-to-blob@3.5.0:
   integrity sha1-VnmsMvaig1gh8MOtZhcZ/4WpI2s=
 
 blueimp-file-upload@^9.22.1:
-  version "9.30.0"
-  resolved "https://registry.yarnpkg.com/blueimp-file-upload/-/blueimp-file-upload-9.30.0.tgz#c6f255ce8cbfb21d6f22fabd8dddea6e704227f3"
-  integrity sha512-+xuYMzWREjm2MgQMRlftThDBdP4DklKjC++VihDNW0iwBLfziS4B/BAYGuQxMY8MsxAwVQk3ogxaczsaNVVVEg==
+  version "9.34.0"
+  resolved "https://registry.yarnpkg.com/blueimp-file-upload/-/blueimp-file-upload-9.34.0.tgz#1a57744f262f7c86d575ddb1b3d98f0bdd06feea"
+  integrity sha512-dXacFmyv6p0n+l5+u1ssYhSpCJdYabl7BZTw5WvB6ygY2ksTB3SdD6huafryEO5DH+XuspHDL6+IJ3m14Va+FQ==
   optionalDependencies:
     blueimp-canvas-to-blob "3.5.0"
     blueimp-load-image "2.12.2"

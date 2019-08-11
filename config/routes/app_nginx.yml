@@ -9,7 +9,7 @@ project_nginx_well_known:
 project_nginx_restart:
     options:
         expose: true
-    path: /admin/nginx/restart
+    path: /nginx/restart
     methods: [GET]
     defaults:
         _controller: App:Nginx:restart
@@ -17,7 +17,7 @@ project_nginx_restart:
 project_nginx_compile:
     options:
         expose: true
-    path: /admin/nginx/compile
+    path: /nginx/compile
     methods: [GET]
     defaults:
         _controller: App:Nginx:compile

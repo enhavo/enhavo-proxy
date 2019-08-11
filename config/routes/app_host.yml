@@ -1,0 +1,87 @@
+app_host_index:
+    options:
+        expose: true
+    path: /app/host/index
+    defaults:
+        _controller: app.controller.host:indexAction
+        _sylius:
+            viewer:
+
+app_host_create:
+    options:
+        expose: true
+    path: /app/host/create
+    defaults:
+        _controller: app.controller.host:createAction
+        _sylius:
+            viewer:
+                tabs:
+                    main:
+                        label: Host
+                        template: admin/resource/host/main.html.twig
+                    backend:
+                        label: Backend
+                        template: admin/resource/host/backend.html.twig
+                    certificate:
+                        label: Certificate
+                        template: admin/resource/host/certificate.html.twig
+
+app_host_update:
+    options:
+        expose: true
+    path: /app/host/update/{id}
+    defaults:
+        _controller: app.controller.host:updateAction
+        _sylius:
+            viewer:
+                tabs:
+                    main:
+                        label: Host
+                        template: admin/resource/host/main.html.twig
+                    backend:
+                        label: Host
+                        template: admin/resource/host/backend.html.twig
+                    certificate:
+                        label: Certificate
+                        template: admin/resource/host/certificate.html.twig
+
+app_host_table:
+    options:
+        expose: true
+    path: /app/host/table
+    defaults:
+        _controller: app.controller.host:tableAction
+        _sylius:
+            filters:
+                title:
+                    type: text
+                    label: Domain
+                    property: domain
+            viewer:
+                columns:
+                    domain:
+                        type: property
+                        property: domain
+                        width: 12
+                        label: Domain
+
+app_host_delete:
+    options:
+        expose: true
+    path: /app/host/delete/{id}
+    defaults:
+        _controller: app.controller.host:deleteAction
+
+app_host_batch:
+    options:
+        expose: true
+    path: /app/host/batch
+    defaults:
+        _controller: app.controller.host:batchAction
+        _sylius:
+            paginate: false
+            criteria:
+                id: $ids
+            batches:
+                delete:
+                    type: delete
