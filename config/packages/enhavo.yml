@@ -1,0 +1,28 @@
+parameters:
+    locale: en
+
+enhavo_app:
+    template:
+        base: 'base.html.twig'
+    menu:
+        dashboard:
+            type: dashboard
+        user:
+            type: user_user
+        group:
+            type: user_group
+        host:
+            type: base
+            label: Host
+            route: project_host_index
+            icon: server
+
+sylius_resource:
+    resources:
+        project.host:
+            classes:
+                model: ProjectBundle\Entity\Host
+                controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
+                repository: Enhavo\Bundle\AppBundle\Repository\EntityRepository
+                form:
+                    default: ProjectBundle\Form\Type\HostType
