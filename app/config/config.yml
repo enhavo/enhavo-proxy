@@ -5,7 +5,6 @@ imports:
     - { resource: '@EnhavoDashboardBundle/Resources/config/app/config.yml' }
     - { resource: '@EnhavoGeneratorBundle/Resources/config/app/config.yml' }
     - { resource: '@EnhavoInstallerBundle/Resources/config/app/config.yml' }
-    - { resource: '@EnhavoSearchBundle/Resources/config/app/config.yml' }
     - { resource: '@EnhavoSerializerBundle/Resources/config/app/config.yml' }
     - { resource: '@EnhavoUserBundle/Resources/config/app/config.yml' }
     - { resource: '@EnhavoMediaBundle/Resources/config/app/config.yml' }

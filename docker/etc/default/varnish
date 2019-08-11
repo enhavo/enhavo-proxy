@@ -27,10 +27,10 @@ MEMLOCK=82000
 # content server on localhost:8080.  Use a 1GB fixed-size cache file.
 #
 # DAEMON_OPTS="-a :80 \
-#              -T localhost:6082 \
+#        -T localhost:6082 \
 # 	     -b localhost:8080 \
 # 	     -u varnish -g varnish \
-#            -S /etc/varnish/secret \
+#        -S /etc/varnish/secret \
 # 	     -s file,/var/lib/varnish/$INSTANCE/varnish_storage.bin,1G"
 
 

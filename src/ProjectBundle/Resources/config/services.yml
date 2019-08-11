@@ -47,6 +47,8 @@ services:
         calls:
           - ['setContainer', ['@service_container']]
 
+    certificate.factory:
+        class: ProjectBundle\Certificate\CertificateFactory
 
     twig.extension:
         class: ProjectBundle\Twig\TwigExtension
