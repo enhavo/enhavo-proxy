@@ -1,0 +1,25 @@
+parameters:
+    locale: en
+
+enhavo_app:
+    menu:
+        dashboard:
+            type: dashboard
+        user:
+            type: user_user
+        group:
+            type: user_group
+        host:
+            type: base
+            label: Host
+            route: project_host_index
+            icon: server
+
+sylius_resource:
+    resources:
+        app.host:
+            classes:
+                model: App\Entity\Host
+                controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
+                repository: Enhavo\Bundle\AppBundle\Repository\EntityRepository
+                form: App\Form\Type\HostType

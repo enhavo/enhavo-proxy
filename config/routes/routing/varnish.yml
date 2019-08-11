@@ -1,0 +1,9 @@
+project_varnish_restart:
+    path:     /varnish/restart
+    defaults:
+        _controller: App:Varnish:restart
+
+project_varnish_compile:
+    path:     /varnish/compile
+    defaults:
+        _controller: App:Varnish:compile

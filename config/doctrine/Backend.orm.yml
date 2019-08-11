@@ -1,0 +1,35 @@
+App\Entity\Backend:
+    type: entity
+    table: project_backend
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+        name:
+            type: string
+            nullable: true
+        hostname:
+            type: string
+            nullable: true
+        port:
+            type: integer
+            nullable: true
+        connectTimeout:
+            type: integer
+            nullable: true
+        firstByteTimeout:
+            type: integer
+            nullable: true
+        betweenBytesTimeout:
+            type: integer
+            nullable: true
+
+    manyToOne:
+        host:
+            targetEntity: Host
+
+    lifecycleCallbacks: {  }

@@ -1,9 +1,28 @@
 {
-  "name": "enhavo-proxy",
+  "name": "enhavo",
   "license": "MIT",
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-shell": "^0.6.3",
-    "typescript": "^2.3.2"
-  }
+  "scripts": {
+    "routes:dump": "bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json"
+  },
+  "dependencies": {
+    "@enhavo/app": "^0.1.13",
+    "@enhavo/core": "^0.1.13",
+    "@enhavo/dashboard": "^0.1.13",
+    "@enhavo/font": "^0.1.13",
+    "@enhavo/form": "^0.1.13",
+    "@enhavo/media": "^0.1.13",
+    "@enhavo/user": "^0.1.13",
+    "@symfony/webpack-encore": "0.22.4",
+    "copy-webpack-plugin": "^4.5.2",
+    "gulp": "^4.0.2",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "ts-loader": "^5.3",
+    "typescript": "^3.1.1",
+    "vue": "^2.5.22",
+    "vue-loader": "^15.5.1",
+    "vue-property-decorator": "^6.0.0",
+    "vue-template-compiler": "^2.5.22"
+  },
+  "devDependencies": {}
 }
