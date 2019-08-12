@@ -9,7 +9,7 @@
 namespace App\EventListener;
 
 use App\Entity\Host;
-use App\Host\HostManager;
+use App\Manager\HostManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 

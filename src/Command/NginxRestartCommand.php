@@ -8,7 +8,7 @@
 
 namespace App\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use App\Manager\NginxManager;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -27,7 +27,7 @@ class NginxRestartCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->pushOutputHandler($output);
-        $this->getContainer()->get('manager.nginx')->reload();
+        $this->container->get(NginxManager::class)->reload();
         $this->popHandler();
     }
 }

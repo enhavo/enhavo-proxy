@@ -8,6 +8,7 @@
 
 namespace App\Command;
 
+use App\Certificate\CertificateFactory;
 use App\Entity\Host;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -32,7 +33,7 @@ class CertificateCheckCommand extends AbstractCommand
         $this->pushOutputHandler($output);
 
         /** @var Host $host */
-        $host = $this->getContainer()->get('project.repository.host')->findOneBy([
+        $host = $this->container->get('app.repository.host')->findOneBy([
             'domain' => $host
         ]);
 
@@ -41,7 +42,7 @@ class CertificateCheckCommand extends AbstractCommand
             return;
         }
 
-        $certificate = $this->getContainer()->get('certificate.factory')->createFromString($host->getCertificate());
+        $certificate = $this->container->get(CertificateFactory::class)->createFromString($host->getCertificate());
 
         $output->writeln(sprintf('Valid From: %s', $certificate->getValidFrom()->format('Y-m-d H:i:s')));
         $output->writeln(sprintf('Valid Until: %s', $certificate->getValidTo()->format('Y-m-d H:i:s')));

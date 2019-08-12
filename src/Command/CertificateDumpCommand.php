@@ -8,7 +8,7 @@
 
 namespace App\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use App\Manager\CertificateManager;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -27,7 +27,7 @@ class CertificateDumpCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->pushOutputHandler($output);
-        $manager = $this->getContainer()->get('manager.certificate');
+        $manager = $this->container->get(CertificateManager::class);
         $manager->dumpCertificates();
         $this->popHandler();
     }

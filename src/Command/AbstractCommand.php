@@ -9,20 +9,23 @@
 namespace App\Command;
 
 use App\Logger\OutputHandler;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-abstract class AbstractCommand extends ContainerAwareCommand
+abstract class AbstractCommand extends Command
 {
+    use ContainerAwareTrait;
+
     public function pushOutputHandler(OutputInterface $output)
     {
         $handler = new OutputHandler();
         $handler->setOutput($output);
-        $this->getContainer()->get('logger')->pushHandler($handler);
+        $this->container->get('logger')->pushHandler($handler);
     }
 
     public function popHandler()
     {
-        $this->getContainer()->get('logger')->popHandler();
+        $this->container->get('logger')->popHandler();
     }
 }

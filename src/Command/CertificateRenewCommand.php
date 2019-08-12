@@ -8,7 +8,8 @@
 
 namespace App\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use App\Manager\CertificateManager;
+use App\Manager\HostManager;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -29,8 +30,8 @@ class CertificateRenewCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->pushOutputHandler($output);
-        $certificateManager = $this->getContainer()->get('manager.certificate');
-        $hostManager = $this->getContainer()->get('manager.host');
+        $certificateManager = $this->container->get(CertificateManager::class);
+        $hostManager = $this->container->get(HostManager::class);
         $domain = $input->getArgument('domain');
         if($domain) {
             $host = $hostManager->getHostByDomain($domain);
