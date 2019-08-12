@@ -21,3 +21,4 @@
 /behat.yml
 /npm-debug.log
 /yarn-error.log
+/config/deploy

@@ -14,6 +14,12 @@ enhavo_app:
             label: Host
             route: app_host_index
             icon: computer
+        network:
+            type: base
+            label: Network
+            route: app_network_index
+            icon: computer
+
 
 sylius_resource:
     resources:
@@ -23,3 +29,9 @@ sylius_resource:
                 controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
                 repository: Enhavo\Bundle\AppBundle\Repository\EntityRepository
                 form: App\Form\Type\HostType
+        app.network:
+            classes:
+                model: App\Entity\Network
+                controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
+                repository: Enhavo\Bundle\AppBundle\Repository\EntityRepository
+                form: App\Form\Type\NetworkType

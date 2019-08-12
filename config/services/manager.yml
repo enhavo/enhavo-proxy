@@ -1,0 +1,22 @@
+services:
+    App\Manager\HostManager:
+        public: true:
+        calls:
+            - ['setContainer', ['@service_container']]
+
+    App\Manager\VarnishManager:
+        public: true
+        calls:
+            - ['setContainer', ['@service_container']]
+
+    App\Manager\NginxManager:
+        public: true
+        calls:
+            - ['setContainer', ['@service_container']]
+
+    App\Manager\CertificateManager:
+        public: true
+        calls:
+            - ['setContainer', ['@service_container']]
+
+

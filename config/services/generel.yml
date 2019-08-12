@@ -1,56 +1,24 @@
 services:
-    form.backend:
-        class: App\Form\Type\BackendType
-
-    subscriber.host_subscriber:
-        class: App\EventListener\HostSubscriber
+    App\EventListener\HostSubscriber:
         arguments:
-            - '@manager.host'
+            - '@App\Manager\HostManager'
         tags:
             - { name: kernel.event_subscriber }
 
-    manager.host:
-        class: App\Manager\HostManager
+    App\Twig\TwigExtension:
         calls:
-          - ['setContainer', ['@service_container']]
-
-    manager.varnish:
-        class: App\Manager\VarnishManager
-        calls:
-          - ['setContainer', ['@service_container']]
-
-    manager.nginx:
-        class: App\Manager\NginxManager
-        calls:
-          - ['setContainer', ['@service_container']]
-
-    manager.certificate:
-        class: App\Manager\CertificateManager
-        calls:
-          - ['setContainer', ['@service_container']]
-
-
-    block.control:
-        class: App\Block\ControlBlock
-        calls:
-          - ['setContainer', ['@service_container']]
+            - ['setContainer', ['@service_container']]
         tags:
-            - { name: enhavo.block, alias: 'control' }
+            - { name: 'twig.extension' }
 
-    certificate.lescript:
-        class: App\Certificate\Lescript
+    App\Certificate\Lescript:
+        public: true
         arguments:
           - '%kernel.root_dir%/media/certificate'
           - '@logger'
         calls:
           - ['setContainer', ['@service_container']]
 
-    certificate.factory:
-        class: App\Certificate\CertificateFactory
+    App\Certificate\CertificateFactory:
+        public: true
 
-    twig.extension:
-        class: App\Twig\TwigExtension
-        calls:
-          - ['setContainer', ['@service_container']]
-        tags:
-          - { name: 'twig.extension' }
