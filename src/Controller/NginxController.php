@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Manager\CertificateManager;
 use App\Manager\NginxManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ class NginxController extends AbstractController
     public function wellKnownAction(Request $request)
     {
         $token = $request->get('token');
-        $content = $this->container->get('manager.certificate')->getToken($token);
+        $content = $this->container->get(CertificateManager::class)->getToken($token);
         if($content === null) {
             throw $this->createNotFoundException();
         }

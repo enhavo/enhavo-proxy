@@ -6,9 +6,11 @@
 namespace App\Twig;
 
 use App\Entity\Host;
+use App\Manager\CertificateManager;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Twig\Extension\AbstractExtension;
 
-class TwigExtension extends \Twig_Extension
+class TwigExtension extends AbstractExtension
 {
     use ContainerAwareTrait;
 
@@ -27,16 +29,11 @@ class TwigExtension extends \Twig_Extension
 
     public function getSSLCertificatePath(Host $host)
     {
-        return $this->container->get('manager.certificate')->getCertificatePath($host);
+        return $this->container->get(CertificateManager::class)->getCertificatePath($host);
     }
 
     public function getSSLCertificateKeyPath(Host $host)
     {
-        return $this->container->get('manager.certificate')->getCertificateKeyPath($host);
-    }
-
-    public function getName()
-    {
-        return 'twig_extension';
+        return $this->container->get(CertificateManager::class)->getCertificateKeyPath($host);
     }
 }

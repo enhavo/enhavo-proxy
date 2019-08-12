@@ -8,7 +8,10 @@
 
 namespace App\Command;
 
+use App\Certificate\CertificateFactory;
 use App\Entity\Host;
+use App\Manager\CertificateManager;
+use App\Manager\NginxManager;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -27,12 +30,12 @@ class CertificateCronJobCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->pushOutputHandler($output);
-        $certificateManager = $this->getContainer()->get('manager.certificate');
-        $certificateFactory = $this->getContainer()->get('certificate.factory');
-        $nginxManager = $this->getContainer()->get('manager.nginx');
+        $certificateManager = $this->container->get(CertificateManager::class);
+        $certificateFactory = $this->container->get(CertificateFactory::class);
+        $nginxManager = $this->container->get(NginxManager::class);
 
         /** @var Host $host */
-        $hosts = $this->getContainer()->get('project.repository.host')->findBy([
+        $hosts = $this->container->get('app.repository.host')->findBy([
             'certifcateType' => Host::CERTIFICATE_TYPE_LETS_ENCRYPT
         ]);
 

@@ -32,6 +32,6 @@ class VarnishController extends AbstractController
      */
     private function getManager()
     {
-        return $this->container->get('manager.varnish');
+        return $this->container->get(VarnishManager::class);
     }
 }

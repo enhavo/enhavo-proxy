@@ -8,9 +8,6 @@
 
 namespace App\Certificate;
 
-
-use Symfony\Component\Validator\Constraints\DateTime;
-
 class Certificate
 {
     /**
