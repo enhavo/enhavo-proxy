@@ -1,0 +1,1 @@
+server 'domain.tld', user: 'ssh-user', port: 22
