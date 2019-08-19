@@ -42,7 +42,7 @@ sub vcl_recv
         if(req.http.host ~ "^{{ host.domain }}$")
         {
             {% if host.redirect %} {# redirect #}
-                return (synth(301, "{{ host.redirect }}"));
+                return (synth(301, "{{ host.redirect }}" + req.url));
             {% endif %}
 
             {% if host.https == 2 %} {# https only #}

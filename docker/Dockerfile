@@ -67,8 +67,8 @@ RUN rm -f /etc/nginx/sites-available/default && \
     bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json && \
     bin/console cache:warmup && \
     chown -R www-data:www-data /var/www/current/var && \
-    yarn install && \
-    yarn encore prod
+    /root/.yarn/bin/yarn install && \
+    /root/.yarn/bin/yarn encore prod
 
 
 VOLUME ["/etc/nginx", "/etc/varnish", "/var/www", "/var/ssl"]
