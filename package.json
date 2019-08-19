@@ -10,7 +10,6 @@
     "@enhavo/dashboard": "https://github.com/enhavo/dashboard-assets.git#master",
     "@enhavo/font": "https://github.com/enhavo/font-assets.git#master",
     "@enhavo/form": "https://github.com/enhavo/form-assets.git#master",
-    "@enhavo/media": "https://github.com/enhavo/media-assets.git#master",
     "@enhavo/user": "https://github.com/enhavo/user-assets.git#master",
     "@symfony/webpack-encore": "0.22.4",
     "copy-webpack-plugin": "^4.5.2",

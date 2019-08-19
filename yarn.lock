@@ -625,13 +625,15 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@enhavo/app@^0.1.16", "@enhavo/app@git+ssh://git@github.com:enhavo/app-assets.git#master":
-  version "0.1.16"
-  resolved "git+ssh://git@github.com:enhavo/app-assets.git#dc1ec918dec963fccff748ea8949dbec16559e45"
+"@enhavo/app@https://github.com/enhavo/app-assets.git", "@enhavo/app@https://github.com/enhavo/app-assets.git#master":
+  version "0.8.0"
+  uid fc7668e34256eceb72ae2e5396e2555912b53c2c
+  resolved "https://github.com/enhavo/app-assets.git#fc7668e34256eceb72ae2e5396e2555912b53c2c"
   dependencies:
-    "@enhavo/core" "^0.1.16"
-    "@enhavo/font" "^0.1.16"
+    "@enhavo/core" "https://github.com/enhavo/core-assets.git"
+    "@enhavo/font" "https://github.com/enhavo/font-assets.git"
     "@ibm/plex" "^1.2.3"
+    ansi-to-html "^0.6.11"
     async "^2.6.2"
     axios "^0.18.0"
     compass-mixins "^0.12.10"
@@ -646,38 +648,28 @@
     vue-select "^3.0.0"
     vuedraggable "^2.20.0"
 
-"@enhavo/core@^0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@enhavo/core/-/core-0.1.16.tgz#be657bf3f32731f7eceb0570e8b7d746c7c44c2e"
-  integrity sha512-jUHOWq2NBnbvoGfqSmX8+VS28qHUL+ANc5WCr48bh+bpT3/bWpLdLqVuxsudYxIzgIMz9bHcasviJCDDcOPZrA==
+"@enhavo/core@https://github.com/enhavo/core-assets.git", "@enhavo/core@https://github.com/enhavo/core-assets.git#master":
+  version "0.8.0"
+  resolved "https://github.com/enhavo/core-assets.git#d3fb6e6eeb4707b116f93a1ccfdfb7871b6410f4"
 
-"@enhavo/core@git+ssh://git@github.com:enhavo/core-assets.git#master":
-  version "0.1.16"
-  resolved "git+ssh://git@github.com:enhavo/core-assets.git#b7883b2c337794a5102f8784b68d9355d3597629"
-
-"@enhavo/dashboard@git+ssh://git@github.com:enhavo/dashboard-assets.git#master":
-  version "0.1.16"
-  resolved "git+ssh://git@github.com:enhavo/dashboard-assets.git#2b3f3a56f59a9d28fde25863614ff174453817b6"
+"@enhavo/dashboard@https://github.com/enhavo/dashboard-assets.git#master":
+  version "0.8.0"
+  resolved "https://github.com/enhavo/dashboard-assets.git#62492358637db74d4e11c4c58a56b8c12c93496d"
   dependencies:
-    "@enhavo/app" "^0.1.16"
+    "@enhavo/app" "https://github.com/enhavo/app-assets.git"
     chart.js "^2.4.0"
     jquery "~3.4.1"
     lodash "^4.17.11"
 
-"@enhavo/font@^0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@enhavo/font/-/font-0.1.16.tgz#35a878283b0c61091ae8676baa68fed842d43c5e"
-  integrity sha512-ZkAssV9sTXz3pqBkxLS7jk8fbwcjTQZIXbtMgVU+cX+ebbNvp6LdVIt/OB9beeWox0i9sTFn3UU/odjjC403Cw==
+"@enhavo/font@https://github.com/enhavo/font-assets.git", "@enhavo/font@https://github.com/enhavo/font-assets.git#master":
+  version "0.8.0"
+  resolved "https://github.com/enhavo/font-assets.git#ee07197995425c0799b80dd30c553daf4e951adb"
 
-"@enhavo/font@git+ssh://git@github.com:enhavo/font-assets.git#master":
-  version "0.1.16"
-  resolved "git+ssh://git@github.com:enhavo/font-assets.git#f9e626b3309d697f4ea2dd911eb4496f936f9926"
-
-"@enhavo/form@git+ssh://git@github.com:enhavo/form-assets.git#master":
-  version "0.1.16"
-  resolved "git+ssh://git@github.com:enhavo/form-assets.git#20dbe9a6972a4da28206455d55cf2d51ac6fff93"
+"@enhavo/form@https://github.com/enhavo/form-assets.git#master":
+  version "0.8.0"
+  resolved "https://github.com/enhavo/form-assets.git#7cceb4308ad574d27a89c601cb652e2b0d9dc2e2"
   dependencies:
-    "@enhavo/app" "^0.1.16"
+    "@enhavo/app" "https://github.com/enhavo/app-assets.git"
     copy-webpack-plugin "^4.5.2"
     icheck "~1.0.2"
     jquery "~3.4.1"
@@ -687,21 +679,21 @@
     select2 "~3.5.1"
     tinymce "~5.0.3"
 
-"@enhavo/media@git+ssh://git@github.com:enhavo/media-assets.git#master":
-  version "0.1.16"
-  resolved "git+ssh://git@github.com:enhavo/media-assets.git#46950da975023ce4fef94fb35f39527e3db4b805"
+"@enhavo/media@https://github.com/enhavo/media-assets.git#master":
+  version "0.8.0"
+  resolved "https://github.com/enhavo/media-assets.git#cf85523336b95b8f98fa53f18d057830e044f286"
   dependencies:
-    "@enhavo/app" "^0.1.16"
+    "@enhavo/app" "https://github.com/enhavo/app-assets.git"
     blueimp-file-upload "^9.22.1"
     cropperjs "~1.2.2"
     jquery "~3.4.1"
     lodash "^4.17.11"
 
-"@enhavo/user@git+ssh://git@github.com:enhavo/user-assets.git#master":
-  version "0.1.16"
-  resolved "git+ssh://git@github.com:enhavo/user-assets.git#678a06daf18e4f1c3733631f06b80af41879580e"
+"@enhavo/user@https://github.com/enhavo/user-assets.git#master":
+  version "0.8.0"
+  resolved "https://github.com/enhavo/user-assets.git#70f73165f78f435a96fd910c245504c81601dc1d"
   dependencies:
-    "@enhavo/app" "^0.1.16"
+    "@enhavo/app" "https://github.com/enhavo/app-assets.git"
 
 "@ibm/plex@^1.2.3":
   version "1.4.1"
@@ -1083,6 +1075,13 @@ ansi-styles@^3.2.1:
   integrity sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==
   dependencies:
     color-convert "^1.9.0"
+
+ansi-to-html@^0.6.11:
+  version "0.6.11"
+  resolved "https://registry.yarnpkg.com/ansi-to-html/-/ansi-to-html-0.6.11.tgz#5093fc4962186c0e9343dec572a4f71abdc93439"
+  integrity sha512-88XZtrcwrfkyn6fGstHnkaF1kl7hGtNCYh4vSmItgEV+6JnQHryDBf7udF4f2RhTRQmYvJvPcTtqgaqrxzc9oA==
+  dependencies:
+    entities "^1.1.1"
 
 ansi-wrap@0.1.0, ansi-wrap@^0.1.0:
   version "0.1.0"
