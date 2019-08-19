@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Filesystem\Filesystem;
 use App\Certificate\Lescript;
 
-class CertificateManager
+class CertificateManager extends AbstractManager
 {
     use ContainerAwareTrait;
 
@@ -102,7 +102,7 @@ class CertificateManager
     private function getCertStorage()
     {
         $fs = $this->container->get('filesystem');
-        $dir = __DIR__.'/../../../build/cert';
+        $dir = $this->container->getParameter('certificate_path');
         if(!$fs->exists($dir)) {
             $fs->mkdir($dir);
         }
@@ -115,15 +115,10 @@ class CertificateManager
     private function getDocumentRoot()
     {
         $fs = $this->container->get('filesystem');
-        $dir = __DIR__.'/../../../build/www';
+        $dir = $this->container->getParameter('www_path');
         if(!$fs->exists($dir)) {
             $fs->mkdir($dir);
         }
         return $dir;
-    }
-
-    private function getLogger()
-    {
-        return $this->container->get('logger');
     }
 }

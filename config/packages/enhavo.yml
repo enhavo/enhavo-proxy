@@ -1,7 +1,10 @@
 parameters:
     locale: en
-    nginx_config: '%kernel.project_dir%/var/nginx/nginx.conf'
-    varnish_config: '%kernel.project_dir%/var/varnish/default.vcl'
+    varnish_config: /etc/varnish/default.vcl
+    varnish_secret: /etc/varnish/secret
+    nginx_config: /etc/nginx/nginx.conf
+    certificate_path: /var/ssl
+    www_path: '%kernel.project_dir%/var/www'
 
 enhavo_app:
     menu:
