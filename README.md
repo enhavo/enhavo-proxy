@@ -17,9 +17,8 @@ Architecture
 ------------
 
 We use varnish as proxy server. Varnish can't handle ssl request by default, so we use nginx to resolve https request.
-We use apache only for the web interface, which is based on [enhavo](https://github.com/enhavo/enhavo). With the
-application you can also handle the network configuration and firewall settings. The configuration is stored to a
-mysql database. If you apply the configuration they will be written to the filesystem and overwrite the configuration
+We use apache only for the web interface, which is based on [enhavo](https://github.com/enhavo/enhavo).
+The configuration is stored to a mysql database. If you apply the configuration they will be written to the filesystem and overwrite the configuration
 files.
 
 ![alt text](assets/enhavo/images/architecture.svg "enhavo-proxy")
