@@ -1,5 +1,10 @@
 parameters:
     locale: en
+    varnish_config: /etc/varnish/default.vcl
+    varnish_secret: /etc/varnish/secret
+    nginx_config: /etc/nginx/nginx.conf
+    certificate_path: /var/ssl
+    www_path: '%kernel.project_dir%/var/www'
 
 enhavo_app:
     menu:
@@ -14,12 +19,16 @@ enhavo_app:
             label: Host
             route: app_host_index
             icon: computer
-        network:
+        nginx:
             type: base
-            label: Network
-            route: app_network_index
+            label: Nginx
+            route: app_nginx_index
             icon: computer
-
+        varnish:
+            type: base
+            label: Varnish
+            route: app_varnish_index
+            icon: computer
 
 sylius_resource:
     resources:
@@ -29,9 +38,3 @@ sylius_resource:
                 controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
                 repository: Enhavo\Bundle\AppBundle\Repository\EntityRepository
                 form: App\Form\Type\HostType
-        app.network:
-            classes:
-                model: App\Entity\Network
-                controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
-                repository: Enhavo\Bundle\AppBundle\Repository\EntityRepository
-                form: App\Form\Type\NetworkType

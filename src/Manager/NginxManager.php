@@ -20,7 +20,7 @@ class NginxManager extends AbstractManager
     {
         $this->getLogger()->info('compile nginx file');
 
-        $content = $this->render('App:Nginx:nginx.conf.twig', [
+        $content = $this->render('Nginx/nginx.conf.twig', [
             'hosts' => $hosts
         ]);
 
@@ -37,7 +37,7 @@ class NginxManager extends AbstractManager
      */
     public function compile()
     {
-        $hosts = $this->container->get('project.repository.host')->findAll();
+        $hosts = $this->container->get('app.repository.host')->findAll();
         $content = $this->compileHosts($hosts);
         return $content;
     }

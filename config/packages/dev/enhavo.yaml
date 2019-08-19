@@ -1,0 +1,5 @@
+parameters:
+    nginx_config: '%kernel.project_dir%/var/nginx/nginx.conf'
+    varnish_config: '%kernel.project_dir%/var/varnish/default.vcl'
+    varnish_secret: '%kernel.project_dir%/var/varnish/secret'
+    certificate_path: '%kernel.project_dir%/var/certificate'

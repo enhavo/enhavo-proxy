@@ -3,20 +3,24 @@ services:
         public: true:
         calls:
             - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
 
     App\Manager\VarnishManager:
         public: true
         calls:
             - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
 
     App\Manager\NginxManager:
         public: true
         calls:
             - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
 
     App\Manager\CertificateManager:
         public: true
         calls:
             - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
 
 

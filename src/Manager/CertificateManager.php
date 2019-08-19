@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Filesystem\Filesystem;
 use App\Certificate\Lescript;
 
-class CertificateManager
+class CertificateManager extends AbstractManager
 {
     use ContainerAwareTrait;
 
@@ -21,7 +21,7 @@ class CertificateManager
     {
         $fs = new Filesystem();
         /** @var Host[] $hosts */
-        $hosts = $this->container->get('project.repository.host')->findAll();
+        $hosts = $this->container->get('app.repository.host')->findAll();
         foreach($hosts as $host) {
             if($host->getCertificate()) {
                 $this->getLogger()->info(sprintf('certificate for host "%s" was dumped', $host->getDomain()));
@@ -46,7 +46,7 @@ class CertificateManager
     public function renewCertificates()
     {
         /** @var Host[] $hosts */
-        $hosts = $this->container->get('project.repository.host')->findBy([
+        $hosts = $this->container->get('app.repository.host')->findBy([
             'certificateType' => Host::CERTIFICATE_TYPE_LETS_ENCRYPT
         ]);
 
@@ -102,7 +102,7 @@ class CertificateManager
     private function getCertStorage()
     {
         $fs = $this->container->get('filesystem');
-        $dir = __DIR__.'/../../../build/cert';
+        $dir = $this->container->getParameter('certificate_path');
         if(!$fs->exists($dir)) {
             $fs->mkdir($dir);
         }
@@ -115,15 +115,10 @@ class CertificateManager
     private function getDocumentRoot()
     {
         $fs = $this->container->get('filesystem');
-        $dir = __DIR__.'/../../../build/www';
+        $dir = $this->container->getParameter('www_path');
         if(!$fs->exists($dir)) {
             $fs->mkdir($dir);
         }
         return $dir;
-    }
-
-    private function getLogger()
-    {
-        return $this->container->get('logger');
     }
 }
