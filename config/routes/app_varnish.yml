@@ -1,9 +1,14 @@
-project_varnish_restart:
+app_varnish_index:
+    path: /varnish/index
+    defaults:
+        _controller: App\Controller\VarnishController:indexAction
+
+app_varnish_restart:
     path:     /varnish/restart
     defaults:
-        _controller: App:Varnish:restart
+        _controller: App\Controller\VarnishController:restartAction
 
-project_varnish_compile:
+app_varnish_compile:
     path:     /varnish/compile
     defaults:
-        _controller: App:Varnish:compile
+        _controller: App\Controller\VarnishController:compileAction

@@ -1,6 +1,7 @@
 parameters:
     locale: en
     nginx_config: '%kernel.project_dir%/var/nginx/nginx.conf'
+    varnish_config: '%kernel.project_dir%/var/varnish/default.vcl'
 
 enhavo_app:
     menu:

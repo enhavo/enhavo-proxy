@@ -9,7 +9,6 @@
 namespace App\Controller;
 
 use App\Manager\CertificateManager;
-use App\Manager\NginxManager;
 use Enhavo\Bundle\AppBundle\Controller\AbstractViewController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,13 +69,5 @@ class NginxController extends AbstractViewController
             $output = new EchoStreamOutput(fopen('php://stdout', 'w'), OutputInterface::VERBOSITY_NORMAL, true);
             $application->run($input, $output);
         });
-    }
-
-    /**
-     * @return NginxManager
-     */
-    private function getManager()
-    {
-        return $this->container->get(NginxManager::class);
     }
 }

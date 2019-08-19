@@ -34,6 +34,9 @@ services:
 
     App\Controller\VarnishController:
         public: true
+        arguments:
+            - '@view.factory'
+            - '@fos_rest.view_handler'
         calls:
             - ['setContainer', ['@service_container']]
         tags:

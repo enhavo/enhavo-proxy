@@ -20,7 +20,7 @@ class VarnishManager extends AbstractManager
     {
         $this->getLogger()->info('compile varnish file');
 
-        $content = $this->render('App:Varnish:default.vcl.twig', [
+        $content = $this->render('Varnish/default.vcl.twig', [
             'hosts' => $hosts
         ]);
 
@@ -37,7 +37,7 @@ class VarnishManager extends AbstractManager
      */
     public function compile()
     {
-        $hosts = $this->container->get('project.repository.host')->findAll();
+        $hosts = $this->container->get('app.repository.host')->findAll();
         $content = $this->compileHosts($hosts);
         return $content;
     }

@@ -2,36 +2,53 @@
 
 namespace App\Controller;
 
-use App\Manager\VarnishManager;
+use Enhavo\Bundle\AppBundle\Controller\AbstractViewController;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Enhavo\Bundle\AppBundle\Output\EchoStreamOutput;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
 
-class VarnishController extends AbstractController
+class VarnishController extends AbstractViewController
 {
+    public function indexAction()
+    {
+        $view = $this->viewFactory->create('varnish', [
+
+        ]);
+
+        return $this->viewHandler->handle($view);
+    }
+
     public function restartAction()
     {
-        $controller = $this;
-        return new StreamedResponse(function() use ($controller) {
-            $controller->pushEchoHandler();
-            $controller->getManager()->reload();
-            $controller->popHandler();
+        $application = new Application($this->container->get('kernel'));
+        $application->setAutoExit(false);
+
+        return new StreamedResponse(function() use ($application) {
+
+            $input = new ArrayInput([
+                'command' => 'proxy:varnish:restart',
+            ]);
+
+            $output = new EchoStreamOutput(fopen('php://stdout', 'w'), OutputInterface::VERBOSITY_NORMAL, true);
+            $application->run($input, $output);
         });
     }
 
     public function compileAction()
     {
-        $controller = $this;
-        return new StreamedResponse(function() use ($controller) {
-            $controller->pushEchoHandler();
-            $controller->getManager()->compile();
-            $controller->popHandler();
-        });
-    }
+        $application = new Application($this->container->get('kernel'));
+        $application->setAutoExit(false);
 
-    /**
-     * @return VarnishManager
-     */
-    private function getManager()
-    {
-        return $this->container->get(VarnishManager::class);
+        return new StreamedResponse(function() use ($application) {
+
+            $input = new ArrayInput([
+                'command' => 'proxy:varnish:compile',
+            ]);
+
+            $output = new EchoStreamOutput(fopen('php://stdout', 'w'), OutputInterface::VERBOSITY_NORMAL, true);
+            $application->run($input, $output);
+        });
     }
 }
