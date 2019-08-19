@@ -2,6 +2,7 @@ parameters:
     locale: 'en'
 
 imports:
+    - { resource: services/command.yml }
     - { resource: services/generel.yml }
     - { resource: services/form.yml }
     - { resource: services/manager.yml }

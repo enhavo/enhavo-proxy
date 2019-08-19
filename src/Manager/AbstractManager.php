@@ -8,6 +8,7 @@
 
 namespace App\Manager;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
@@ -22,13 +23,18 @@ abstract class AbstractManager
     private $fs;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * @param string $command
      * @return string
      */
     protected function executeCommand($command)
     {
         $this->getLogger()->error(sprintf('Execute command "%s"', $command));
-        $process = new Process($command);
+        $process = new Process([$command]);
         $process->run();
 
         if (!$process->isSuccessful()) {
@@ -47,9 +53,20 @@ abstract class AbstractManager
         return $this->container->get('templating')->render($template, $parameters);
     }
 
-    protected function getLogger()
+    /**
+     * @return LoggerInterface
+     */
+    public function getLogger(): LoggerInterface
     {
-        return $this->container->get('logger');
+        return $this->logger;
+    }
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function setLogger(LoggerInterface $logger): void
+    {
+        $this->logger = $logger;
     }
 
     protected function getFilesystem()

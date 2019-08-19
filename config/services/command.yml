@@ -1,0 +1,63 @@
+services:
+    App\Command\CertificateCheckCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+    App\Command\CertificateCronJobCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+    App\Command\CertificateDumpCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+    App\Command\CertificateRenewCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+    App\Command\NginxCompileCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+    App\Command\NginxRestartCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+    App\Command\VarnishCompileCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+    App\Command\VarnishCreateSecretCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+    App\Command\VarnishRestartCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }

@@ -14,6 +14,7 @@ app_host_create:
     defaults:
         _controller: app.controller.host:createAction
         _sylius:
+            redirect: app_host_update
             viewer:
                 tabs:
                     main:
@@ -39,7 +40,7 @@ app_host_update:
                         label: Host
                         template: admin/resource/host/main.html.twig
                     backend:
-                        label: Host
+                        label: Backend
                         template: admin/resource/host/backend.html.twig
                     certificate:
                         label: Certificate

@@ -8,7 +8,6 @@
 
 namespace App\Form\Type;
 
-
 use Enhavo\Bundle\FormBundle\Form\Type\BooleanType;
 use Enhavo\Bundle\FormBundle\Form\Type\ListType;
 use App\Entity\Host;
@@ -55,7 +54,7 @@ class HostType extends AbstractType
         $builder->add('certificateKey', TextareaType::class);
         $builder->add('certificateType', ChoiceType::class, [
             'choices'=> [
-                'None' => Host::CERTIFICATE_TYPE_NONE,
+                'SSL' => Host::CERTIFICATE_TYPE_NONE,
                 'Lets Encrypt' => Host::CERTIFICATE_TYPE_LETS_ENCRYPT,
             ]
         ]);

@@ -1,23 +1,28 @@
-project_nginx_well_known:
+app_nginx_index:
+    path: /nginx/index
+    defaults:
+        _controller: App\Controller\NginxController:indexAction
+
+app_nginx_well_known:
     options:
         expose: true
     path: /.well-known/acme-challenge/{token}
     methods: [GET]
     defaults:
-        _controller: App:Nginx:wellKnown
+        _controller:  App\Controller\NginxController:wellKnownAction
 
-project_nginx_restart:
+app_nginx_restart:
     options:
         expose: true
     path: /nginx/restart
     methods: [GET]
     defaults:
-        _controller: App:Nginx:restart
+        _controller:  App\Controller\NginxController:restartAction
 
-project_nginx_compile:
+app_nginx_compile:
     options:
         expose: true
     path: /nginx/compile
     methods: [GET]
     defaults:
-        _controller: App:Nginx:compile
+        _controller:  App\Controller\NginxController:compileAction

@@ -10,12 +10,26 @@ namespace App\Controller;
 
 use App\Manager\CertificateManager;
 use App\Manager\NginxManager;
+use Enhavo\Bundle\AppBundle\Controller\AbstractViewController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Enhavo\Bundle\AppBundle\Output\EchoStreamOutput;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
 
-class NginxController extends AbstractController
+class NginxController extends AbstractViewController
 {
+    public function indexAction()
+    {
+        $view = $this->viewFactory->create('nginx', [
+
+        ]);
+
+        return $this->viewHandler->handle($view);
+    }
+
     public function wellKnownAction(Request $request)
     {
         $token = $request->get('token');
@@ -28,21 +42,33 @@ class NginxController extends AbstractController
 
     public function restartAction()
     {
-        $controller = $this;
-        return new StreamedResponse(function() use ($controller) {
-            $controller->pushEchoHandler();
-            $controller->getManager()->reload();
-            $controller->popHandler();
+        $application = new Application($this->container->get('kernel'));
+        $application->setAutoExit(false);
+
+        return new StreamedResponse(function() use ($application) {
+
+            $input = new ArrayInput([
+                'command' => 'proxy:nginx:restart',
+            ]);
+
+            $output = new EchoStreamOutput(fopen('php://stdout', 'w'), OutputInterface::VERBOSITY_NORMAL, true);
+            $application->run($input, $output);
         });
     }
 
     public function compileAction()
     {
-        $controller = $this;
-        return new StreamedResponse(function() use ($controller) {
-            $controller->pushEchoHandler();
-            $controller->getManager()->compile();
-            $controller->popHandler();
+        $application = new Application($this->container->get('kernel'));
+        $application->setAutoExit(false);
+
+        return new StreamedResponse(function() use ($application) {
+
+            $input = new ArrayInput([
+                'command' => 'proxy:nginx:compile',
+            ]);
+
+            $output = new EchoStreamOutput(fopen('php://stdout', 'w'), OutputInterface::VERBOSITY_NORMAL, true);
+            $application->run($input, $output);
         });
     }
 
@@ -51,6 +77,6 @@ class NginxController extends AbstractController
      */
     private function getManager()
     {
-        return $this->container->get('manager.nginx');
+        return $this->container->get(NginxManager::class);
     }
 }

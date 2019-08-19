@@ -21,6 +21,8 @@ Encore
   .addEntry('enhavo/delete', './assets/enhavo/delete')
   .addEntry('enhavo/list', './assets/enhavo/list')
   .addEntry('enhavo/login', './assets/enhavo/login')
+  .addEntry('enhavo/varnish', './assets/enhavo/varnish')
+  .addEntry('enhavo/nginx', './assets/enhavo/nginx')
 ;
 
 enhavoConfig = EnhavoEncore.getWebpackConfig(Encore.getWebpackConfig());
