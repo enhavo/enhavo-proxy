@@ -16,6 +16,16 @@ enhavo_app:
             label: Host
             route: app_host_index
             icon: computer
+        nginx:
+            type: base
+            label: Nginx
+            route: app_nginx_index
+            icon: computer
+        varnish:
+            type: base
+            label: Varnish
+            route: app_varnish_index
+            icon: computer
 
 sylius_resource:
     resources:

@@ -6,6 +6,7 @@ app_host_index:
         _controller: app.controller.host:indexAction
         _sylius:
             viewer:
+                label: Host
 
 app_host_create:
     options:

@@ -41,6 +41,7 @@ class VarnishViewer extends AbstractActionViewer
             'javascripts' => [
                 'enhavo/varnish'
             ],
+            'label' => 'Varnish'
         ]);
     }
 

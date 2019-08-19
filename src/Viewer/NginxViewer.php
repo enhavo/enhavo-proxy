@@ -41,6 +41,7 @@ class NginxViewer extends AbstractActionViewer
             'javascripts' => [
                 'enhavo/nginx'
             ],
+            'label' => 'Nginx'
         ]);
     }
 

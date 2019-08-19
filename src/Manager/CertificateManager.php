@@ -21,7 +21,7 @@ class CertificateManager
     {
         $fs = new Filesystem();
         /** @var Host[] $hosts */
-        $hosts = $this->container->get('project.repository.host')->findAll();
+        $hosts = $this->container->get('app.repository.host')->findAll();
         foreach($hosts as $host) {
             if($host->getCertificate()) {
                 $this->getLogger()->info(sprintf('certificate for host "%s" was dumped', $host->getDomain()));
@@ -46,7 +46,7 @@ class CertificateManager
     public function renewCertificates()
     {
         /** @var Host[] $hosts */
-        $hosts = $this->container->get('project.repository.host')->findBy([
+        $hosts = $this->container->get('app.repository.host')->findBy([
             'certificateType' => Host::CERTIFICATE_TYPE_LETS_ENCRYPT
         ]);
 
