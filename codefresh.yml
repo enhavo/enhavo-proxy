@@ -47,10 +47,10 @@ steps:
                             - ${{build.imageId}}:
                                   - CF_QUALITY: false
             push:
-                title: "Pushing image to cfcr"
+                title: "Pushing image to docker hub"
                 type: "push"
                 image_name: "enhavo/enhavo-proxy"
-                registry: "cfcr"
+                registry: "dockerhub"
                 candidate: "${{build}}"
                 tags:
                     - "${{CF_BRANCH_TAG_NORMALIZED}}"
