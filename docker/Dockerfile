@@ -27,6 +27,7 @@ RUN apt-get update -y && \
     apt-get install -y mysql-client && \
     apt-get install -y composer && \
     rm -rf /var/www/html && \
+    mkdir /var/startup  && \
     cp /etc/varnish/default.vcl /var/startup/default.vcl  && \
     git clone https://github.com/enhavo/enhavo-proxy.git /var/www/current
 
@@ -71,6 +72,7 @@ RUN rm -f /etc/nginx/sites-available/default && \
     /root/.yarn/bin/yarn install && \
     /root/.yarn/bin/yarn encore prod
 
+ENV COMPOSER_HOME=/root/.composer/
 
 VOLUME ["/etc/nginx", "/etc/varnish", "/var/www", "/var/ssl"]
 

@@ -5,5 +5,5 @@ if [ ! -f /etc/varnish/secret ]; then
 fi
 
 echo "Install mysql"
-/var/www/current/bin/console doctrine:database:create
+/var/www/current/bin/console doctrine:database:create --if-not-exists
 /var/www/current/bin/console doctrine:migration:migrate -n
