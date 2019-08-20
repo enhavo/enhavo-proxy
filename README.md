@@ -2,6 +2,8 @@
 <br/>
 <br/>
 
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/gseidel/enhavo%2Fenhavo-proxy%2Fenhavo-proxy)]( https://g.codefresh.io/public/accounts/gseidel/pipelines/enhavo/enhavo/enhavo-proxy)
+
 Enhavo Proxy
 ------------
 
