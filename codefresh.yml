@@ -17,7 +17,7 @@ steps:
         image_name: "enhavo/enhavo-proxy"
         working_directory: "./docker"
         tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
-        dockerfile: "docker/Dockerfile"
+        dockerfile: "Dockerfile"
         stage: "build"
     approval_for_push:
         type: "pending-approval"
