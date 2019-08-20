@@ -1,0 +1,58 @@
+version: "1.0"
+stages:
+    - "clone"
+    - "build"
+    - "integration"
+    - "push"
+steps:
+    main_clone:
+        type: "git-clone"
+        description: "Cloning main repository..."
+        repo: "enhavo/enhavo-proxy"
+        revision: "${{CF_BRANCH}}"
+        stage: "clone"
+    build:
+        title: "Building Docker Image"
+        type: "build"
+        image_name: "enhavo/enhavo-proxy"
+        working_directory: "./docker"
+        tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
+        dockerfile: "docker/Dockerfile"
+        stage: "build"
+    approval_for_push:
+        type: "pending-approval"
+        title: "Should we run push"
+        when:
+            branch:
+                only:
+                    - "master"
+        stage: "push"
+    parallel_push:
+        type: "parallel"
+        steps:
+            annotate_build:
+                title: "Annotating Build"
+                image: "${{build}}"
+                working_directory: "IMAGE_WORK_DIR"
+                commands:
+                    - "echo Annotating Build..."
+                on_success:
+                    metadata:
+                        set:
+                            - ${{build.imageId}}:
+                                  - CF_QUALITY: true
+                on_error:
+                    metadata:
+                        set:
+                            - ${{build.imageId}}:
+                                  - CF_QUALITY: false
+            push:
+                title: "Pushing image to cfcr"
+                type: "push"
+                image_name: "enhavo/enhavo-proxy"
+                registry: "cfcr"
+                candidate: "${{build}}"
+                tags:
+                    - "${{CF_BRANCH_TAG_NORMALIZED}}"
+                    - "${{CF_REVISION}}"
+        stage: "push"
