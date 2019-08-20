@@ -2,7 +2,7 @@
 <br/>
 <br/>
 
-[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/gseidel/enhavo%2Fenhavo-proxy%2Fenhavo-proxy)]( https://g.codefresh.io/public/accounts/gseidel/pipelines/enhavo/enhavo/enhavo-proxy)
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/gseidel/enhavo%2Fenhavo-proxy%2Fenhavo-proxy?branch=master&key=eyJhbGciOiJIUzI1NiJ9.NTc1NDUyMGIxYzM4NTEwNjAwNGEyZTY2.RbWknXC4TuKWUQAIUS0T0bxOdhV6r-W3gC54Ki5f8Xc&type=cf-1)]( https://g.codefresh.io/pipelines/enhavo-proxy/builds?repoOwner=enhavo&repoName=enhavo-proxy&serviceName=enhavo%2Fenhavo-proxy&filter=trigger:build~Build;branch:master;pipeline:5d5bc5ee909a33c825cc878c~enhavo-proxy)
 
 Enhavo Proxy
 ------------
