@@ -25,6 +25,41 @@ files.
 
 ![alt text](assets/enhavo/images/architecture.svg "enhavo-proxy")
 
+
+Run Docker
+----------
+
+```bash
+$ docker run -d -e DATABASE_URL='mysql://root:root@mysql:3306/enhavo-proxy' --link 'mysql:mysql' -p '80:80' -p '443:443' -p '8080:8080'  enhavo/enhavo-proxy
+```
+
+Or copy this `docker-compose.yml` file to your file system and run `docker-compose up -d`  
+
+```yaml
+version: '3'
+services:
+  proxy:
+    container_name: enhavo-proxy
+    image: enhavo/enhavo-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - '/data/enhavo-proxy/nginx:/etc/nginx'
+      - '/data/enhavo-proxy/varnish:/etc/varnish'
+      - '/data/enhavo-proxy/ssl:/var/ssl'
+    environment:
+      DATABASE_URL: mysql://root:root@mysql:3306/enhavo-proxy
+  mysql:
+    container_name: mysql
+    image: mariadb:10.3
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - '/data/enhavo-proxy/mysql:/var/lib/mysql'
+```
+
 Contribution
 ------------
 

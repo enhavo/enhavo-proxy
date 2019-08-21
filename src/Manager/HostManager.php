@@ -8,7 +8,7 @@
 
 namespace App\Manager;
 
-use Enhavo\Bundle\AppBundle\Slugifier\Slugifier;
+use Gedmo\Sluggable\Util\Urlizer;
 use App\Entity\Backend;
 use App\Entity\Host;
 
@@ -17,7 +17,7 @@ class HostManager extends AbstractManager
     public function updateHost(Host $host)
     {
         /** @var Backend $backend */
-        $domainSlug = Slugifier::slugify($host->getDomain(), '_');
+        $domainSlug = $this->slugify($host->getDomain(), '_');
 
         $host->setDirectorName($domainSlug);
 
@@ -38,6 +38,14 @@ class HostManager extends AbstractManager
                 $backend->setConnectTimeout(900);
             }
         }
+    }
+
+    private function slugify($content, $separator = '-')
+    {
+        $urlizer = new Urlizer();
+        $content = $urlizer->urlize($content, $separator);
+        $content  = $urlizer->transliterate($content, $separator);
+        return $content;
     }
 
     /**

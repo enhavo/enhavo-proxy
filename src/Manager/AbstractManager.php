@@ -28,18 +28,18 @@ abstract class AbstractManager
     private $logger;
 
     /**
-     * @param string $command
+     * @param array $command
      * @return string
      */
-    protected function executeCommand($command)
+    protected function executeCommand(array $command)
     {
-        $this->getLogger()->error(sprintf('Execute command "%s"', $command));
-        $process = new Process([$command]);
+        $this->getLogger()->error(sprintf('Execute command "%s"', implode(' ', $command)));
+        $process = new Process($command, $this->container->getParameter('kernel.project_dir'));
         $process->run();
 
         if (!$process->isSuccessful()) {
             $output = $process->getErrorOutput();
-            $this->getLogger()->error(sprintf("Command quit with error: \n%s", $output));
+            $this->getLogger()->info(sprintf("Command quit with error: \n%s", $output));
         } else {
             $output = $process->getOutput();
             $this->getLogger()->error(sprintf("Command successful: \n%s", $output));

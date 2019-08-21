@@ -44,12 +44,12 @@ class NginxManager extends AbstractManager
 
     public function restart()
     {
-        $this->executeCommand('sudo service nginx restart');
+        $this->executeCommand(['sudo', 'service', 'nginx', 'restart']);
     }
 
     public function reload()
     {
-        $this->executeCommand('sudo service nginx reload');
+        $this->executeCommand(['sudo', 'service', 'nginx', 'reload']);
     }
 
     private function getConfigPath()

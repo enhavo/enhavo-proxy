@@ -32,8 +32,8 @@ class HostSubscriber  implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'project.host.pre_update' => array('onSave', 1),
-            'project.host.pre_create' => array('onSave', 1),
+            'app.host.pre_update' => array('onSave', 1),
+            'app.host.pre_create' => array('onSave', 1),
         );
     }
 
