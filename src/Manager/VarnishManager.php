@@ -45,22 +45,22 @@ class VarnishManager extends AbstractManager
     public function reload()
     {
         $this->getLogger()->info('reload varnish');
-        $time = (new \DateTime())->format('YmdHi');
         $this->getLogger()->info('load file /etc/varnish/default.vcl');
-        $this->executeCommand(sprintf('varnishadm -S /etc/varnish/secret -T 127.0.0.1:6082 vcl.load varnish_%s /etc/varnish/default.vcl', $time));
+        $configName = sprintf('varnish_%s', (new \DateTime())->format('YmdHi'));
+        $this->executeCommand(['varnishadm', '-S', '/etc/varnish/secret', '-T', '127.0.0.1:6082', 'vcl.load', $configName, '/etc/varnish/default.vcl']);
         $this->getLogger()->info('use vanish file');
-        $this->executeCommand(sprintf('varnishadm -S /etc/varnish/secret -T 127.0.0.1:6082 vcl.use varnish_%s', $time));
+        $this->executeCommand(['varnishadm', '-S', '/etc/varnish/secret', '-T', '127.0.0.1:6082', 'vcl.use', $configName]);
     }
 
     public function testConfig()
     {
         $this->getLogger()->info('compile check for varnish');
-        $this->executeCommand('varnishd -C -f /etc/varnish/default.vcl');
+        $this->executeCommand(['varnishd', '-C', '-f', '/etc/varnish/default.vcl']);
     }
 
     public function createSecretFile()
     {
-        $this->getFilesystem()->dumpFile($this->getSecretFilePath(), uniqid());
+        $this->getFilesystem()->dumpFile($this->getSecretFilePath(), sha1(random_bytes(32)));
     }
 
     public function getSecretFilePath()
