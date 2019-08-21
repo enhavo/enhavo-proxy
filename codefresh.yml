@@ -18,6 +18,8 @@ steps:
         tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
         dockerfile: "Dockerfile"
         stage: "build"
+        no_cache: true
+        no_cf_cache: true
     push:
         title: "Pushing image to docker hub"
         type: "push"
