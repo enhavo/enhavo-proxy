@@ -103,9 +103,30 @@ class Host implements ResourceInterface
      */
     private $certificateRefresh;
 
+    /**
+     * @var boolean
+     */
+    private $authentication;
+
+    /**
+     * @var string
+     */
+    private $user;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $rules;
+
     public function __construct()
     {
         $this->backends = new ArrayCollection();
+        $this->rules = new ArrayCollection();
     }
 
     /**
@@ -354,5 +375,71 @@ class Host implements ResourceInterface
     public function setCertificateRefresh($certificateRefresh)
     {
         $this->certificateRefresh = $certificateRefresh;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAuthentication(): ?bool
+    {
+        return $this->authentication;
+    }
+
+    /**
+     * @param bool $authentication
+     */
+    public function setAuthentication(?bool $authentication): void
+    {
+        $this->authentication = $authentication;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUser(): ?string
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param string $user
+     */
+    public function setUser(?string $user): void
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(?string $password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @param Rule $rule
+     */
+    public function addRule(Rule $rule)
+    {
+        $this->rules->add($rule);
+        $rule->setHost($this);
+    }
+
+    /**
+     * @param Rule $rule
+     */
+    public function removeRule(Rule $rule)
+    {
+        $this->rules->removeElement($rule);
+        $rule->setHost(null);
     }
 }

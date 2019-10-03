@@ -46,11 +46,22 @@ App\Entity\Host:
             column: "`default`"
             type: boolean
             nullable: true
-
+        user:
+            type: string
+            nullable: true
+        password:
+            type: string
+            nullable: true
+        authentication:
+            type: boolean
+            nullable: true
     oneToMany:
         backends:
             cascade: ['persist', 'remove', 'refresh']
             targetEntity: Backend
             mappedBy: host
-
+        rules:
+            cascade: ['persist', 'remove', 'refresh']
+            targetEntity: Rule
+            mappedBy: host
     lifecycleCallbacks: {  }

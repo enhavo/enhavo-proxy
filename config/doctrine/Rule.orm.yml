@@ -1,0 +1,33 @@
+App\Entity\Rule:
+    type: entity
+    table: app_rule
+    repositoryClass: App\Repository\RuleRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+
+    fields:
+        type:
+            type: string
+            nullable: true
+        user:
+            type: string
+            nullable: string
+        password:
+            type: string
+            nullable: string
+        path:
+            type: string
+            nullable: string
+        transferType:
+            type: string
+            nullable: string
+
+    manyToOne:
+        host:
+            targetEntity: Host
+
+    lifecycleCallbacks: {  }
