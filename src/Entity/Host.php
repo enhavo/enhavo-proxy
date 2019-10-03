@@ -9,6 +9,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 class Host implements ResourceInterface
@@ -426,6 +427,14 @@ class Host implements ResourceInterface
     }
 
     /**
+     * @return Collection
+     */
+    public function getRules(): Collection
+    {
+        return $this->rules;
+    }
+
+    /**
      * @param Rule $rule
      */
     public function addRule(Rule $rule)
@@ -441,5 +450,13 @@ class Host implements ResourceInterface
     {
         $this->rules->removeElement($rule);
         $rule->setHost(null);
+    }
+
+    public function getAuthenticationUser()
+    {
+        if($this->user && $this->password) {
+            return base64_encode(sprintf('%s:%s', $this->user, $this->password));
+        }
+        return null;
     }
 }

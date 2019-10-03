@@ -58,5 +58,15 @@ class HostType extends AbstractType
                 'Lets Encrypt' => Host::CERTIFICATE_TYPE_LETS_ENCRYPT,
             ]
         ]);
+
+
+        $builder->add('authentication', BooleanType::class);
+        $builder->add('user', TextType::class);
+        $builder->add('password', TextType::class);
+
+        $builder->add('rules', ListType::class, [
+            'entry_type'=> RuleType::class,
+            'border' => true
+        ]);
     }
 }
