@@ -5,6 +5,7 @@ RUN apt-get update -y && \
     apt-get upgrade -y  && \
     ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime  && \
     apt-get install -y apache2 && \
+    a2enmod proxy_fcgi && \
     apt-get install -y varnish && \
     apt-get install -y nginx && \
     apt-get install -y sudo && \
@@ -15,7 +16,7 @@ RUN apt-get update -y && \
     mkdir /var/startup && \
     apt-get install -y git && \
     git clone https://github.com/vishnubob/wait-for-it.git /var/startup/wait-for-it && \
-    apt-get install -y php7.2 && \
+    apt-get install -y php7.2-fpm && \
     apt-get install -y php7.2-gd && \
     apt-get install -y php7.2-curl && \
     apt-get install -y php7.2-mbstring && \
@@ -23,7 +24,6 @@ RUN apt-get update -y && \
     apt-get install -y php7.2-intl && \
     apt-get install -y php7.2-mysql && \
     apt-get install -y php7.2-zip && \
-    apt-get install -y libapache2-mod-php7.2 && \
     apt-get install -y mysql-client && \
     apt-get install -y composer && \
     rm -rf /var/www/html && \
@@ -35,10 +35,14 @@ COPY etc/my_init.d/01_apache2.bash /etc/my_init.d/01_apache2.bash
 COPY etc/my_init.d/02_varnish.bash /etc/my_init.d/02_varnish.bash
 COPY etc/my_init.d/03_nginx.bash /etc/my_init.d/03_nginx.bash
 COPY etc/my_init.d/04_enhavo.bash /etc/my_init.d/04_enhavo.bash
+COPY etc/my_init.d/05_php-fpm.bash /etc/my_init.d/05_php-fpm.bash
 
 # apache config
 COPY etc/apache2/ports.conf /etc/apache2/ports.conf
 COPY etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# php config
+COPY etc/php/7.2/fpm/pool.d/www.conf /etc/php/7.2/fpm/pool.d/www.conf
 
 # nginx config
 COPY etc/sudo/sudoers /etc/sudoers
@@ -63,6 +67,7 @@ RUN rm -f /etc/nginx/sites-available/default && \
     chmod 755 /etc/my_init.d/02_varnish.bash && \
     chmod 755 /etc/my_init.d/03_nginx.bash && \
     chmod 755 /etc/my_init.d/04_enhavo.bash && \
+    chmod 755 /etc/my_init.d/05_php-fpm.bash && \
     a2enmod rewrite && \
     composer install --no-scripts --no-dev --no-interaction && \
     bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json && \

@@ -27,6 +27,7 @@ class VarnishCreateSecretCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->pushOutputHandler($output);
+        $output->writeln('create varnish secret file');
         $this->container->get(VarnishManager::class)->createSecretFile();
         $this->popHandler();
     }
