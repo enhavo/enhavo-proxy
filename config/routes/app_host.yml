@@ -24,6 +24,9 @@ app_host_create:
                     backend:
                         label: Backend
                         template: admin/resource/host/backend.html.twig
+                    rules:
+                        label: Rules
+                        template: admin/resource/host/rules.html.twig
                     certificate:
                         label: Certificate
                         template: admin/resource/host/certificate.html.twig
@@ -43,6 +46,9 @@ app_host_update:
                     backend:
                         label: Backend
                         template: admin/resource/host/backend.html.twig
+                    rules:
+                        label: Rules
+                        template: admin/resource/host/rules.html.twig
                     certificate:
                         label: Certificate
                         template: admin/resource/host/certificate.html.twig
