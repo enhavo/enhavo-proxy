@@ -6,9 +6,12 @@
 namespace App\Twig;
 
 use App\Entity\Host;
+use App\Entity\Rule;
 use App\Manager\CertificateManager;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class TwigExtension extends AbstractExtension
 {
@@ -16,16 +19,21 @@ class TwigExtension extends AbstractExtension
 
     public function getFunctions()
     {
-        return [];
+        return [
+            new TwigFunction('render_varnish_rule', array($this, 'renderVarnishRule'), [
+                'is_safe' => array('html')
+            ]),
+        ];
     }
 
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('ssl_certificate_path', array($this, 'getSSLCertificatePath')),
-            new \Twig_SimpleFilter('ssl_certificate_key_path', array($this, 'getSSLCertificateKeyPath'))
+            new TwigFilter('ssl_certificate_path', array($this, 'getSSLCertificatePath')),
+            new TwigFilter('ssl_certificate_key_path', array($this, 'getSSLCertificateKeyPath'))
         ];
     }
+
 
     public function getSSLCertificatePath(Host $host)
     {
@@ -35,5 +43,13 @@ class TwigExtension extends AbstractExtension
     public function getSSLCertificateKeyPath(Host $host)
     {
         return $this->container->get(CertificateManager::class)->getCertificateKeyPath($host);
+    }
+
+    public function renderVarnishRule(Rule $rule)
+    {
+        $template = sprintf('Varnish/rule/%s.html.twig', $rule->getType());
+        return $this->container->get('twig')->render($template, [
+            'rule' => $rule
+        ]);
     }
 }

@@ -1,0 +1,3 @@
+if (! req.url.path ~ "{{ rule.path }}") {
+    return({{ rule.transferType }});
+}

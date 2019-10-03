@@ -1,0 +1,6 @@
+if (! req.url.path ~ "{{ rule.path }}") {
+    if (! req.http.Authorization ~ "Basic {% if rule.authenticationUser %}{{ rule.authenticationUser }}{% else %}{{ rule.host.authenticationUser }}{% endif %}") {
+        return(synth(401, "Authentication required"));
+    }
+    unset req.http.Authorization;
+}

@@ -8,10 +8,12 @@
 
 namespace App\Form\Type;
 
+use App\Entity\Rule;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RuleType extends AbstractType
 {
@@ -31,6 +33,13 @@ class RuleType extends AbstractType
                 'pipe' => 'pipe',
                 'pass' => 'pass'
             ]
+        ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Rule::class
         ]);
     }
 }

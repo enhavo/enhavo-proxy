@@ -51,7 +51,18 @@ sub vcl_recv
                 }
             {% endif %}
 
+            {% if host.authentication %}
+                if (! req.http.Authorization ~ "Basic {{ host.authenticationUser }}") {
+                    return(synth(401, "Authentication required"));
+                }
+                unset req.http.Authorization;
+            {% endif %}
+
             set req.backend_hint = {{ host.directorName }}.backend();
+
+            {% for rule in host.rules %}
+                {{ render_varnish_rule(rule) }}
+            {% endfor %}
 
             return({{ host.transferType }});
         }
@@ -94,5 +105,10 @@ sub vcl_synth {
         set resp.http.location = resp.reason;
         set resp.reason = "Moved";
         return (deliver);
+    }
+    if (resp.status == 401) {
+        set resp.status = 401;
+        set resp.http.WWW-Authenticate = "Basic";
+        return(deliver);
     }
 }

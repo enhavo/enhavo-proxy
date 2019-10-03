@@ -73,7 +73,7 @@ class Rule
     /**
      * @return string
      */
-    public function getUser(): string
+    public function getUser(): ?string
     {
         return $this->user;
     }
@@ -81,7 +81,7 @@ class Rule
     /**
      * @param string $user
      */
-    public function setUser(string $user): void
+    public function setUser(?string $user): void
     {
         $this->user = $user;
     }
@@ -89,7 +89,7 @@ class Rule
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -97,7 +97,7 @@ class Rule
     /**
      * @param string $password
      */
-    public function setPassword(string $password): void
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
     }
@@ -148,5 +148,13 @@ class Rule
     public function setHost(?Host $host): void
     {
         $this->host = $host;
+    }
+
+    public function getAuthenticationUser()
+    {
+        if($this->user && $this->password) {
+            return base64_encode(sprintf('%s:%s', $this->user, $this->password));
+        }
+        return null;
     }
 }
