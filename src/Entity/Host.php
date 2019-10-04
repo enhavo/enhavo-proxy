@@ -485,13 +485,6 @@ class Host implements ResourceInterface
      */
     public function setCertificateValidTo(?DateTime $certificateValidTo)
     {
-        if ($this->getCertificate()) {
-            $factory = new CertificateFactory(); // fixme: use as a service
-            $cert = $factory->createFromString($this->getCertificate());
-            $this->certificateValidTo = $cert->getValidTo();
-
-        } else {
-            $this->certificateValidTo = null;
-        }
+        $this->certificateValidTo = $certificateValidTo;
     }
 }

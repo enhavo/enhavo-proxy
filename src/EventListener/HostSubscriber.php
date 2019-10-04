@@ -8,6 +8,7 @@
 
 namespace App\EventListener;
 
+use App\Certificate\CertificateFactory;
 use App\Entity\Host;
 use App\Manager\HostManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -21,12 +22,19 @@ class HostSubscriber  implements EventSubscriberInterface
     private $hostManager;
 
     /**
-     * HostSubscriber constructor.
-     * @param $hostManager
+     * @var CertificateFactory
      */
-    public function __construct($hostManager)
+    private $certificateFactory;
+
+    /**
+     * HostSubscriber constructor.
+     * @param HostManager $hostManager
+     * @param CertificateFactory $certificateFactory
+     */
+    public function __construct(HostManager $hostManager, CertificateFactory $certificateFactory)
     {
         $this->hostManager = $hostManager;
+        $this->certificateFactory = $certificateFactory;
     }
 
     public static function getSubscribedEvents()
@@ -42,6 +50,13 @@ class HostSubscriber  implements EventSubscriberInterface
         $subject = $event->getSubject();
         if($subject instanceof Host) {
             $this->hostManager->updateHost($subject);
+
+            if ($subject->getCertificate()) {
+                $cert = $this->certificateFactory->createFromString($subject->getCertificate());
+                if ($cert && $cert->getValidTo()) {
+                    $subject->setCertificateValidTo($cert->getValidTo());
+                }
+            }
         }
     }
 }
