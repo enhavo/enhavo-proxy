@@ -8,7 +8,6 @@
 
 namespace App\Entity;
 
-use App\Certificate\CertificateFactory;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -319,8 +318,6 @@ class Host implements ResourceInterface
     public function setCertificate($certificate)
     {
         $this->certificate = $certificate;
-
-        $this->setCertificateValidTo(null);
     }
 
     /**
