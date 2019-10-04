@@ -8,9 +8,10 @@
 
 namespace App\Form\Type;
 
-use Enhavo\Bundle\FormBundle\Form\Type\BooleanType;
-use Enhavo\Bundle\FormBundle\Form\Type\ListType;
 use App\Entity\Host;
+use Enhavo\Bundle\FormBundle\Form\Type\BooleanType;
+use Enhavo\Bundle\FormBundle\Form\Type\DateTimeType;
+use Enhavo\Bundle\FormBundle\Form\Type\ListType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -56,6 +57,11 @@ class HostType extends AbstractType
             'choices'=> [
                 'SSL' => Host::CERTIFICATE_TYPE_NONE,
                 'Lets Encrypt' => Host::CERTIFICATE_TYPE_LETS_ENCRYPT,
+            ]
+        ]);
+        $builder->add('certificateValidTo', DateTimeType::class, [
+            'attr' => [
+                'readonly' => true
             ]
         ]);
 

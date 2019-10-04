@@ -2,6 +2,7 @@ services:
     App\EventListener\HostSubscriber:
         arguments:
             - '@App\Manager\HostManager'
+            - '@App\Certificate\CertificateFactory'
         tags:
             - { name: kernel.event_subscriber }
 

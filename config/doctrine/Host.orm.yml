@@ -39,6 +39,9 @@ App\Entity\Host:
         certificateRefresh:
             type: string
             nullable: true
+        certificateValidTo:
+            type: datetime
+            nullable: true
         redirect:
             type: string
             nullable: true

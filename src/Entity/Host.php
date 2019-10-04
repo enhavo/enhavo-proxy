@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -103,6 +104,11 @@ class Host implements ResourceInterface
      * @var string
      */
     private $certificateRefresh;
+
+    /**
+     * @var DateTime
+     */
+    private $certificateValidTo;
 
     /**
      * @var boolean
@@ -254,7 +260,7 @@ class Host implements ResourceInterface
     /**
      * Get backends
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getBackends()
     {
@@ -452,11 +458,30 @@ class Host implements ResourceInterface
         $rule->setHost(null);
     }
 
+    /**
+     * @return string|null
+     */
     public function getAuthenticationUser()
     {
         if($this->user && $this->password) {
             return base64_encode(sprintf('%s:%s', $this->user, $this->password));
         }
         return null;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getCertificateValidTo(): ?DateTime
+    {
+        return $this->certificateValidTo;
+    }
+
+    /**
+     * @param DateTime|null $certificateValidTo
+     */
+    public function setCertificateValidTo(?DateTime $certificateValidTo)
+    {
+        $this->certificateValidTo = $certificateValidTo;
     }
 }
