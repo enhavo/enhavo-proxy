@@ -52,6 +52,11 @@ class NginxManager extends AbstractManager
         $this->executeCommand(['sudo', 'service', 'nginx', 'reload']);
     }
 
+    public function checkConfig()
+    {
+        $this->executeCommand(['nginx', '-t']);
+    }
+
     private function getConfigPath()
     {
         return $this->container->getParameter('nginx_config');

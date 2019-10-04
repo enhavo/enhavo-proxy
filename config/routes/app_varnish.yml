@@ -12,3 +12,8 @@ app_varnish_compile:
     path:     /varnish/compile
     defaults:
         _controller: App\Controller\VarnishController:compileAction
+
+app_varnish_testconfig:
+    path:     /varnish/testconfig
+    defaults:
+        _controller: App\Controller\VarnishController:testconfigAction

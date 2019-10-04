@@ -26,3 +26,19 @@ app_nginx_compile:
     methods: [GET]
     defaults:
         _controller:  App\Controller\NginxController:compileAction
+
+app_nginx_certificatedump:
+    options:
+        expose: true
+    path: /nginx/certificatedump
+    methods: [GET]
+    defaults:
+        _controller:  App\Controller\NginxController:certificatedumpAction
+
+app_nginx_checkconfig:
+    options:
+        expose: true
+    path: /nginx/checkconfig
+    methods: [GET]
+    defaults:
+        _controller:  App\Controller\NginxController:checkconfigAction

@@ -70,4 +70,39 @@ class NginxController extends AbstractViewController
             $application->run($input, $output);
         });
     }
+
+    public function certificatedumpAction()
+    {
+        $application = new Application($this->container->get('kernel'));
+        $application->setAutoExit(false);
+
+        return new StreamedResponse(function() use ($application) {
+
+            $input = new ArrayInput([
+                'command' => 'proxy:certificate:dump',
+            ]);
+
+            $output = new EchoStreamOutput(fopen('php://stdout', 'w'), OutputInterface::VERBOSITY_NORMAL, true);
+            $application->run($input, $output);
+        });
+    }
+
+
+    public function checkconfigAction()
+    {
+        $application = new Application($this->container->get('kernel'));
+        $application->setAutoExit(false);
+
+        return new StreamedResponse(function() use ($application) {
+
+            $input = new ArrayInput([
+                'command' => 'proxy:nginx:checkconfig',
+            ]);
+
+            $output = new EchoStreamOutput(fopen('php://stdout', 'w'), OutputInterface::VERBOSITY_NORMAL, true);
+            $application->run($input, $output);
+        });
+    }
+
+
 }

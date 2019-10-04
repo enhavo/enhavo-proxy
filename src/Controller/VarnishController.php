@@ -51,4 +51,21 @@ class VarnishController extends AbstractViewController
             $application->run($input, $output);
         });
     }
+
+
+    public function testconfigAction()
+    {
+        $application = new Application($this->container->get('kernel'));
+        $application->setAutoExit(false);
+
+        return new StreamedResponse(function() use ($application) {
+
+            $input = new ArrayInput([
+                'command' => 'proxy:varnish:testconfig',
+            ]);
+
+            $output = new EchoStreamOutput(fopen('php://stdout', 'w'), OutputInterface::VERBOSITY_NORMAL, true);
+            $application->run($input, $output);
+        });
+    }
 }
