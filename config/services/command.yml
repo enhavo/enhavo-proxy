@@ -41,6 +41,14 @@ services:
         tags:
             - { name: console.command }
 
+    App\Command\NginxCheckConfigCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+
     App\Command\VarnishCompileCommand:
         calls:
             - ['setContainer', ['@service_container']]
@@ -56,6 +64,13 @@ services:
             - { name: console.command }
 
     App\Command\VarnishRestartCommand:
+        calls:
+            - ['setContainer', ['@service_container']]
+            - ['setLogger', ['@logger']]
+        tags:
+            - { name: console.command }
+
+    App\Command\VarnishTestConfigCommand:
         calls:
             - ['setContainer', ['@service_container']]
             - ['setLogger', ['@logger']]

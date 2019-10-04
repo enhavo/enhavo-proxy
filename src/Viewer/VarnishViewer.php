@@ -27,6 +27,12 @@ class VarnishViewer extends AbstractActionViewer
                 'route' => 'app_varnish_compile',
                 'label' => 'Compile',
                 'icon' => 'build'
+            ],
+            'testconfig' => [
+                'type' => 'output_stream',
+                'route' => 'app_varnish_testconfig',
+                'label' => 'Test Config',
+                'icon' => 'check'
             ]
         ];
     }

@@ -27,6 +27,18 @@ class NginxViewer extends AbstractActionViewer
                 'route' => 'app_nginx_compile',
                 'label' => 'Compile',
                 'icon' => 'build'
+            ],
+            'dump' => [
+                'type' => 'output_stream',
+                'route' => 'app_nginx_certificatedump',
+                'label' => 'Dump Certificates',
+                'icon' => 'wrap_text'
+            ],
+            'checkconfig' => [
+                'type' => 'output_stream',
+                'route' => 'app_nginx_checkconfig',
+                'label' => 'Check Config',
+                'icon' => 'check'
             ]
         ];
     }

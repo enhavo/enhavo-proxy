@@ -3,7 +3,7 @@ parameters:
 
 imports:
     - { resource: services/command.yml }
-    - { resource: services/generel.yml }
+    - { resource: services/general.yml }
     - { resource: services/form.yml }
     - { resource: services/manager.yml }
 
