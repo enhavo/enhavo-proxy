@@ -54,7 +54,7 @@ class NginxManager extends AbstractManager
 
     public function checkConfig()
     {
-        $this->executeCommand(['nginx', '-t']);
+        $this->executeCommand(['sudo', 'nginx', '-t']);
     }
 
     private function getConfigPath()
