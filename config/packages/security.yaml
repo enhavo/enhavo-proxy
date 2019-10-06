@@ -33,4 +33,5 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login/check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/reset-password, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/.well-known/acme-challenge/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: ROLE_ADMIN }
