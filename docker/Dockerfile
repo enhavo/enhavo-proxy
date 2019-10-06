@@ -57,6 +57,9 @@ COPY etc/logrotate.d/nginx /etc/logrotate.d/nginx
 # enhavo
 COPY var/startup/install.bash /var/startup/install.bash
 
+# cronjob
+COPY cron/crontab /var/spool/cron/crontabs/root
+
 WORKDIR /var/www/current
 
 RUN rm -f /etc/nginx/sites-available/default && \
@@ -74,7 +77,9 @@ RUN rm -f /etc/nginx/sites-available/default && \
     bin/console cache:warmup && \
     chown -R www-data:www-data /var/www/current/var && \
     /root/.yarn/bin/yarn install && \
-    /root/.yarn/bin/yarn encore prod
+    /root/.yarn/bin/yarn encore prod && \
+    chmod 0644 /var/spool/cron/crontabs/root && \
+    crontab -u root /var/spool/cron/crontabs/root
 
 ENV COMPOSER_HOME=/root/.composer/
 
