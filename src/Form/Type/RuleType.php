@@ -25,7 +25,9 @@ class RuleType extends AbstractType
                 'transfer' => 'transfer'
             ]
         ]);
-        $builder->add('path', TextType::class);
+        $builder->add('path', TextType::class, [
+            'label' => 'Url (Regex)'
+        ]);
         $builder->add('user', TextType::class);
         $builder->add('password', TextType::class);
         $builder->add('transferType', ChoiceType::class, [
