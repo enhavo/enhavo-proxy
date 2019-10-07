@@ -72,6 +72,7 @@ app_host_table:
                         property: domain
                         width: 12
                         label: Domain
+                        sortable: true
 
 app_host_delete:
     options:
