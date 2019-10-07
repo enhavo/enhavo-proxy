@@ -67,4 +67,5 @@ App\Entity\Host:
             cascade: ['persist', 'remove', 'refresh']
             targetEntity: Rule
             mappedBy: host
+            orderBy: { 'position': 'ASC' }
     lifecycleCallbacks: {  }

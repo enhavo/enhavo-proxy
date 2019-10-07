@@ -47,6 +47,11 @@ class Rule
     private $host;
 
     /**
+     * @var int
+     */
+    private $position;
+
+    /**
      * @return int
      */
     public function getId(): ?int
@@ -150,6 +155,9 @@ class Rule
         $this->host = $host;
     }
 
+    /**
+     * @return string|null
+     */
     public function getAuthenticationUser()
     {
         if($this->user && $this->password) {
@@ -157,4 +165,25 @@ class Rule
         }
         return null;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int|null $position
+     * @return $this
+     */
+    public function setPosition(?int $position): self
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+
 }

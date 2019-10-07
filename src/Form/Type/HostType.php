@@ -72,7 +72,8 @@ class HostType extends AbstractType
 
         $builder->add('rules', ListType::class, [
             'entry_type'=> RuleType::class,
-            'border' => true
+            'border' => true,
+            'sortable' => true
         ]);
     }
 }
