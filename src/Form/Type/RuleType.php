@@ -9,6 +9,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Rule;
+use Enhavo\Bundle\FormBundle\Form\Type\PositionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -36,6 +37,8 @@ class RuleType extends AbstractType
                 'pass' => 'pass'
             ]
         ]);
+
+        $builder->add('position', PositionType::class, []);
     }
 
     public function configureOptions(OptionsResolver $resolver)

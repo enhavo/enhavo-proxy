@@ -25,6 +25,9 @@ App\Entity\Rule:
         transferType:
             type: string
             nullable: string
+        position:
+            type: integer
+            nullable: true
 
     manyToOne:
         host:
