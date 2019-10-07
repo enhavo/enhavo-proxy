@@ -71,6 +71,8 @@ class CertificateManager extends AbstractManager
             $host->setCertificate($fs->readFile($certPath));
             $host->setCertificateKey($fs->readFile($keyPath));
             $host->setCertificateRequest($fs->readFile($requestPath));
+
+            $this->container->get('doctrine.orm.entity_manager')->flush($host);
         } catch (\Exception $e) {
 
         }
