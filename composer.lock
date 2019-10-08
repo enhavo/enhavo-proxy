@@ -1364,12 +1364,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/enhavo/EnhavoAppBundle.git",
-                "reference": "9730d22b56aeaad1ca16d68cb74b6a4920817d81"
+                "reference": "347b1dd6c8555f0d03f53bc5e04a3a8f18a9a346"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/enhavo/EnhavoAppBundle/zipball/9730d22b56aeaad1ca16d68cb74b6a4920817d81",
-                "reference": "9730d22b56aeaad1ca16d68cb74b6a4920817d81",
+                "url": "https://api.github.com/repos/enhavo/EnhavoAppBundle/zipball/347b1dd6c8555f0d03f53bc5e04a3a8f18a9a346",
+                "reference": "347b1dd6c8555f0d03f53bc5e04a3a8f18a9a346",
                 "shasum": ""
             },
             "require": {
@@ -1422,7 +1422,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2019-09-16T21:31:41+00:00"
+            "time": "2019-10-07T17:37:09+00:00"
         },
         {
             "name": "enhavo/dashboard-bundle",
