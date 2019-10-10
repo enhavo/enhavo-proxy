@@ -57,6 +57,10 @@ class CertificateManager extends AbstractManager
         $this->container->get('doctrine.orm.entity_manager')->flush();
     }
 
+    /**
+     * @param Host $host
+     * @return bool
+     */
     public function renewCertificate(Host $host)
     {
         try {
@@ -73,8 +77,11 @@ class CertificateManager extends AbstractManager
             $host->setCertificateRequest($fs->readFile($requestPath));
 
             $this->container->get('doctrine.orm.entity_manager')->flush($host);
-        } catch (\Exception $e) {
 
+            return true;
+
+        } catch (\Exception $e) {
+            return false;
         }
     }
 

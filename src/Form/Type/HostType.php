@@ -50,7 +50,11 @@ class HostType extends AbstractType
             ]
         ]);
 
-        $builder->add('certificate', TextareaType::class);
+        $builder->add('certificate', TextareaType::class, [
+            'attr' => [
+                'data-form-certificate' => ''
+            ]
+        ]);
         $builder->add('certificateRequest', TextareaType::class);
         $builder->add('certificateKey', TextareaType::class);
         $builder->add('certificateType', ChoiceType::class, [
