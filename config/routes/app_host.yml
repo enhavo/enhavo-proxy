@@ -38,7 +38,14 @@ app_host_update:
     defaults:
         _controller: app.controller.host:updateAction
         _sylius:
+            serialization_groups: ['host']
             viewer:
+                actions:
+                    renewcert:
+                        type: event
+                        event: renewcertificate
+                        label: 'Renew Certificate'
+                        icon: replay
                 tabs:
                     main:
                         label: Host
@@ -94,3 +101,11 @@ app_host_batch:
             batches:
                 delete:
                     type: delete
+
+app_host_renewcertificate:
+    path: /app/host/renewcertificate/{id}
+    options:
+        expose: true
+    methods: [POST]
+    defaults:
+        _controller:  App\Controller\HostController:renewcertificateAction

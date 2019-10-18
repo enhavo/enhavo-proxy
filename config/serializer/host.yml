@@ -1,0 +1,6 @@
+App\Entity\Host:
+    attributes:
+        id:
+            groups: ['host']
+        certificate:
+            groups: ['certificate']

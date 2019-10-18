@@ -33,6 +33,15 @@ services:
         tags:
             - { name: controller.service_arguments }
 
+    App\Controller\HostController:
+        public: true
+        arguments:
+            - '@App\Manager\CertificateManager'
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: controller.service_arguments }
+
     App\Controller\VarnishController:
         public: true
         arguments:
